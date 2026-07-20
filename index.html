@@ -133,21 +133,25 @@ line-height:2;
     white-space:nowrap;
     padding:12px 0;
 }
-
-.newsText{
-    display:inline-block;
-    white-space:nowrap;
-    padding-left:100%;
-    animation:newsMove 15s linear infinite;
-    will-change:transform;
+.newsTrack{
+    display:flex;
+    width:max-content;
+    animation:marquee 20s linear infinite;
 }
 
-@keyframes newsMove{
+.newsTrack span{
+    white-space:nowrap;
+    padding:0 60px;
+    font-size:18px;
+    font-weight:bold;
+}
+
+@keyframes marquee{
     from{
         transform:translateX(0);
     }
     to{
-        transform:translateX(-200%);
+        transform:translateX(-50%);
     }
 }
 
@@ -190,12 +194,14 @@ menu.style.display="block";
 
 </header> 
   
-  
   <div class="newsBar">
-    <div class="newsText">
-        🥖 أهلاً وسهلاً بكم في كعكوز إكسبرس • 🌿 منتجات بلدية طازجة يومياً • ❤️ نكهة الماضي بجودة اليوم • 📍 السلط - دبابنة - جانب كازية جو بترول
+    <div class="newsTrack">
+        <span>🥖 أهلاً وسهلاً بكم في كعكوز إكسبرس • 🌿 منتجات بلدية طازجة يومياً • ❤️ نكهة الماضي بجودة اليوم • 📍 السلط - دبابنة - جانب كازية جو بترول •</span>
+
+        <span>🥖 أهلاً وسهلاً بكم في كعكوز إكسبرس • 🌿 منتجات بلدية طازجة يومياً • ❤️ نكهة الماضي بجودة اليوم • 📍 السلط - دبابنة - جانب كازية جو بترول •</span>
     </div>
   </div>
+
   
   
   <div class="banner">  <img src="file_00000000144471f4852b37bfbefedc13.png">  </div>    <div class="hero">  <div class="left">  <h2>أهلاً وسهلاً بكم</h2>  <p>  
