@@ -1,231 +1,185 @@
-/* المنيو */
-
-#menu{
-
-display:none;
-
-padding:30px;
-
-text-align:center;
-
-animation:fadeUp .8s ease;
-
-}
-
-#menu img{
-
-width:95%;
-
-max-width:900px;
-
-border-radius:22px;
-
-box-shadow:
-
-0 20px 40px rgba(0,0,0,.30),
-
-0 0 20px rgba(212,175,55,.45);
-
-transition:.5s;
-
-}
-
-#menu img:hover{
-
-transform:scale(1.02);
-
-}
-
-/* آراء العملاء */
-
-.reviews{
-
-padding:60px 20px;
-
-text-align:center;
-
-}
-
-.reviews h2{
-
-font-size:34px;
-
-color:#6d3b1e;
-
-margin-bottom:35px;
-
-}
-
-.reviewContainer{
-
-display:flex;
-
-gap:25px;
-
-justify-content:center;
-
-flex-wrap:wrap;
-
-}
-
-.review{
-
-background:rgba(255,255,255,.85);
-
-backdrop-filter:blur(12px);
-
-width:320px;
-
-padding:25px;
-
-border-radius:20px;
-
-box-shadow:
-
-0 12px 30px rgba(0,0,0,.15),
-
-0 0 15px rgba(212,175,55,.25);
-
-transition:.4s;
-
-}
-
-.review:hover{
-
-transform:translateY(-8px);
-
-box-shadow:
-
-0 20px 35px rgba(0,0,0,.20),
-
-0 0 25px gold;
-
-}
-
-.review .stars{
-
-font-size:24px;
-
-margin-bottom:12px;
-
-}
-
-.review h3{
-
-color:#6d3b1e;
-
-margin-bottom:10px;
-
-}
-
-.review p{
-
-line-height:1.8;
-
-font-size:18px;
-
-}
-
-footer{
-
-margin-top:60px;
-
-background:#1f1f1f;
-
-color:white;
-
-text-align:center;
-
-padding:40px 20px;
-
-line-height:2.2;
-
-border-top:4px solid #d4af37;
-
-}
-
-@keyframes fadeUp{
-
-from{
-
-opacity:0;
-
-transform:translateY(30px);
-
-}
-
-to{
-
-opacity:1;
-
-transform:translateY(0);
-
-}
-
-}
-
-@media(max-width:768px){
-
-.hero{
-
-flex-direction:column;
-
-}
-
-.left h2{
-
-font-size:30px;
-
-}
-
-.left p{
-
-font-size:19px;
-
-}
-
-button,
-
-a.btn{
-
-width:90%;
-
-}
-
-.review{
-
-width:100%;
-
-}
-
-}
-
-</style>
-
-<script>
-
-function showMenu(){
-
-var menu=document.getElementById("menu");
-
-if(menu.style.display==="block"){
-
-menu.style.display="none";
-
-}else{
-
-menu.style.display="block";
-
-menu.scrollIntoView({
-
-behavior:"smooth"
-
-});
-
-}
-
-}
-
-</script>
-
-</head>
+<!DOCTYPE html>  <html lang="ar" dir="rtl">  <head>  
+<meta charset="UTF-8">  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+<meta name="google-site-verification" content="bP8hbhxR0YcFd7UDp3XYOEvfYMaARes6sGUG40bluqY" />  
+<title>كعكوز إكسبرس</title>  <style>  
+  
+*{  
+margin:0;  
+padding:0;  
+box-sizing:border-box;  
+font-family:Tahoma,Arial,sans-serif;  
+}  
+  
+body{  
+background:#f7f4ef;  
+color:#333;  
+}  
+  
+header{  
+background:#6d3b1e;  
+color:#fff;  
+padding:20px;  
+text-align:center;  
+font-size:22px;  
+font-weight:bold;  
+position:sticky;  
+top:0;  
+}  
+  
+.banner img{  
+width:100%;  
+display:block;  
+border-bottom:5px solid #6d3b1e;  
+    
+}  
+.hero{  
+padding:35px 20px;  
+display:flex;  
+justify-content:space-between;  
+align-items:center;  
+gap:30px;  
+flex-wrap:wrap;  
+}  
+  
+.left,.right{  
+flex:1;  
+min-width:280px;  
+}  
+  
+.left h2{  
+font-size:36px;  
+color:#6d3b1e;  
+margin-bottom:20px;  
+}  
+  
+.left p{  
+font-size:22px;  
+line-height:2;  
+}  
+  
+.right{  
+background:#fff;  
+padding:25px;  
+border-radius:15px;  
+box-shadow:0 0 15px rgba(0,0,0,.15);  
+}  
+  
+.right h3{  
+color:#6d3b1e;  
+margin-bottom:15px;  
+font-size:28px;  
+}  
+  
+.right ul{  
+list-style:none;  
+font-size:20px;  
+line-height:2;  
+}  
+  
+.buttons{  
+text-align:center;  
+margin:40px 0;  
+}  
+  
+button,a.btn{  
+display:inline-block;  
+margin:10px;  
+padding:16px 35px;  
+font-size:22px;  
+border:none;  
+border-radius:10px;  
+cursor:pointer;  
+text-decoration:none;  
+color:#fff;  
+}  
+  
+.menuBtn{  
+background:#8B4513;  
+}  
+  
+.callBtn{  
+background:#1fa64a;  
+}  
+  
+#menu{  
+display:none;  
+padding:20px;  
+text-align:center;  
+}  
+  
+#menu img{  
+width:95%;  
+max-width:900px;  
+border-radius:15px;  
+box-shadow:0 0 15px rgba(0,0,0,.25);  
+}  
+  
+footer{  
+margin-top:50px;  
+background:#222;  
+color:#fff;  
+text-align:center;  
+padding:30px;  
+font-size:18px;  
+line-height:2;  
+}  
+  
+@media(max-width:768px){  
+  
+.hero{  
+flex-direction:column;  
+}  
+  
+.left h2{  
+font-size:28px;  
+}  
+  
+.left p{  
+font-size:19px;  
+}  
+  
+}  
+  
+</style>  <script>  
+  
+function showMenu(){  
+  
+var menu=document.getElementById("menu");  
+  
+if(menu.style.display=="block"){  
+  
+menu.style.display="none";  
+  
+}else{  
+  
+menu.style.display="block";  
+  
+}  
+  
+}  
+  
+</script>  </head>  <body>  <header>  كعكوز إكسبرس
+
+</header>  <div class="banner">  <img src="file_00000000144471f4852b37bfbefedc13.png">  </div>    <div class="hero">  <div class="left">  <h2>أهلاً وسهلاً بكم</h2>  <p>  
+في <b>كعكوز إكسبرس</b> نعيد إليكم نكهة الماضي، ونقدم وصفات أجدادنا  
+بأصالة وجودة تليق بكم.  
+<br><br>  🥖 الكعك المقدسي الأصيل.<br>
+🌿 منتجات بلدية مختارة بعناية.<br>
+❤️ طعم يحمل ذكريات الزمن الجميل.
+
+</p>  </div>  <div class="right">  <h3>لماذا كعكوز إكسبرس؟</h3>  <ul>  <li>✔ مكونات طازجة يومياً</li>  <li>✔ وصفات مستوحاة من تراث أجدادنا</li>  <li>✔ جودة ونظافة في كل لقمة</li>  <li>✔ خدمة سريعة ومميزة</li>  </ul>  </div>  </div>  <div class="buttons">  <button class="menuBtn" onclick="showMenu()">  🍽️ قائمة الطعام
+
+</button>  <a class="btn callBtn" href="tel:0779430623">  📞 اتصل الآن
+
+</a>  </div>  <div id="menu">  <h2 style="margin-bottom:20px;color:#6d3b1e;">  
+قائمة الطعام  
+</h2>  <img src="FB_IMG_1784453968212.jpg">  </div>  <footer>  <h2>كعكوز إكسبرس</h2>  <p>  📍 السلط - دبابنة - جانب كازية جو بترول
+
+</p>  <p>  📞 0779430623
+
+</p>  <p>  نكهات أجدادنا الأصيلة... تُحضَّر اليوم بجودة تليق بكم.
+
+</p>  <p>  © 2026 جميع الحقوق محفوظة - كعكوز إكسبرس
+
+</p>  </footer>  </body>  </html>  
