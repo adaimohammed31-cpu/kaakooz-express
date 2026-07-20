@@ -209,12 +209,29 @@ transform:translateY(0);
 }
 }
 
-@media(max-width:768px){
 
-.hero{
-...
-  }
+@keyframes imageGlow{
 
+0%{
+transform:scale(1);
+filter:brightness(1);
+}
+
+50%{
+transform:scale(1.02);
+filter:brightness(1.08);
+}
+
+100%{
+transform:scale(1);
+filter:brightness(1);
+}
+
+}
+
+.banner img{
+animation:imageGlow 5s ease-in-out infinite;
+}
 
   
 @media(max-width:768px){  
