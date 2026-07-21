@@ -142,7 +142,9 @@ overflow:hidden;
 box-shadow:0 8px 30px rgba(0,0,0,.15);
 
 }
-
+.menu-card{
+    display: none;
+}
 .card-title{
 
 background:#5d3922;
