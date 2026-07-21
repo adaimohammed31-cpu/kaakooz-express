@@ -1,553 +1,943 @@
-/* ===================================
-   كعكوز إكسبرس
-   الملف الرئيسي للتصميم
-=================================== */
+/*==================================================
+  KAAKOZ EXPRESS
+  Premium Restaurant Theme
+==================================================*/
+
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap');
+
+/*========================
+  RESET
+========================*/
 
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
 html{
-scroll-behavior:smooth;
+    scroll-behavior:smooth;
 }
 
 body{
-font-family:Tahoma,Arial,sans-serif;
-background:#f7f2e8;
-color:#3f2a17;
-line-height:1.8;
+    direction:rtl;
+    font-family:'Cairo',sans-serif;
+    background:#f8f4ec;
+    color:#2e2418;
+    overflow-x:hidden;
+    line-height:1.8;
 }
 
-a{
-text-decoration:none;
-color:inherit;
+/*========================
+  COLORS
+========================*/
+
+:root{
+
+--wood-dark:#4a2f1b;
+--wood:#6c4323;
+--wood-light:#8b5e34;
+
+--gold:#d4af37;
+--gold-light:#f7d96a;
+
+--cream:#fff9ef;
+
+--text:#2d2217;
+
+--shadow:
+0 8px 25px rgba(0,0,0,.18);
+
 }
 
-img{
-display:block;
-max-width:100%;
-height:auto;
-}
+/*========================
+ HERO
+========================*/
 
-.container{
-width:92%;
-max-width:1300px;
-margin:auto;
-}
+.hero{
 
-/* ===================================
-   صورة الواجهة
-=================================== */
+width:100%;
+
+overflow:hidden;
+
+background:#000;
+
+}
 
 .hero img{
-width:100%;
+
 display:block;
+
+width:100%;
+
+height:auto;
+
 }
 
-/* ===================================
-   الشريط الخشبي ثلاثي الأبعاد
-=================================== */
+/*========================
+ NAVBAR
+========================*/
 
-.wood-nav{
-background:linear-gradient(180deg,#6b3f1d,#4a2a15);
-padding:14px 18px;
+.navbar{
+
 position:sticky;
+
 top:0;
+
 z-index:999;
-box-shadow:
-0 8px 25px rgba(0,0,0,.35),
-inset 0 2px 3px rgba(255,255,255,.08),
-inset 0 -4px 8px rgba(0,0,0,.45);
+
+background:
+linear-gradient(
+180deg,
+var(--wood-light),
+var(--wood),
+var(--wood-dark)
+);
+
+box-shadow:var(--shadow);
+
+border-top:3px solid #9d6b38;
+
+border-bottom:3px solid #2f1a09;
+
 }
 
-.wood-frame{
-max-width:1300px;
-margin:auto;
-}
+.navbar ul{
 
-.wood-nav ul{
 display:flex;
-justify-content:space-between;
-align-items:center;
-gap:14px;
-list-style:none;
-padding:0;
-margin:0;
-overflow-x:auto;
-}
 
-.wood-nav ul li{
-flex:1;
-min-width:120px;
-}
-
-.wood-nav ul li a{
-display:flex;
-flex-direction:column;
 justify-content:center;
+
 align-items:center;
+
+list-style:none;
+
+flex-wrap:wrap;
+
+}
+
+.navbar li{
+
+margin:8px;
+
+}
+
+.navbar a{
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+justify-content:center;
+
 gap:6px;
 
-height:74px;
+width:110px;
 
-background:linear-gradient(180deg,#5b3418,#3b220f);
+height:72px;
 
-border-radius:18px;
-border:1px solid rgba(212,175,55,.45);
+text-decoration:none;
 
-color:#f6e8c7;
+color:#fff;
+
+font-weight:700;
+
+border-radius:16px;
+
+background:
+linear-gradient(
+180deg,
+rgba(255,255,255,.10),
+rgba(0,0,0,.18)
+);
+
+box-shadow:
+
+inset 0 2px 4px rgba(255,255,255,.18),
+
+inset 0 -4px 8px rgba(0,0,0,.30),
+
+0 5px 12px rgba(0,0,0,.20);
+
+transition:.35s;
+
+}
+
+.navbar a:hover{
+
+transform:translateY(-4px);
+
+box-shadow:
+
+0 0 15px rgba(212,175,55,.45),
+
+0 10px 18px rgba(0,0,0,.25);
+
+}
+
+.navbar a.active{
+
+color:var(--gold-light);
+
+border:2px solid var(--gold);
+
+box-shadow:
+
+0 0 18px rgba(212,175,55,.55),
+
+inset 0 0 12px rgba(255,215,0,.18);
+
+}
+
+.navbar i{
+
+font-size:24px;
+
+}
+
+.navbar span{
+
 font-size:15px;
-font-weight:bold;
 
-box-shadow:
-inset 0 5px 10px rgba(0,0,0,.55),
-inset 0 -2px 2px rgba(255,255,255,.05);
-
-transition:.3s;
 }
 
-.wood-nav ul li a i{
-font-size:22px;
-color:#d8b25d;
-transition:.3s;
-}
-
-.wood-nav ul li a:hover{
-
-background:linear-gradient(180deg,#7a4a22,#5a3418);
-
-box-shadow:
-inset 0 2px 3px rgba(255,255,255,.08),
-0 0 18px rgba(212,175,55,.45);
-
-transform:translateY(-2px);
-}
-
-.wood-nav ul li a:hover i{
-color:#fff6d5;
-transform:scale(1.15);
-}
-
-.wood-nav ul li a.active{
-
-background:linear-gradient(180deg,#8c5b2c,#5f3619);
-
-box-shadow:
-0 0 18px rgba(255,215,120,.75),
-inset 0 2px 2px rgba(255,255,255,.15),
-inset 0 -3px 6px rgba(0,0,0,.45);
-
-border:1px solid #f2d27b;
-}
-
-.wood-nav ul li a.active i{
-color:#ffe48a;
-}
-
-
-
-
-
-
-/* ===================================
-   الأقسام
-=================================== */
+/*========================
+SECTION
+========================*/
 
 section{
-padding:80px 20px;
+
+padding:70px 20px;
+
+max-width:1200px;
+
+margin:auto;
+
 }
 
-h1{
-font-size:50px;
-}
-
-h2{
-font-size:38px;
-text-align:center;
-margin-bottom:25px;
-color:#5b3418;
-}
-
-p{
-font-size:20px;
-}
-
-/* ===================================
-   بطاقات الصفحة الرئيسية
-=================================== */
-
-.cards{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:25px;
-margin-top:40px;
-}
-
-.card{
-background:#ffffff;
-padding:30px;
-border-radius:20px;
-box-shadow:0 10px 25px rgba(0,0,0,.12);
-transition:.3s;
-}
-
-.card:hover{
-transform:translateY(-8px);
-box-shadow:0 18px 35px rgba(0,0,0,.18);
-}
-
-.card h3{
-font-size:24px;
-margin-bottom:15px;
-color:#5b3418;
-}
-
-.card p{
-font-size:18px;
-color:#555;
-}
-
-/* ===================================
-   قسم الترحيب
-=================================== */
+/*========================
+WELCOME
+========================*/
 
 .welcome{
+
 text-align:center;
+
 }
 
 .welcome h1{
-font-size:52px;
-margin-bottom:25px;
-color:#5b3418;
+
+font-size:42px;
+
+margin-bottom:20px;
+
+color:var(--wood-dark);
+
 }
 
 .welcome p{
-max-width:900px;
-margin:auto;
-font-size:22px;
-line-height:2;
-}
 
-/* ===================================
-   لماذا كعكوز
-=================================== */
-
-.about-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-gap:30px;
-margin-top:40px;
-}
-
-.about-card{
-background:#fff;
-padding:35px;
-border-radius:20px;
-border-top:6px solid #c79b35;
-box-shadow:0 10px 25px rgba(0,0,0,.12);
-transition:.3s;
-}
-
-.about-card:hover{
-transform:translateY(-8px);
-}
-
-.about-card h3{
-font-size:26px;
-margin-bottom:15px;
-color:#5b3418;
-}
-
-.about-card p{
-font-size:18px;
-line-height:1.9;
-}
-
-/* ===================================
-   عنوان الصفحات
-=================================== */
-
-.page-title{
-background:linear-gradient(135deg,#5b3418,#8b5a2b);
-color:white;
-text-align:center;
-padding:80px 20px;
-}
-
-.page-title h1{
-font-size:48px;
-margin-bottom:15px;
-}
-
-.page-title p{
-font-size:22px;
-color:#f8edd1;
-}
-/* ===================================
-   صفحة المنيو
-=================================== */
-
-.menu-box{
-background:#ffffff;
-padding:35px;
-border-radius:20px;
-text-align:center;
-box-shadow:0 10px 25px rgba(0,0,0,.12);
-}
-
-.menu-box img{
-width:100%;
-max-width:900px;
-margin:30px auto 0;
-border-radius:18px;
-box-shadow:0 10px 30px rgba(0,0,0,.25);
-}
-
-/* ===================================
-   آراء العملاء
-=================================== */
-
-.review{
-background:#ffffff;
-padding:25px;
-margin:25px auto;
-max-width:850px;
-border-radius:18px;
-border-right:8px solid #c79b35;
-box-shadow:0 10px 25px rgba(0,0,0,.12);
-transition:.3s;
-}
-
-.review:hover{
-transform:translateY(-6px);
-}
-
-.review h3{
-font-size:24px;
-margin-bottom:12px;
-color:#5b3418;
-}
-
-.review p{
-font-size:19px;
-line-height:1.9;
-}
-
-/* ===================================
-   التواصل
-=================================== */
-
-.contact-box{
-background:#ffffff;
-padding:35px;
-border-radius:20px;
-text-align:center;
-box-shadow:0 10px 25px rgba(0,0,0,.12);
-}
-
-.contact-box a{
-display:inline-block;
-margin-top:25px;
-padding:15px 30px;
-background:#1877F2;
-color:#ffffff;
 font-size:20px;
-font-weight:bold;
-border-radius:12px;
-transition:.3s;
+
+max-width:850px;
+
+margin:auto;
+
+color:#5d4a39;
+
 }
 
-.contact-box a:hover{
-transform:scale(1.05);
-}
-
-/* ===================================
-   زر عام
-=================================== */
+/*========================
+BUTTONS
+========================*/
 
 .btn{
+
 display:inline-block;
-padding:15px 35px;
-background:#6b3c17;
-color:#ffffff;
-font-size:20px;
-font-weight:bold;
-border-radius:12px;
-transition:.3s;
+
+margin-top:35px;
+
+padding:15px 38px;
+
+background:linear-gradient(
+180deg,
+#f8df7a,
+var(--gold)
+);
+
+color:#3d2508;
+
+font-weight:800;
+
+font-size:18px;
+
+text-decoration:none;
+
+border-radius:50px;
+
+border:2px solid #b8860b;
+
+transition:.35s;
+
+box-shadow:
+
+0 8px 20px rgba(212,175,55,.35),
+
+inset 0 2px 3px rgba(255,255,255,.45);
+
 }
 
 .btn:hover{
-background:#c79b35;
-color:#3f2a17;
+
+transform:translateY(-4px);
+
+box-shadow:
+
+0 0 20px rgba(212,175,55,.55),
+
+0 12px 24px rgba(0,0,0,.18);
+
 }
 
-/* ===================================
-   الفوتر
-=================================== */
+/*========================
+TITLE
+========================*/
+
+.title{
+
+text-align:center;
+
+font-size:34px;
+
+margin-bottom:45px;
+
+color:var(--wood-dark);
+
+position:relative;
+
+}
+
+.title::after{
+
+content:"";
+
+display:block;
+
+width:90px;
+
+height:4px;
+
+margin:14px auto;
+
+background:var(--gold);
+
+border-radius:30px;
+
+}
+
+/*========================
+CARDS
+========================*/
+
+.cards{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+gap:30px;
+
+}
+
+.card{
+
+background:#fff;
+
+border-radius:22px;
+
+padding:28px;
+
+box-shadow:var(--shadow);
+
+transition:.35s;
+
+border-top:5px solid var(--gold);
+
+}
+
+.card:hover{
+
+transform:translateY(-8px);
+
+box-shadow:
+
+0 18px 35px rgba(0,0,0,.18);
+
+}
+
+.card i{
+
+font-size:48px;
+
+color:var(--gold);
+
+margin-bottom:18px;
+
+}
+
+.card h3{
+
+margin-bottom:12px;
+
+font-size:24px;
+
+color:var(--wood-dark);
+
+}
+
+.card p{
+
+font-size:17px;
+
+color:#666;
+
+}
+
+/*========================
+MENU
+========================*/
+
+.menu-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
+gap:35px;
+
+}
+
+.menu-item{
+
+background:#fff;
+
+border-radius:22px;
+
+overflow:hidden;
+
+box-shadow:var(--shadow);
+
+transition:.35s;
+
+}
+
+.menu-item:hover{
+
+transform:scale(1.03);
+
+}
+
+.menu-item img{
+
+width:100%;
+
+display:block;
+
+}
+
+.menu-info{
+
+padding:22px;
+
+}
+
+.menu-info h3{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+font-size:24px;
+
+margin-bottom:10px;
+
+}
+
+.price{
+
+color:#b8860b;
+
+font-weight:800;
+
+font-size:22px;
+
+}
+
+.menu-info p{
+
+color:#666;
+
+font-size:16px;
+
+}
+
+/*========================
+REVIEWS
+========================*/
+
+.review{
+
+background:white;
+
+padding:28px;
+
+border-radius:22px;
+
+margin-bottom:25px;
+
+box-shadow:var(--shadow);
+
+border-right:6px solid var(--gold);
+
+}
+
+.review h4{
+
+font-size:22px;
+
+margin-bottom:8px;
+
+color:var(--wood-dark);
+
+}
+
+.review p{
+
+color:#555;
+
+}
+
+.stars{
+
+margin-top:12px;
+
+color:#ffb400;
+
+font-size:20px;
+
+}
+
+/*========================
+CONTACT
+========================*/
+
+.contact-box{
+
+background:white;
+
+padding:35px;
+
+border-radius:22px;
+
+box-shadow:var(--shadow);
+
+text-align:center;
+
+}
+
+.contact-box p{
+
+font-size:19px;
+
+margin:16px 0;
+
+}
+
+.contact-box i{
+
+color:var(--gold);
+
+margin-left:8px;
+
+font-size:22px;
+
+   }
+
+
+
+
+
+/*========================
+ABOUT
+========================*/
+
+.about{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
+gap:40px;
+
+align-items:center;
+
+}
+
+.about img{
+
+width:100%;
+
+border-radius:20px;
+
+box-shadow:var(--shadow);
+
+}
+
+.about-text h2{
+
+font-size:36px;
+
+color:var(--wood-dark);
+
+margin-bottom:20px;
+
+}
+
+.about-text p{
+
+font-size:18px;
+
+color:#5b5148;
+
+margin-bottom:18px;
+
+}
+
+/*========================
+WORKING HOURS
+========================*/
+
+.hours{
+
+background:linear-gradient(135deg,#fffdf7,#f7efe0);
+
+border-radius:24px;
+
+padding:35px;
+
+text-align:center;
+
+box-shadow:var(--shadow);
+
+margin-top:40px;
+
+}
+
+.hours h2{
+
+font-size:32px;
+
+margin-bottom:20px;
+
+color:var(--wood-dark);
+
+}
+
+.hours p{
+
+font-size:22px;
+
+font-weight:700;
+
+color:var(--gold);
+
+}
+
+/*========================
+FOOTER
+========================*/
 
 footer{
-background:#4a2a15;
-color:#ffffff;
-text-align:center;
-padding:40px 20px;
+
 margin-top:70px;
+
+background:linear-gradient(
+180deg,
+var(--wood),
+var(--wood-dark)
+);
+
+color:white;
+
+padding:45px 20px;
+
+text-align:center;
+
+border-top:4px solid var(--gold);
+
 }
 
 footer h3{
-font-size:30px;
-margin-bottom:10px;
+
+font-size:26px;
+
+margin-bottom:15px;
+
 }
 
 footer p{
-font-size:18px;
-color:#f2e7c4;
+
+color:#e7dccb;
+
+margin-bottom:10px;
+
 }
 
-/* ===================================
-   فيسبوك
-=================================== */
+footer .social{
 
-.facebook{
-text-align:center;
-margin-top:40px;
+margin-top:20px;
+
 }
 
-.facebook img{
-width:60px;
-height:60px;
-margin:auto;
+footer .social a{
+
+display:inline-flex;
+
+justify-content:center;
+
+align-items:center;
+
+width:50px;
+
+height:50px;
+
+margin:0 6px;
+
 border-radius:50%;
+
+background:rgba(255,255,255,.12);
+
+color:white;
+
+font-size:22px;
+
+text-decoration:none;
+
 transition:.3s;
-cursor:pointer;
+
 }
 
-.facebook img:hover{
-transform:scale(1.15);
+footer .social a:hover{
+
+background:var(--gold);
+
+color:#3a260f;
+
+transform:translateY(-5px);
+
 }
 
-/* ===================================
-   تأثيرات الحركة
-=================================== */
+/*========================
+ANIMATION
+========================*/
 
-.fade-up{
+.fade{
+
 opacity:0;
-transform:translateY(40px);
-animation:fadeUp .8s ease forwards;
+
+transform:translateY(30px);
+
+transition:all .8s ease;
+
 }
 
-@keyframes fadeUp{
+.fade.show{
 
-from{
-opacity:0;
-transform:translateY(40px);
-}
-
-to{
 opacity:1;
-transform:translateY(0);
+
+transform:none;
+
+}
+
+/*========================
+SCROLLBAR
+========================*/
+
+::-webkit-scrollbar{
+
+width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+background:#efe4d2;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:var(--wood);
+
+border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+background:var(--wood-dark);
+
+}
+
+/*========================
+RESPONSIVE
+========================*/
+
+@media(max-width:992px){
+
+.welcome h1{
+
+font-size:34px;
+
+}
+
+.title{
+
+font-size:30px;
+
+}
+
+.about{
+
+grid-template-columns:1fr;
+
 }
 
 }
 
-/* ===================================
-   تحسين الصور
-=================================== */
+@media(max-width:768px){
 
-.hero img,
-.menu-box img{
-border-radius:18px;
-box-shadow:0 12px 30px rgba(0,0,0,.25);
+.navbar ul{
+
+justify-content:center;
+
 }
 
-/* ===================================
-   عرض المحتوى
-=================================== */
+.navbar a{
 
-.content{
-max-width:1200px;
-margin:auto;
-padding:0 20px;
-}
+width:82px;
 
-/* ===================================
-   تصميم الهواتف
-=================================== */
-
-@media (max-width:768px){
-
-
-nav{
-overflow-x:auto;
-}
-
-.wood-nav ul{
-gap:8px;
-}
-
-.wood-nav ul li{
-min-width:95px;
-}
-
-.wood-nav ul li a{
 height:68px;
-font-size:12px;
+
 }
 
-.wood-nav ul li a i{
-font-size:18px;
-}
-section{
-padding:50px 15px;
+.navbar span{
+
+font-size:13px;
+
 }
 
-h1{
-font-size:36px;
-}
+.navbar i{
 
-h2{
-font-size:28px;
-}
+font-size:20px;
 
-p{
-font-size:18px;
 }
 
 .welcome h1{
-font-size:36px;
+
+font-size:28px;
+
 }
 
 .welcome p{
+
+font-size:17px;
+
+}
+
+.btn{
+
+padding:13px 28px;
+
+font-size:16px;
+
+}
+
+.title{
+
+font-size:27px;
+
+}
+
+.card{
+
+padding:22px;
+
+}
+
+.contact-box{
+
+padding:25px;
+
+}
+
+}
+
+@media(max-width:480px){
+
+section{
+
+padding:50px 15px;
+
+}
+
+.navbar a{
+
+width:72px;
+
+height:64px;
+
+}
+
+.navbar span{
+
+font-size:12px;
+
+}
+
+.navbar i{
+
 font-size:18px;
+
 }
 
-.page-title h1{
-font-size:34px;
+.welcome h1{
+
+font-size:24px;
+
 }
 
-.page-title p{
-font-size:18px;
+.welcome p{
+
+font-size:16px;
+
 }
 
-.card,
-.about-card,
-.contact-box,
-.menu-box,
-.review{
-padding:20px;
+.title{
+
+font-size:24px;
+
 }
 
 footer h3{
-font-size:24px;
-}
 
-footer p{
-font-size:16px;
-}
+font-size:22px;
 
 }
 
-/* ===================================
-   نهاية الملف
-=================================== */
+}
