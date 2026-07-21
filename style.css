@@ -1,3 +1,7 @@
+/* =========================
+   إعدادات عامة
+========================= */
+
 *{
 margin:0;
 padding:0;
@@ -9,217 +13,423 @@ scroll-behavior:smooth;
 }
 
 body{
-font-family:'Cairo',sans-serif;
-background:#f5efe2;
-color:#3b2617;
+
+font-family:"Cairo",sans-serif;
+direction:rtl;
+
+background:#efe4d2;
+
+color:#3c2a1c;
+
 }
 
-.header img{
+/* =========================
+   الهيدر
+========================= */
+
+.hero{
+
+width:100%;
+
+}
+
+.hero img{
+
 width:100%;
 display:block;
+
 }
 
-/* شريط التنقل */
+/* =========================
+   شريط التنقل
+========================= */
 
 .navbar{
-background:#4b2f1d;
+
+background:#5d3922;
+
+border-top:4px solid #c99c47;
+
+border-bottom:4px solid #c99c47;
+
 display:flex;
-justify-content:space-around;
+
+justify-content:space-evenly;
+
 align-items:center;
-padding:12px 5px;
-border-top:4px solid #cfa24d;
-border-bottom:4px solid #cfa24d;
+
+padding:12px;
+
 position:sticky;
+
 top:0;
+
 z-index:999;
-box-shadow:0 4px 15px rgba(0,0,0,.25);
+
+box-shadow:0 5px 20px rgba(0,0,0,.25);
+
 }
 
 .navbar a{
+
 text-decoration:none;
+
 color:white;
+
 display:flex;
+
 flex-direction:column;
+
 align-items:center;
+
 gap:6px;
-padding:8px 12px;
-border-radius:12px;
+
+padding:10px 14px;
+
+border-radius:14px;
+
 transition:.3s;
-font-size:13px;
+
 font-weight:bold;
+
 }
 
-.navbar i{
+.navbar a i{
+
 font-size:24px;
-color:#d8b15b;
+
+color:#d8b05a;
+
 }
 
 .navbar a:hover{
-background:#cfa24d;
-color:#4b2f1d;
+
+background:#c99c47;
+
+color:#4d2d18;
+
 transform:translateY(-3px);
+
 }
 
 .navbar a:hover i{
-color:#4b2f1d;
+
+color:#4d2d18;
+
 }
 
-/* الترحيب */
+/* =========================
+   البطاقات
+========================= */
 
-.welcome{
+.welcome-card,
+.menu-card,
+.location-card,
+.contact-card{
+
 width:92%;
+
+max-width:1100px;
+
 margin:35px auto;
+
 background:white;
-padding:35px 20px;
+
 border-radius:25px;
-text-align:center;
-box-shadow:0 8px 25px rgba(0,0,0,.12);
+
+overflow:hidden;
+
+box-shadow:0 8px 30px rgba(0,0,0,.15);
+
 }
 
-.welcome h1{
-font-size:50px;
-margin-bottom:20px;
-color:#6c3d1d;
-}
+.card-title{
 
-.welcome p{
-font-size:22px;
-line-height:2;
-margin-bottom:30px;
-}
+background:#5d3922;
 
-.menu-btn{
-display:inline-block;
-background:#6c3d1d;
 color:white;
-padding:16px 45px;
-text-decoration:none;
-border-radius:40px;
-font-size:22px;
-font-weight:bold;
-transition:.3s;
-}
 
-.menu-btn:hover{
-background:#cfa24d;
-color:#4b2f1d;
-box-shadow:0 0 20px #cfa24d;
-}
+padding:18px;
 
-/* المنيو */
-
-.menu{
-width:92%;
-margin:40px auto;
-background:white;
-padding:25px;
-border-radius:25px;
 text-align:center;
-box-shadow:0 8px 25px rgba(0,0,0,.12);
+
+border-bottom:4px solid #c99c47;
+
 }
 
-.menu h2{
-font-size:42px;
-margin-bottom:25px;
-color:#6c3d1d;
+.card-title h1,
+.card-title h2{
+
+font-size:34px;
+
 }
 
-.menu img{
-width:100%;
-border-radius:18px;
-}
+.card-body{
 
-/* التواصل */
-
-.contact{
-width:92%;
-margin:40px auto;
-background:#4b2f1d;
-color:white;
 padding:35px;
-border-radius:25px;
+
 text-align:center;
+
 }
 
-.contact h2{
-font-size:38px;
-margin-bottom:25px;
+.card-body p{
+
+font-size:22px;
+
+line-height:2;
+
+margin-bottom:20px;
+
 }
 
-.contact-icons{
-display:flex;
-justify-content:center;
-gap:25px;
-margin-bottom:25px;
-}
 
-.contact-icons a{
-width:60px;
-height:60px;
-border-radius:50%;
-background:#cfa24d;
-display:flex;
-justify-content:center;
+/* =========================
+   زر المنيو
+========================= */
+
+.menu-button{
+
+display:inline-flex;
+
 align-items:center;
+
+gap:10px;
+
+background:#c99c47;
+
+color:#4d2d18;
+
+padding:16px 35px;
+
+border-radius:50px;
+
 text-decoration:none;
-color:#4b2f1d;
-font-size:28px;
-transition:.3s;
+
+font-size:22px;
+
+font-weight:bold;
+
+transition:.35s;
+
 }
 
-.contact-icons a:hover{
-transform:scale(1.15);
+.menu-button:hover{
+
+background:#5d3922;
+
+color:white;
+
+transform:scale(1.05);
+
+box-shadow:0 0 20px rgba(201,156,71,.7);
+
 }
 
-.contact p{
+.menu-button i{
+
+font-size:24px;
+
+}
+
+/* =========================
+   صورة المنيو
+========================= */
+
+.menu-image{
+
+padding:20px;
+
+}
+
+.menu-image img{
+
+width:100%;
+
+display:block;
+
+border-radius:18px;
+
+border:5px solid #c99c47;
+
+box-shadow:0 8px 25px rgba(0,0,0,.15);
+
+}
+
+/* =========================
+   التواصل
+========================= */
+
+.contact-buttons{
+
+display:flex;
+
+justify-content:center;
+
+gap:20px;
+
+flex-wrap:wrap;
+
+padding:30px;
+
+}
+
+.contact-buttons a{
+
+width:220px;
+
+padding:18px;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+gap:10px;
+
+text-decoration:none;
+
+border-radius:50px;
+
 font-size:20px;
-margin:10px 0;
+
+font-weight:bold;
+
+transition:.3s;
+
 }
 
-/* الفوتر */
+.facebook{
+
+background:#1877f2;
+
+color:white;
+
+}
+
+.phone{
+
+background:#25D366;
+
+color:white;
+
+}
+
+.contact-buttons a:hover{
+
+transform:translateY(-5px);
+
+box-shadow:0 10px 20px rgba(0,0,0,.2);
+
+}
+
+/* =========================
+   الموقع
+========================= */
+
+.location-card p{
+
+padding:30px;
+
+font-size:22px;
+
+text-align:center;
+
+line-height:2;
+
+}
+
+/* =========================
+   الفوتر
+========================= */
 
 footer{
-background:#2d1b10;
+
+background:#3d2415;
+
 color:white;
+
 text-align:center;
-padding:18px;
-margin-top:30px;
+
+padding:20px;
+
+margin-top:40px;
+
+font-size:18px;
+
 }
+
+/* =========================
+   الجوال
+========================= */
 
 @media(max-width:768px){
 
 .navbar{
+
 overflow-x:auto;
+
 justify-content:flex-start;
+
 gap:10px;
-padding:12px;
+
+padding:10px;
+
 }
 
 .navbar a{
+
 flex:0 0 auto;
+
+min-width:85px;
+
 }
 
-.welcome h1{
-font-size:36px;
+.card-title h1,
+.card-title h2{
+
+font-size:26px;
+
 }
 
-.welcome p{
+.card-body{
+
+padding:20px;
+
+}
+
+.card-body p{
+
 font-size:18px;
-}
-
-.menu h2{
-font-size:34px;
-}
-
-.contact h2{
-font-size:30px;
-}
 
 }
 
-  .menu-btn.active{
-    background:#d4a64a;
-    color:#4b2f1d;
-    box-shadow:0 0 20px #d4a64a;
-    transform:scale(1.08);
-  }
+.menu-button{
+
+font-size:18px;
+
+padding:14px 24px;
+
+}
+
+.contact-buttons{
+
+flex-direction:column;
+
+align-items:center;
+
+}
+
+.contact-buttons a{
+
+width:90%;
+
+}
+
+.location-card p{
+
+font-size:18px;
+
+}
+
+}
