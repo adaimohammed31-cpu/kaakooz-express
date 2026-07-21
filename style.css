@@ -1,179 +1,218 @@
-
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
 html{
-    scroll-behavior:smooth;
+scroll-behavior:smooth;
 }
 
 body{
-    font-family:'Cairo',sans-serif;
-    background:#f5efe3;
-    color:#333;
-    direction:rtl;
+font-family:'Cairo',sans-serif;
+background:#f5efe2;
+color:#3b2617;
 }
 
 .header img{
-    width:100%;
-    display:block;
+width:100%;
+display:block;
 }
 
+/* شريط التنقل */
+
 .navbar{
-    background:#5b3924;
-    display:flex;
-    justify-content:center;
-    gap:20px;
-    padding:15px;
-    position:sticky;
-    top:0;
-    z-index:1000;
-    box-shadow:0 2px 8px rgba(0,0,0,.25);
+background:#4b2f1d;
+display:flex;
+justify-content:space-around;
+align-items:center;
+padding:12px 5px;
+border-top:4px solid #cfa24d;
+border-bottom:4px solid #cfa24d;
+position:sticky;
+top:0;
+z-index:999;
+box-shadow:0 4px 15px rgba(0,0,0,.25);
 }
 
 .navbar a{
-    color:#fff;
-    text-decoration:none;
-    font-size:18px;
-    font-weight:700;
-    transition:.3s;
+text-decoration:none;
+color:white;
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:6px;
+padding:8px 12px;
+border-radius:12px;
+transition:.3s;
+font-size:13px;
+font-weight:bold;
+}
+
+.navbar i{
+font-size:24px;
+color:#d8b15b;
 }
 
 .navbar a:hover{
-    color:#ffd56a;
+background:#cfa24d;
+color:#4b2f1d;
+transform:translateY(-3px);
 }
 
+.navbar a:hover i{
+color:#4b2f1d;
+}
+
+/* الترحيب */
+
 .welcome{
-    max-width:900px;
-    margin:50px auto;
-    padding:20px;
-    text-align:center;
+width:92%;
+margin:35px auto;
+background:white;
+padding:35px 20px;
+border-radius:25px;
+text-align:center;
+box-shadow:0 8px 25px rgba(0,0,0,.12);
 }
 
 .welcome h1{
-    color:#6b3f22;
-    font-size:42px;
-    margin-bottom:15px;
+font-size:50px;
+margin-bottom:20px;
+color:#6c3d1d;
 }
 
 .welcome p{
-    font-size:20px;
-    line-height:2;
+font-size:22px;
+line-height:2;
+margin-bottom:30px;
 }
 
-.menu-button{
-    display:inline-block;
-    margin-top:30px;
-    background:#8b5e34;
-    color:#fff;
-    text-decoration:none;
-    padding:15px 45px;
-    border-radius:50px;
-    font-size:22px;
-    font-weight:bold;
-    transition:.3s;
+.menu-btn{
+display:inline-block;
+background:#6c3d1d;
+color:white;
+padding:16px 45px;
+text-decoration:none;
+border-radius:40px;
+font-size:22px;
+font-weight:bold;
+transition:.3s;
 }
 
-.menu-button:hover{
-    background:#d4a017;
-    transform:scale(1.06);
+.menu-btn:hover{
+background:#cfa24d;
+color:#4b2f1d;
+box-shadow:0 0 20px #cfa24d;
 }
+
+/* المنيو */
 
 .menu{
-    background:#fff;
-    margin:60px auto;
-    width:95%;
-    max-width:1000px;
-    padding:25px;
-    border-radius:18px;
-    box-shadow:0 10px 25px rgba(0,0,0,.15);
-    text-align:center;
+width:92%;
+margin:40px auto;
+background:white;
+padding:25px;
+border-radius:25px;
+text-align:center;
+box-shadow:0 8px 25px rgba(0,0,0,.12);
 }
 
 .menu h2{
-    color:#6b3f22;
-    margin-bottom:20px;
-    font-size:36px;
+font-size:42px;
+margin-bottom:25px;
+color:#6c3d1d;
 }
 
 .menu img{
-    width:100%;
-    border-radius:15px;
+width:100%;
+border-radius:18px;
 }
 
+/* التواصل */
+
 .contact{
-    background:#5b3924;
-    color:#fff;
-    text-align:center;
-    padding:50px 20px;
+width:92%;
+margin:40px auto;
+background:#4b2f1d;
+color:white;
+padding:35px;
+border-radius:25px;
+text-align:center;
 }
 
 .contact h2{
-    margin-bottom:25px;
-    font-size:34px;
+font-size:38px;
+margin-bottom:25px;
 }
 
-.icons{
-    margin-bottom:20px;
+.contact-icons{
+display:flex;
+justify-content:center;
+gap:25px;
+margin-bottom:25px;
 }
 
-.icons a{
-    color:#fff;
-    font-size:34px;
-    margin:0 15px;
-    transition:.3s;
+.contact-icons a{
+width:60px;
+height:60px;
+border-radius:50%;
+background:#cfa24d;
+display:flex;
+justify-content:center;
+align-items:center;
+text-decoration:none;
+color:#4b2f1d;
+font-size:28px;
+transition:.3s;
 }
 
-.icons a:hover{
-    color:#ffd56a;
+.contact-icons a:hover{
+transform:scale(1.15);
 }
 
 .contact p{
-    font-size:20px;
-    margin:10px 0;
+font-size:20px;
+margin:10px 0;
 }
 
+/* الفوتر */
+
 footer{
-    background:#3d2618;
-    color:#fff;
-    text-align:center;
-    padding:18px;
+background:#2d1b10;
+color:white;
+text-align:center;
+padding:18px;
+margin-top:30px;
 }
 
 @media(max-width:768px){
 
 .navbar{
-    flex-direction:column;
-    gap:12px;
+overflow-x:auto;
+justify-content:flex-start;
+gap:10px;
+padding:12px;
+}
+
+.navbar a{
+flex:0 0 auto;
 }
 
 .welcome h1{
-    font-size:30px;
+font-size:36px;
 }
 
 .welcome p{
-    font-size:18px;
+font-size:18px;
 }
 
 .menu h2{
-    font-size:28px;
+font-size:34px;
 }
 
 .contact h2{
-    font-size:28px;
-}
-
-.icons a{
-    font-size:30px;
+font-size:30px;
 }
 
 }
-
-.menu-button.active{
-    background:#ffd54f;
-    color:#4b2d18;
-    box-shadow:0 0 25px #ffd54f;
-    transform:scale(1.08);
-    }
