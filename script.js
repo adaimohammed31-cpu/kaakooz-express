@@ -87,3 +87,18 @@ menuButton.classList.remove("active");
 });
 
 }
+
+const menuLink = document.querySelector('a[href="#menu"]');
+const menuCard = document.querySelector('.menu-card');
+
+menuLink.addEventListener("click", function(e){
+
+e.preventDefault();
+
+menuCard.style.display = "block";
+
+menuCard.scrollIntoView({
+behavior:"smooth"
+});
+
+});
