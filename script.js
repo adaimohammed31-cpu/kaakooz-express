@@ -31,21 +31,23 @@ const welcomeLink = document.querySelector('a[href="#welcome"]');
 menuCard.style.display = "none";
 
 // إظهار المنيو
+
 menuLink.addEventListener("click", function(e){
     e.preventDefault();
 
     menuCard.style.display = "block";
+    menuCard.classList.add("show");
 
     menuCard.scrollIntoView({
         behavior:"smooth"
     });
 });
-
 // إخفاء المنيو عند الرئيسية
 homeLink.addEventListener("click", function(e){
     e.preventDefault();
 
     menuCard.style.display = "none";
+    menuCard.classList.remove("show");
 
     window.scrollTo({
         top:0,
