@@ -1,100 +1,29 @@
-//========================================
-// KAAKOZ EXPRESS
-// script.js
-//========================================
+// إغلاق وتشغيل أي كود بعد تحميل الصفحة
+document.addEventListener("DOMContentLoaded", () => {
 
-// زر العودة للأعلى
+    // تمييز الرابط النشط أثناء التمرير
+    const sections = document.querySelectorAll("section");
+    const links = document.querySelectorAll(".navbar a");
 
-const topBtn = document.getElementById("topBtn");
+    window.addEventListener("scroll", () => {
+        let current = "";
 
-window.addEventListener("scroll", () => {
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 120;
+            const sectionHeight = section.clientHeight;
 
-    if (window.scrollY > 300) {
+            if (scrollY >= sectionTop) {
+                current = section.getAttribute("id");
+            }
+        });
 
-        topBtn.classList.add("show");
+        links.forEach(link => {
+            link.classList.remove("active");
 
-    } else {
-
-        topBtn.classList.remove("show");
-
-    }
-
-});
-
-topBtn.addEventListener("click", () => {
-
-    window.scrollTo({
-
-        top: 0,
-
-        behavior: "smooth"
-
-    });
-
-});
-
-//========================================
-// تمييز الصفحة الحالية
-//========================================
-
-const currentPage = location.pathname.split("/").pop();
-
-document.querySelectorAll(".wood-nav a").forEach(link => {
-
-    const href = link.getAttribute("href");
-
-    if (href === currentPage || (currentPage === "" && href === "index.html")) {
-
-        link.classList.add("active");
-
-    }
-
-});
-
-//========================================
-// ظهور العناصر أثناء التمرير
-//========================================
-
-const observer = new IntersectionObserver(entries => {
-
-    entries.forEach(entry => {
-
-        if (entry.isIntersecting) {
-
-            entry.target.classList.add("visible");
-
-        }
-
-    });
-
-}, {
-
-    threshold: 0.15
-
-});
-
-document.querySelectorAll(".card, section").forEach(el => {
-
-    observer.observe(el);
-
-});
-
-//========================================
-// تأثير بسيط عند الضغط على الأزرار
-//========================================
-
-document.querySelectorAll(".wood-nav a").forEach(btn => {
-
-    btn.addEventListener("click", () => {
-
-        btn.style.transform = "scale(.95)";
-
-        setTimeout(() => {
-
-            btn.style.transform = "";
-
-        }, 150);
-
+            if (link.getAttribute("href") === "#" + current) {
+                link.classList.add("active");
+            }
+        });
     });
 
 });
