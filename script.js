@@ -1,44 +1,34 @@
-// الانتقال السلس عند الضغط على الروابط
+// انتقال سلس بين الأقسام
 document.querySelectorAll('a[href^="#"]').forEach(link => {
-
     link.addEventListener("click", function (e) {
-
         e.preventDefault();
 
         const target = document.querySelector(this.getAttribute("href"));
 
         if (target) {
-
             target.scrollIntoView({
                 behavior: "smooth"
             });
-
         }
-
     });
-
 });
 
-// تأثير إضاءة زر المنيو
-const menuButton = document.querySelector(".menu-button");
+// إضاءة زر المنيو
+const menuButton = document.querySelector(".menu-btn");
 
 if (menuButton) {
-
     menuButton.addEventListener("click", function () {
 
         menuButton.classList.add("active");
 
         setTimeout(() => {
-
             menuButton.classList.remove("active");
-
-        }, 600);
+        }, 500);
 
     });
-
 }
 
-// ظهور الأقسام تدريجياً عند النزول
+// ظهور الأقسام تدريجياً
 const sections = document.querySelectorAll("section");
 
 const observer = new IntersectionObserver((entries) => {
@@ -46,10 +36,8 @@ const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
 
         if (entry.isIntersecting) {
-
             entry.target.style.opacity = "1";
             entry.target.style.transform = "translateY(0)";
-
         }
 
     });
