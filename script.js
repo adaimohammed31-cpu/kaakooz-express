@@ -1,7 +1,7 @@
 // ======================
 // تأثير ظهور البطاقات
 // ======================
-
+alert("JavaScript يعمل");
 const cards = document.querySelectorAll(
     ".welcome-card, .location-card, .contact-card"
 );
