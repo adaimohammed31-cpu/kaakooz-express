@@ -1,107 +1,75 @@
-// ======================
-// تأثير ظهور البطاقات
-// ======================
-alert("JavaScript يعمل");
-const cards = document.querySelectorAll(
-    ".welcome-card, .location-card, .contact-card"
-);
+// جميع الصناديق
+const cards = document.querySelectorAll(".card");
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add("show");
-        }
+// الأزرار
+const homeBtn = document.getElementById("homeBtn");
+const welcomeBtn = document.getElementById("welcomeBtn");
+const menuBtn = document.getElementById("menuBtn");
+const locationBtn = document.getElementById("locationBtn");
+const timeBtn = document.getElementById("timeBtn");
+
+// الصناديق
+const welcomeBox = document.getElementById("welcomeBox");
+const menuBox = document.getElementById("menuBox");
+const locationBox = document.getElementById("locationBox");
+const timeBox = document.getElementById("timeBox");
+
+// إخفاء جميع الصناديق
+function hideAll() {
+    cards.forEach(card => {
+        card.style.display = "none";
     });
-}, {
-    threshold: 0.2
-});
-
-cards.forEach(card => observer.observe(card));
-
-
-// ======================
-// تأثير أزرار التواصل
-// ======================
-
-document.querySelectorAll(".contact-buttons a").forEach(btn => {
-
-    btn.addEventListener("mousedown", () => {
-        btn.style.transform = "scale(.95)";
-    });
-
-    btn.addEventListener("mouseup", () => {
-        btn.style.transform = "scale(1)";
-    });
-
-    btn.addEventListener("mouseleave", () => {
-        btn.style.transform = "scale(1)";
-    });
-
-});
-
-
-// ======================
-// المنيو
-// ======================
-
-const menuCard = document.querySelector(".menu-card");
-const menuLink = document.querySelector('a[href="#menu"]');
-const homeLink = document.querySelector('a[href="#home"]');
-const welcomeLink = document.querySelector('a[href="#welcome"]');
-
-// إخفاء المنيو عند البداية
-menuCard.style.display = "none";
-
-// عند الضغط على المنيو
-menuLink.addEventListener("click", function(e){
-
-    e.preventDefault();
-
-    menuCard.style.display = "block";
-    menuCard.classList.add("show");
-
-    menuCard.scrollIntoView({
-        behavior: "smooth"
-    });
-
-});
-
-// دالة إخفاء المنيو
-function hideMenu(){
-
-    menuCard.style.display = "none";
-    menuCard.classList.remove("show");
-
-    welcomeCard.style.display = "none";
-
 }
 
+// عند فتح الموقع
+hideAll();
+
 // الرئيسية
-homeLink.addEventListener("click", function(e){
-
+homeBtn.addEventListener("click", function(e) {
     e.preventDefault();
-
-    hideMenu();
-
+    hideAll();
     window.scrollTo({
         top: 0,
         behavior: "smooth"
     });
-
 });
 
 // أهلاً بكم
-welcomeLink.addEventListener("click", function(e){
-
+welcomeBtn.addEventListener("click", function(e) {
     e.preventDefault();
-
-    hideMenu();
-    const welcomeCard = document.querySelector(".welcome-card");
-
-    welcomeCard.style.display = "block";
-
-    document.querySelector("#welcome").scrollIntoView({
+    hideAll();
+    welcomeBox.style.display = "block";
+    welcomeBox.scrollIntoView({
         behavior: "smooth"
     });
+});
 
+// المنيو
+menuBtn.addEventListener("click", function(e) {
+    e.preventDefault();
+    hideAll();
+    menuBox.style.display = "block";
+    menuBox.scrollIntoView({
+        behavior: "smooth"
+    });
+});
+
+// الموقع
+locationBtn.addEventListener("click", function(e) {
+    e.preventDefault();
+    hideAll();
+    locationBox.style.display = "block";
+    locationBox.scrollIntoView({
+        behavior: "smooth"
+    });
+});
+
+// أوقات الدوام
+timeBtn.addEventListener("click", function(e) {
+    e.preventDefault();
+    hideAll();
+    timeBox.style.display = "block";
+    timeBox.scrollIntoView({
+        behavior: "smooth"
+    });
 });
