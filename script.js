@@ -81,3 +81,17 @@ behavior:"smooth"
 });
 
 });
+
+const homeLink = document.querySelector('a[href="#home"]');
+
+homeLink.addEventListener("click", function(e){
+
+    e.preventDefault();
+
+    menuCard.style.display = "none";
+
+    document.querySelector("#home").scrollIntoView({
+        behavior: "smooth"
+    });
+
+});
