@@ -1,34 +1,159 @@
+/*=========================================
+  KAAKOZ EXPRESS
+  JavaScript
+=========================================*/
 
-// كعكوز إكسبرس
+/*==========================
+  Fade Animation
+==========================*/
 
-function showMenu() {
+const fades = document.querySelectorAll(".fade");
 
-const menu = document.getElementById("menu");
+const observer = new IntersectionObserver((entries) => {
 
-if (!menu) return;
+    entries.forEach((entry) => {
 
-if (menu.style.display === "block") {
-    menu.style.display = "none";
-} else {
-    menu.style.display = "block";
-}
+        if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+        }
 
-}
+    });
 
-window.addEventListener("scroll", function () {
+}, {
+    threshold: 0.2
+});
 
-const nav = document.querySelector("nav");
+fades.forEach((item) => {
+    observer.observe(item);
+});
 
-if (!nav) return;
+/*==========================
+  Active Menu
+==========================*/
 
-if (window.scrollY > 80) {
+const currentPage = window.location.pathname.split("/").pop();
 
-nav.style.boxShadow = "0 8px 20px rgba(0,0,0,.35)";
+document.querySelectorAll(".navbar a").forEach(link => {
 
-} else {
+    const href = link.getAttribute("href");
 
-nav.style.boxShadow = "0 5px 15px rgba(0,0,0,.25)";
-
-}
+    if (href === currentPage || (currentPage === "" && href === "index.html")) {
+        link.classList.add("active");
+    }
 
 });
+
+/*==========================
+  Back To Top Button
+==========================*/
+
+const topButton = document.createElement("button");
+
+topButton.innerHTML = "↑";
+
+topButton.className = "top-btn";
+
+document.body.appendChild(topButton);
+
+window.addEventListener("scroll", () => {
+
+    if (window.scrollY > 400) {
+
+        topButton.classList.add("show");
+
+    } else {
+
+        topButton.classList.remove("show");
+
+    }
+
+});
+
+topButton.addEventListener("click", () => {
+
+    window.scrollTo({
+
+        top: 0,
+
+        behavior: "smooth"
+
+    });
+
+});
+
+/*==========================
+  Footer Year
+==========================*/
+
+const year = new Date().getFullYear();
+
+document.querySelectorAll("footer p").forEach(p => {
+
+    if (p.innerHTML.includes("©")) {
+
+        p.innerHTML = `© ${year} جميع الحقوق محفوظة`;
+
+    }
+
+});
+
+/*==========================
+  Console Message
+==========================*/
+
+console.log("Kaakoz Express Website Loaded Successfully");
+
+
+/* زر العودة للأعلى */
+
+.top-btn{
+
+position:fixed;
+
+bottom:25px;
+
+left:25px;
+
+width:55px;
+
+height:55px;
+
+border:none;
+
+border-radius:50%;
+
+background:linear-gradient(180deg,#f7d96a,#d4af37);
+
+color:#3a250f;
+
+font-size:24px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+box-shadow:0 10px 20px rgba(0,0,0,.25);
+
+opacity:0;
+
+visibility:hidden;
+
+transition:.3s;
+
+z-index:9999;
+
+}
+
+.top-btn.show{
+
+opacity:1;
+
+visibility:visible;
+
+}
+
+.top-btn:hover{
+
+transform:translateY(-5px) scale(1.08);
+
+}
