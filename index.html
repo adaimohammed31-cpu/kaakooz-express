@@ -10,7 +10,24 @@ padding:0;
 box-sizing:border-box;  
 font-family:Tahoma,Arial,sans-serif;  
 }  
-  
+  .wheatTop{
+    width:100%;
+    height:55px;
+    background:linear-gradient(to bottom,#f8e8b0,#e2bb45,#c79b2c);
+    border-bottom:3px solid #8b5a2b;
+    position:relative;
+    overflow:hidden;
+}
+
+.wheatTop::before{
+    content:"🌾 🌾 🌾 🌾 🌾 🌾 🌾 🌾 🌾 🌾 🌾 🌾 🌾";
+    position:absolute;
+    width:100%;
+    text-align:center;
+    font-size:30px;
+    top:8px;
+    letter-spacing:8px;
+}
 body{
 background:#f7f4ef;
 color:#333;
@@ -300,7 +317,7 @@ menu.style.display="block";
   
 }  
   
-</script>  </head>  <body>  <header>  كعكوز إكسبرس
+</script>  </head>  <body> <div class="wheatTop"> </div>  <header>  كعكوز إكسبرس
 
 </header> 
   
