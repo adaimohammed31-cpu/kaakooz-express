@@ -1,1 +1,478 @@
+/* =========================
+   كعكوز إكسبرس
+   الملف الرئيسي للتصميم
+========================= */
 
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+font-family:Tahoma,Arial,sans-serif;
+background:#f7f2e8;
+color:#3f2a17;
+line-height:1.8;
+}
+
+a{
+text-decoration:none;
+}
+
+img{
+max-width:100%;
+display:block;
+}
+
+.container{
+width:90%;
+max-width:1300px;
+margin:auto;
+}
+
+/* =========================
+   الهيدر
+========================= */
+
+.hero img{
+width:100%;
+height:auto;
+display:block;
+}
+
+/* =========================
+   شريط التنقل
+========================= */
+
+nav{
+background:#5b3418;
+position:sticky;
+top:0;
+z-index:999;
+box-shadow:0 5px 15px rgba(0,0,0,.25);
+}
+
+nav ul{
+display:flex;
+justify-content:center;
+align-items:center;
+list-style:none;
+flex-wrap:wrap;
+}
+
+nav ul li{
+margin:0;
+}
+
+nav ul li a{
+display:block;
+padding:18px 26px;
+color:#fff7e5;
+font-size:20px;
+font-weight:bold;
+transition:.3s;
+}
+
+nav ul li a:hover{
+background:#caa24d;
+color:#3b220f;
+}
+
+/* =========================
+   العناوين
+========================= */
+
+section{
+padding:80px 0;
+}
+
+h1{
+font-size:50px;
+}
+
+h2{
+font-size:38px;
+margin-bottom:25px;
+text-align:center;
+color:#5b3418;
+}
+
+p{
+font-size:20px;
+}
+
+/* =========================
+   بطاقات
+========================= */
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:25px;
+margin-top:40px;
+}
+
+.card{
+background:white;
+padding:30px;
+border-radius:18px;
+box-shadow:0 10px 25px rgba(0,0,0,.12);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.card h3{
+margin-bottom:15px;
+color:#6b3c17;
+font-size:24px;
+}
+
+.card p{
+font-size:18px;
+}
+/* =========================
+   الأزرار
+========================= */
+
+.btn{
+display:inline-block;
+padding:15px 35px;
+background:#6b3c17;
+color:white;
+border-radius:12px;
+font-size:20px;
+font-weight:bold;
+transition:.3s;
+}
+
+.btn:hover{
+background:#b8862d;
+color:#3b220f;
+}
+
+/* =========================
+   صفحة المنيو
+========================= */
+
+.menu-box{
+background:white;
+padding:30px;
+border-radius:20px;
+box-shadow:0 10px 25px rgba(0,0,0,.15);
+text-align:center;
+}
+
+.menu-box img{
+max-width:900px;
+width:100%;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,.25);
+margin-top:30px;
+}
+
+/* =========================
+   صفحة آراء العملاء
+========================= */
+
+.review{
+background:white;
+padding:25px;
+margin:25px auto;
+max-width:850px;
+border-radius:18px;
+border-right:8px solid #caa24d;
+box-shadow:0 10px 25px rgba(0,0,0,.12);
+transition:.3s;
+}
+
+.review:hover{
+transform:translateY(-6px);
+}
+
+.review h3{
+font-size:24px;
+color:#5b3418;
+margin-bottom:12px;
+}
+
+.review p{
+font-size:19px;
+}
+
+/* =========================
+   صفحة التواصل
+========================= */
+
+.contact-box{
+background:white;
+padding:35px;
+border-radius:20px;
+box-shadow:0 10px 25px rgba(0,0,0,.12);
+text-align:center;
+}
+
+.contact-box a{
+display:inline-block;
+margin-top:20px;
+padding:15px 30px;
+background:#1877f2;
+color:white;
+border-radius:12px;
+font-size:20px;
+font-weight:bold;
+transition:.3s;
+}
+
+.contact-box a:hover{
+transform:scale(1.05);
+}
+
+/* =========================
+   الفوتر
+========================= */
+
+footer{
+background:#4a2a15;
+color:white;
+text-align:center;
+padding:35px 20px;
+margin-top:70px;
+}
+
+footer h3{
+font-size:30px;
+margin-bottom:10px;
+}
+
+footer p{
+font-size:18px;
+color:#f3e8c3;
+}
+
+/* =========================
+   الهواتف
+========================= */
+
+@media(max-width:768px){
+
+nav ul{
+flex-direction:column;
+}
+
+nav ul li{
+width:100%;
+}
+
+nav ul li a{
+text-align:center;
+padding:16px;
+border-bottom:1px solid rgba(255,255,255,.15);
+}
+
+section{
+padding:50px 15px;
+}
+
+h2{
+font-size:30px;
+}
+
+p{
+font-size:18px;
+}
+
+.card{
+padding:22px;
+}
+
+.review{
+padding:20px;
+}
+
+.contact-box{
+padding:25px;
+}
+
+footer h3{
+font-size:24px;
+}
+
+}
+
+/* =========================
+   قسم الترحيب
+========================= */
+
+.welcome{
+text-align:center;
+padding:90px 20px;
+}
+
+.welcome h1{
+font-size:52px;
+color:#5b3418;
+margin-bottom:25px;
+}
+
+.welcome p{
+max-width:900px;
+margin:auto;
+font-size:22px;
+line-height:2;
+color:#555;
+}
+
+/* =========================
+   قسم لماذا كعكوز
+========================= */
+
+.about-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:30px;
+margin-top:50px;
+}
+
+.about-card{
+background:#ffffff;
+padding:35px;
+border-radius:20px;
+box-shadow:0 12px 30px rgba(0,0,0,.12);
+border-top:6px solid #caa24d;
+transition:.35s;
+}
+
+.about-card:hover{
+transform:translateY(-10px);
+box-shadow:0 18px 35px rgba(0,0,0,.18);
+}
+
+.about-card h3{
+font-size:28px;
+margin-bottom:18px;
+color:#5b3418;
+}
+
+.about-card p{
+font-size:19px;
+color:#666;
+line-height:1.9;
+}
+
+/* =========================
+   عنوان الصفحات
+========================= */
+
+.page-title{
+background:linear-gradient(135deg,#5b3418,#8b5a2b);
+padding:70px 20px;
+text-align:center;
+color:white;
+}
+
+.page-title h1{
+font-size:48px;
+margin-bottom:15px;
+}
+
+.page-title p{
+font-size:22px;
+color:#f5ebd0;
+}
+
+/* =========================
+   تأثيرات
+========================= */
+
+.card,
+.about-card,
+.review,
+.menu-box,
+.contact-box{
+transition:all .35s ease;
+}
+
+.card:hover,
+.about-card:hover,
+.review:hover,
+.menu-box:hover,
+.contact-box:hover{
+box-shadow:0 18px 35px rgba(0,0,0,.18);
+  
+  }
+/* =========================
+   فيسبوك
+========================= */
+
+.facebook{
+text-align:center;
+margin-top:40px;
+}
+
+.facebook img{
+width:60px;
+height:60px;
+border-radius:50%;
+transition:.3s;
+cursor:pointer;
+}
+
+.facebook img:hover{
+transform:scale(1.15) rotate(5deg);
+}
+
+/* =========================
+   حركة ظهور العناصر
+========================= */
+
+.fade-up{
+opacity:0;
+transform:translateY(40px);
+animation:fadeUp .8s ease forwards;
+}
+
+@keyframes fadeUp{
+
+from{
+opacity:0;
+transform:translateY(40px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+/* =========================
+   تحسين الصور
+========================= */
+
+.hero img,
+.menu-box img{
+border-radius:18px;
+box-shadow:0 12px 30px rgba(0,0,0,.25);
+}
+
+/* =========================
+   تحديد عرض المحتوى
+========================= */
+
+.content{
+max-width:1200px;
+margin:auto;
+padding:0 20px;
+}
+
+/* =========================
+   نهاية ملف التصميم
+========================= */
