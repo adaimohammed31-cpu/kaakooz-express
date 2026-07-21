@@ -19,15 +19,7 @@ font-family:Tahoma,Arial,sans-serif;
     overflow:hidden;
 }
 
-.wheatTop::before{
-    content:"🌾 🌾 🌾 🌾 🌾 🌾 🌾 🌾 🌾 🌾 🌾 🌾 🌾";
-    position:absolute;
-    width:100%;
-    text-align:center;
-    font-size:30px;
-    top:8px;
-    letter-spacing:8px;
-}
+
 body{
 background:#f7f4ef;
 color:#333;
@@ -86,8 +78,7 @@ z-index:9998;
 background-repeat:no-repeat;
 background-size:70px 70px;
   }
-
-  header{  
+header{  
 background:#6d3b1e;  
 color:#fff;  
 padding:20px;  
@@ -99,6 +90,25 @@ top:0;
   
 
 }  
+  header::before,
+header::after{
+    content:"❈";
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:30px;
+    color:#d4af37;
+    text-shadow:0 0 10px gold;
+}
+
+header::before{
+    left:18px;
+}
+
+header::after{
+    right:18px;
+}
+  
 .banner img{  
 width:100%;  
 display:block;  
@@ -317,7 +327,7 @@ menu.style.display="block";
   
 }  
   
-</script>  </head>  <body> <div class="wheatTop"> </div>  <header>  كعكوز إكسبرس
+</script>  </head>  <body>  <header>  كعكوز إكسبرس
 
 </header> 
   
