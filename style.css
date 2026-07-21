@@ -76,10 +76,14 @@ border-bottom:4px solid #c99c47;
 }
 
 .card-body{
-padding:30px;
+padding:35px;
 text-align:center;
 font-size:22px;
-line-height:2;
+line-height:2.2;
+}
+
+.card-body p{
+margin-bottom:18px;
 }
 
 .menu-image{
