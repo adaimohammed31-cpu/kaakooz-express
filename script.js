@@ -72,6 +72,8 @@ function hideMenu(){
     menuCard.style.display = "none";
     menuCard.classList.remove("show");
 
+    welcomeCard.style.display = "none";
+
 }
 
 // الرئيسية
@@ -94,6 +96,9 @@ welcomeLink.addEventListener("click", function(e){
     e.preventDefault();
 
     hideMenu();
+    const welcomeCard = document.querySelector(".welcome-card");
+
+    welcomeCard.style.display = "block";
 
     document.querySelector("#welcome").scrollIntoView({
         behavior: "smooth"
