@@ -1,29 +1,69 @@
-// إغلاق وتشغيل أي كود بعد تحميل الصفحة
-document.addEventListener("DOMContentLoaded", () => {
+// الانتقال السلس عند الضغط على الروابط
+document.querySelectorAll('a[href^="#"]').forEach(link => {
 
-    // تمييز الرابط النشط أثناء التمرير
-    const sections = document.querySelectorAll("section");
-    const links = document.querySelectorAll(".navbar a");
+    link.addEventListener("click", function (e) {
 
-    window.addEventListener("scroll", () => {
-        let current = "";
+        e.preventDefault();
 
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop - 120;
-            const sectionHeight = section.clientHeight;
+        const target = document.querySelector(this.getAttribute("href"));
 
-            if (scrollY >= sectionTop) {
-                current = section.getAttribute("id");
-            }
-        });
+        if (target) {
 
-        links.forEach(link => {
-            link.classList.remove("active");
+            target.scrollIntoView({
+                behavior: "smooth"
+            });
 
-            if (link.getAttribute("href") === "#" + current) {
-                link.classList.add("active");
-            }
-        });
+        }
+
     });
+
+});
+
+// تأثير إضاءة زر المنيو
+const menuButton = document.querySelector(".menu-button");
+
+if (menuButton) {
+
+    menuButton.addEventListener("click", function () {
+
+        menuButton.classList.add("active");
+
+        setTimeout(() => {
+
+            menuButton.classList.remove("active");
+
+        }, 600);
+
+    });
+
+}
+
+// ظهور الأقسام تدريجياً عند النزول
+const sections = document.querySelectorAll("section");
+
+const observer = new IntersectionObserver((entries) => {
+
+    entries.forEach(entry => {
+
+        if (entry.isIntersecting) {
+
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+
+        }
+
+    });
+
+}, {
+    threshold: 0.2
+});
+
+sections.forEach(section => {
+
+    section.style.opacity = "0";
+    section.style.transform = "translateY(40px)";
+    section.style.transition = "all .8s ease";
+
+    observer.observe(section);
 
 });
