@@ -2,72 +2,133 @@
 <html lang="ar" dir="rtl">
 
 <head>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="description" content="قائمة طعام كعكوز إكسبرس">
+<meta name="google-site-verification"
+content="bP8hbhxR0YcFd7UDp3XYOEvfYMaARes6sGUG40bluqY">
 
-<meta name="google-site-verification" content="bP8hbhxR0YcFd7UDp3XYOEvfYMaARes6sGUG40bluqY">
-
-<title>قائمة الطعام | كعكوز إكسبرس</title>
+<title>المنيو | كعكوز إكسبرس</title>
 
 <link rel="stylesheet" href="style.css">
 
-<script src="script.js" defer></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 </head>
 
 <body>
 
-<div class="hero">
+<header class="hero">
 
-<img src="kaakoz_header_top.png" alt="كعكوز إكسبرس">
+<img src="images/kaakoz_header_top.png" alt="كعكوز إكسبرس">
 
-</div>
-<nav class="wood-nav">
-    <div class="wood-frame">
+</header>
+
+<nav class="navbar">
+
 <ul>
-    <li><a href="index.html"><i class="fa-solid fa-house"></i><span>الرئيسية</span></a></li>
 
-    <li><a href="about.html"><i class="fa-solid fa-wheat-awn"></i><span>لماذا كعكوز؟</span></a></li>
+<li><a href="index.html"><i class="fa-solid fa-house"></i><span>الرئيسية</span></a></li>
 
-    <li><a href="menu.html"><i class="fa-solid fa-utensils"></i><span>قائمة الطعام</span></a></li>
+<li><a href="about.html"><i class="fa-solid fa-store"></i><span>من نحن</span></a></li>
 
-    <li><a href="reviews.html"><i class="fa-solid fa-star"></i><span>آراء العملاء</span></a></li>
+<li><a class="active" href="menu.html"><i class="fa-solid fa-utensils"></i><span>المنيو</span></a></li>
 
-    <li><a href="contact.html"><i class="fa-solid fa-phone"></i><span>تواصل معنا</span></a></li>
+<li><a href="reviews.html"><i class="fa-solid fa-star"></i><span>التقييمات</span></a></li>
+
+<li><a href="contact.html"><i class="fa-solid fa-phone"></i><span>اتصل بنا</span></a></li>
+
 </ul>
 
-    </div>
 </nav>
-<section class="page-title">
 
-<h1>قائمة الطعام</h1>
+<section>
 
-<p>استمتع بأشهى سندويشات الكعك المقدسي ومنتجاتنا البلدية.</p>
+<h2 class="title">المنيو</h2>
+
+<div class="menu-grid">
+
+<div class="menu-item">
+
+<img src="images/FB_IMG_1784453968212.jpg" alt="المنيو">
+
+<div class="menu-info">
+
+<h3>
+
+قائمة الطعام
+
+<span class="price">طازجة يوميًا</span>
+
+</h3>
+
+<p>
+
+يمكنك مشاهدة جميع الأصناف والأسعار من خلال صورة المنيو الرسمية.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
 
 </section>
 
 <section>
 
-<div class="container">
+<h2 class="title">أشهر السندويشات</h2>
 
-<div class="menu-box">
+<div class="cards">
 
-<h2>المنيو</h2>
+<div class="card">
+
+<i class="fa-solid fa-bread-slice"></i>
+
+<h3>كعكوز البيض المشوي</h3>
 
 <p>
 
-اضغط على الصورة لتكبيرها.
+بيض مشوي مع جبنة شيدر وخضار طازجة داخل الكعك المقدسي.
 
 </p>
 
-<a href="FB_IMG_1784453968212.jpg" target="_blank">
+</div>
 
-<img src="FB_IMG_1784453968212.jpg" alt="منيو كعكوز إكسبرس">
+<div class="card">
 
-</a>
+<i class="fa-solid fa-cheese"></i>
+
+<h3>كعكوز الجبنة</h3>
+
+<p>
+
+جبنة بلدية طازجة مع زيت الزيتون والزعتر.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<i class="fa-solid fa-pepper-hot"></i>
+
+<h3>كعكوز البطاطا</h3>
+
+<p>
+
+بطاطا مقرمشة مع البابريكا والزعتر والصلصات الخاصة.
+
+</p>
 
 </div>
 
@@ -79,11 +140,23 @@
 
 <h3>كعكوز إكسبرس</h3>
 
-<p>لقمة فيها بركة... وطعم يرجعك لأيام زمان.</p>
+<p>لقمة فيها بركة... وطعم يعيدك لأيام زمان.</p>
 
-<p>© 2026 جميع الحقوق محفوظة.</p>
+<div class="social">
+
+<a href="https://www.facebook.com/share/1H5czTrtEK/" target="_blank">
+
+<i class="fab fa-facebook-f"></i>
+
+</a>
+
+</div>
+
+<p>© 2026 جميع الحقوق محفوظة</p>
 
 </footer>
+
+<script src="script.js"></script>
 
 </body>
 
