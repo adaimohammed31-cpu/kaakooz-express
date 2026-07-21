@@ -216,3 +216,10 @@ font-size:30px;
 }
 
 }
+
+  .menu-btn.active{
+    background:#d4a64a;
+    color:#4b2f1d;
+    box-shadow:0 0 20px #d4a64a;
+    transform:scale(1.08);
+  }
