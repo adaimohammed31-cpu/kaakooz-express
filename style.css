@@ -6,10 +6,18 @@ box-sizing:border-box;
 }
 
 body{
-font-family:"Cairo",sans-serif;
-background:#efe4d2;
-color:#3d2415;
-direction:rtl;
+    font-family:"Cairo",sans-serif;
+    background:#efe4d2;
+    color:#3d2415;
+    direction:rtl;
+
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+}
+
+main{
+    flex:1;
 }
 
 .hero img{
@@ -97,12 +105,11 @@ border:5px solid #c99c47;
 }
 
 footer{
-margin-top:40px;
-padding:20px;
-background:#3d2415;
-color:#fff;
-text-align:center;
-}
+    background:#3d2415;
+    color:#fff;
+    text-align:center;
+    padding:20px;
+  }
 
 @keyframes fade{
 
