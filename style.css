@@ -170,3 +170,10 @@ footer{
 }
 
 }
+
+.menu-button.active{
+    background:#ffd54f;
+    color:#4b2d18;
+    box-shadow:0 0 25px #ffd54f;
+    transform:scale(1.08);
+    }
