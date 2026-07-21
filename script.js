@@ -1,75 +1,27 @@
-/*=========================================
-  KAAKOZ EXPRESS
-  JavaScript
-=========================================*/
+//========================================
+// KAAKOZ EXPRESS
+// script.js
+//========================================
 
-/*==========================
-  Fade Animation
-==========================*/
+// زر العودة للأعلى
 
-const fades = document.querySelectorAll(".fade");
-
-const observer = new IntersectionObserver((entries) => {
-
-    entries.forEach((entry) => {
-
-        if (entry.isIntersecting) {
-            entry.target.classList.add("show");
-        }
-
-    });
-
-}, {
-    threshold: 0.2
-});
-
-fades.forEach((item) => {
-    observer.observe(item);
-});
-
-/*==========================
-  Active Menu
-==========================*/
-
-const currentPage = window.location.pathname.split("/").pop();
-
-document.querySelectorAll(".navbar a").forEach(link => {
-
-    const href = link.getAttribute("href");
-
-    if (href === currentPage || (currentPage === "" && href === "index.html")) {
-        link.classList.add("active");
-    }
-
-});
-
-/*==========================
-  Back To Top Button
-==========================*/
-
-const topButton = document.createElement("button");
-
-topButton.innerHTML = "↑";
-
-topButton.className = "top-btn";
-
-document.body.appendChild(topButton);
+const topBtn = document.getElementById("topBtn");
 
 window.addEventListener("scroll", () => {
 
-    if (window.scrollY > 400) {
+    if (window.scrollY > 300) {
 
-        topButton.classList.add("show");
+        topBtn.classList.add("show");
 
     } else {
 
-        topButton.classList.remove("show");
+        topBtn.classList.remove("show");
 
     }
 
 });
 
-topButton.addEventListener("click", () => {
+topBtn.addEventListener("click", () => {
 
     window.scrollTo({
 
@@ -81,79 +33,68 @@ topButton.addEventListener("click", () => {
 
 });
 
-/*==========================
-  Footer Year
-==========================*/
+//========================================
+// تمييز الصفحة الحالية
+//========================================
 
-const year = new Date().getFullYear();
+const currentPage = location.pathname.split("/").pop();
 
-document.querySelectorAll("footer p").forEach(p => {
+document.querySelectorAll(".wood-nav a").forEach(link => {
 
-    if (p.innerHTML.includes("©")) {
+    const href = link.getAttribute("href");
 
-        p.innerHTML = `© ${year} جميع الحقوق محفوظة`;
+    if (href === currentPage || (currentPage === "" && href === "index.html")) {
+
+        link.classList.add("active");
 
     }
 
 });
 
-/*==========================
-  Console Message
-==========================*/
+//========================================
+// ظهور العناصر أثناء التمرير
+//========================================
 
-console.log("Kaakoz Express Website Loaded Successfully");
+const observer = new IntersectionObserver(entries => {
 
+    entries.forEach(entry => {
 
-/* زر العودة للأعلى */
+        if (entry.isIntersecting) {
 
-.top-btn{
+            entry.target.classList.add("visible");
 
-position:fixed;
+        }
 
-bottom:25px;
+    });
 
-left:25px;
+}, {
 
-width:55px;
+    threshold: 0.15
 
-height:55px;
+});
 
-border:none;
+document.querySelectorAll(".card, section").forEach(el => {
 
-border-radius:50%;
+    observer.observe(el);
 
-background:linear-gradient(180deg,#f7d96a,#d4af37);
+});
 
-color:#3a250f;
+//========================================
+// تأثير بسيط عند الضغط على الأزرار
+//========================================
 
-font-size:24px;
+document.querySelectorAll(".wood-nav a").forEach(btn => {
 
-font-weight:bold;
+    btn.addEventListener("click", () => {
 
-cursor:pointer;
+        btn.style.transform = "scale(.95)";
 
-box-shadow:0 10px 20px rgba(0,0,0,.25);
+        setTimeout(() => {
 
-opacity:0;
+            btn.style.transform = "";
 
-visibility:hidden;
+        }, 150);
 
-transition:.3s;
+    });
 
-z-index:9999;
-
-}
-
-.top-btn.show{
-
-opacity:1;
-
-visibility:visible;
-
-}
-
-.top-btn:hover{
-
-transform:translateY(-5px) scale(1.08);
-
-}
+});
