@@ -151,23 +151,6 @@ font-size:24px;
 color:#c99c47;
 margin-left:8px;
 }
-<section class="hero-food">
-
-    <div class="hero-image">
-
-        <img src="file_0000000085d082438fb607821aa93a78.png" alt="سندويشات كعكوز إكسبريس">
-
-        <div class="hero-overlay">
-
-            <h2>🥖 نكهة تعيدك إلى أيام زمان</h2>
-
-            <p>خبز مقدسي طازج... وسندويشات تُحضَّر يوميًا بمذاق أصيل.</p>
-
-        </div>
-
-    </div>
-
-</section>
 
     .hero-food{
     width:100%;
