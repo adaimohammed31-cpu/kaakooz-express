@@ -265,3 +265,7 @@ footer{
 }
 
 }
+.navbar a.active{
+    color:#9b6b32;
+    border-bottom:2px solid #9b6b32;
+    }
