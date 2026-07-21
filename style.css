@@ -419,7 +419,40 @@ flex-direction:column;
 align-items:center;
 
 }
+/* تأثير الظهور */
 
+.welcome-card,
+.menu-card,
+.location-card,
+.contact-card{
+
+opacity:0;
+
+transform:translateY(60px);
+
+transition:all .8s ease;
+
+}
+
+.show{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+/* إضاءة زر المنيو */
+
+.menu-button.active{
+
+background:#e3bf6a;
+
+color:#3d2415;
+
+box-shadow:0 0 30px #e3bf6a;
+
+}
 .contact-buttons a{
 
 width:90%;
