@@ -45,56 +45,59 @@ margin:auto;
 width:100%;
 display:block;
 }
-
 /* ===================================
-   شريط التنقل
+   شريط تنقل فاخر
 =================================== */
 
 nav{
-background:#5b3418;
+background:#4a2a15;
+padding:12px;
 position:sticky;
 top:0;
 z-index:999;
-box-shadow:0 5px 15px rgba(0,0,0,.25);
-overflow-x:auto;
+box-shadow:0 8px 20px rgba(0,0,0,.25);
 }
 
 nav ul{
 display:flex;
+justify-content:center;
+align-items:center;
+gap:10px;
 list-style:none;
 padding:0;
 margin:0;
-flex-wrap:nowrap;
-justify-content:space-between;
-align-items:center;
+overflow-x:auto;
 }
 
 nav ul li{
 flex:1;
+min-width:110px;
 }
 
 nav ul li a{
-display:flex;
-justify-content:center;
-align-items:center;
-height:65px;
-padding:0 10px;
-font-size:18px;
+display:block;
+text-align:center;
+padding:14px 12px;
+background:linear-gradient(180deg,#7b4a22,#5b3418);
+color:#fff;
+font-size:17px;
 font-weight:bold;
-color:#fff7e5;
-white-space:nowrap;
-transition:.3s;
-border-left:1px solid rgba(255,255,255,.15);
+border-radius:14px;
+border:1px solid #d8b25d;
+box-shadow:
+0 3px 8px rgba(0,0,0,.25),
+inset 0 1px 0 rgba(255,255,255,.15);
+transition:.25s;
 }
 
-nav ul li:first-child a{
-border-left:none;
-}
+nav ul li a:hover,
+nav ul li a.active{
+background:linear-gradient(180deg,#d7b05a,#b98a33);
+color:#3b220f;
+transform:translateY(-2px);
+box-shadow:0 6px 16px rgba(0,0,0,.30);
+   }
 
-nav ul li a:hover{
-background:#c79b35;
-color:#3f2a17;
-}
 
 /* ===================================
    الأقسام
@@ -422,6 +425,7 @@ padding:0 20px;
 
 @media (max-width:768px){
 
+
 nav{
 overflow-x:auto;
 }
@@ -444,7 +448,6 @@ height:55px;
 font-size:14px;
 padding:0 8px;
 }
-
 section{
 padding:50px 15px;
 }
