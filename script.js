@@ -1,57 +1,89 @@
-// انتقال سلس بين الأقسام
-document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener("click", function (e) {
-        e.preventDefault();
+// انتقال سلس
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
-        const target = document.querySelector(this.getAttribute("href"));
+anchor.addEventListener("click",function(e){
 
-        if (target) {
-            target.scrollIntoView({
-                behavior: "smooth"
-            });
-        }
-    });
+e.preventDefault();
+
+const target=document.querySelector(this.getAttribute("href"));
+
+if(target){
+
+target.scrollIntoView({
+
+behavior:"smooth"
+
 });
 
-// إضاءة زر المنيو
-const menuButton = document.querySelector(".menu-btn");
-
-if (menuButton) {
-    menuButton.addEventListener("click", function () {
-
-        menuButton.classList.add("active");
-
-        setTimeout(() => {
-            menuButton.classList.remove("active");
-        }, 500);
-
-    });
 }
 
-// ظهور الأقسام تدريجياً
-const sections = document.querySelectorAll("section");
-
-const observer = new IntersectionObserver((entries) => {
-
-    entries.forEach(entry => {
-
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = "1";
-            entry.target.style.transform = "translateY(0)";
-        }
-
-    });
-
-}, {
-    threshold: 0.2
 });
 
-sections.forEach(section => {
+});
 
-    section.style.opacity = "0";
-    section.style.transform = "translateY(40px)";
-    section.style.transition = "all .8s ease";
+// إظهار العناصر عند النزول
+const cards=document.querySelectorAll(".welcome-card,.menu-card,.location-card,.contact-card");
 
-    observer.observe(section);
+const observer=new IntersectionObserver((entries)=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.classList.add("show");
+
+}
 
 });
+
+},{
+threshold:0.2
+});
+
+cards.forEach(card=>{
+
+observer.observe(card);
+
+});
+
+// تأثير الضغط على أزرار التواصل
+document.querySelectorAll(".contact-buttons a").forEach(btn=>{
+
+btn.addEventListener("mousedown",()=>{
+
+btn.style.transform="scale(.95)";
+
+});
+
+btn.addEventListener("mouseup",()=>{
+
+btn.style.transform="scale(1)";
+
+});
+
+btn.addEventListener("mouseleave",()=>{
+
+btn.style.transform="scale(1)";
+
+});
+
+});
+
+// زر المنيو
+const menuButton=document.querySelector(".menu-button");
+
+if(menuButton){
+
+menuButton.addEventListener("click",()=>{
+
+menuButton.classList.add("active");
+
+setTimeout(()=>{
+
+menuButton.classList.remove("active");
+
+},500);
+
+});
+
+}
