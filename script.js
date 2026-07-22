@@ -86,11 +86,17 @@ galleryBtn.addEventListener("click", function(e) {
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightboxImg");
 const closeBtn = document.querySelector(".close");
+const prevBtn = document.querySelector(".prev");
+const nextBtn = document.querySelector(".next");
 
-document.querySelectorAll(".gallery img").forEach(img => {
+const images = document.querySelectorAll(".gallery img");
+let currentIndex = 0;
+
+images.forEach((img, index) => {
     img.addEventListener("click", function () {
+        currentIndex = index;
         lightbox.style.display = "flex";
-        lightboxImg.src = this.src;
+        lightboxImg.src = images[currentIndex].src;
     });
 });
 
@@ -102,4 +108,16 @@ lightbox.addEventListener("click", function (e) {
     if (e.target === lightbox) {
         lightbox.style.display = "none";
     }
+});
+
+prevBtn.addEventListener("click", function (e) {
+    e.stopPropagation();
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    lightboxImg.src = images[currentIndex].src;
+});
+
+nextBtn.addEventListener("click", function (e) {
+    e.stopPropagation();
+    currentIndex = (currentIndex + 1) % images.length;
+    lightboxImg.src = images[currentIndex].src;
 });
