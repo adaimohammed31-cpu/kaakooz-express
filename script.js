@@ -73,3 +73,12 @@ timeBtn.addEventListener("click", function(e) {
         behavior: "smooth"
     });
 });
+// معرض الصور
+galleryBtn.addEventListener("click", function(e) {
+    e.preventDefault();
+    hideAll();
+    galleryBox.style.display = "block";
+    galleryBox.scrollIntoView({
+        behavior: "smooth"
+    });
+});
