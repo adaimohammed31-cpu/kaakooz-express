@@ -7,13 +7,13 @@ const welcomeBtn = document.getElementById("welcomeBtn");
 const menuBtn = document.getElementById("menuBtn");
 const locationBtn = document.getElementById("locationBtn");
 const timeBtn = document.getElementById("timeBtn");
-
+const galleryBtn = document.getElementById("galleryBtn");
 // الصناديق
 const welcomeBox = document.getElementById("welcomeBox");
 const menuBox = document.getElementById("menuBox");
 const locationBox = document.getElementById("locationBox");
 const timeBox = document.getElementById("timeBox");
-
+const galleryBox = document.getElementById("galleryBox");
 // إخفاء جميع الصناديق
 function hideAll() {
     cards.forEach(card => {
