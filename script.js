@@ -324,3 +324,11 @@ sendComment.addEventListener("click", async () => {
     loadComments();
 
 });
+window.deleteComment = async function (id) {
+
+    if (!confirm("هل تريد حذف هذا التعليق؟")) return;
+
+    await deleteDoc(doc(db, "comments", id));
+
+    loadComments();
+};
