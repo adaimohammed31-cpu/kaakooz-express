@@ -151,31 +151,44 @@ nextBtn.addEventListener("click", function (e) {
    Firebase - Likes
 =========================== */
 
+
 const likeBtn = document.getElementById("likeBtn");
 const likesCount = document.getElementById("likesCount");
 
 const likesRef = doc(db, "website", "likes");
 
-// عرض عدد الإعجابات مباشرة
-onSnapshot(likesRef, (snapshot) => {
-    if (snapshot.exists()) {
-        likesCount.textContent = `❤️ ${snapshot.data().count} إعجاب`;
-    } else {
-        setDoc(likesRef, { count: 0 });
+// إنشاء المستند إذا لم يكن موجوداً
+getDoc(likesRef).then(async (snap) => {
+    if (!snap.exists()) {
+        await setDoc(likesRef, { count: 0 });
     }
 });
 
-// عند الضغط على زر الإعجاب
+// عرض الإعجابات مباشرة
+onSnapshot(likesRef, (snap) => {
+    if (snap.exists()) {
+        likesCount.textContent = `❤️ ${snap.data().count} إعجاب`;
+    }
+});
+
 likeBtn.addEventListener("click", async () => {
 
-    if (localStorage.getItem("liked")) {
+    let liked = localStorage.getItem("liked");
+
+    if (liked === "true") {
         alert("لقد قمت بالإعجاب مسبقًا ❤️");
         return;
     }
 
-    await updateDoc(likesRef, {
-        count: increment(1)
-    });
+    const snap = await getDoc(likesRef);
+
+    if (!snap.exists()) {
+        await setDoc(likesRef, { count: 1 });
+    } else {
+        await updateDoc(likesRef, {
+            count: increment(1)
+        });
+    }
 
     localStorage.setItem("liked", "true");
 });
