@@ -300,3 +300,60 @@ margin-left:8px;
     margin:0;
     line-height:1.8;
 }
+/* التعليقات */
+
+.comment-card{
+    background:#f8f3eb;
+    border:2px solid #c99c47;
+    border-radius:15px;
+    padding:15px;
+    margin:15px 0;
+    text-align:right;
+}
+
+.comment-card h4{
+    color:#5d3922;
+    margin-bottom:8px;
+    font-size:22px;
+}
+
+.comment-card p{
+    color:#333;
+    line-height:1.8;
+    font-size:18px;
+}
+
+#likeBtn,
+#sendComment{
+    background:#5d3922;
+    color:#fff;
+    border:none;
+    padding:14px 30px;
+    border-radius:12px;
+    font-size:22px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+#likeBtn:hover,
+#sendComment:hover{
+    background:#c99c47;
+    color:#3d2415;
+}
+
+.star{
+    font-size:40px;
+    cursor:pointer;
+    color:#d4af37;
+    transition:.2s;
+}
+
+.star:hover{
+    transform:scale(1.2);
+}
+
+#ratingAverage{
+    font-size:28px;
+    margin:15px 0;
+    color:#5d3922;
+}
