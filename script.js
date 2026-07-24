@@ -287,11 +287,20 @@ commentsList.innerHTML = "";
         const data = docItem.data();
 
         commentsList.innerHTML += `
-            <div class="comment-card">
-                <h4>${data.name}</h4>
-                <p>${data.comment}</p>
-            </div>
-        `;
+    <div class="comment-card">
+        <h4>${data.name}</h4>
+        <p>${data.comment}</p>
+
+        ${
+            data.ownerId === ownerId
+                ? `<button class="delete-btn" onclick="deleteComment('${docItem.id}')">
+                    🗑️ حذف
+                  </button>`
+                : ""
+        }
+
+    </div>
+`;
       
     
     });
