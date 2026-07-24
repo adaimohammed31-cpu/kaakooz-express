@@ -7,11 +7,17 @@ import {
   getDoc,
   setDoc,
   updateDoc,
+  deleteDoc,
   increment,
   onSnapshot
 } from "./firebase.js";
 
+let ownerId = localStorage.getItem("ownerId");
 
+if (!ownerId) {
+    ownerId = crypto.randomUUID();
+    localStorage.setItem("ownerId", ownerId);
+}
 // جميع الصناديق
 const cards = document.querySelectorAll(".card");
 
@@ -272,8 +278,7 @@ const commentsRef = collection(db, "comments");
 
 // عرض التعليقات
 async function loadComments() {
-
-    commentsList.innerHTML = "";
+commentsList.innerHTML = "";
 
     const snapshot = await getDocs(commentsRef);
 
@@ -287,7 +292,8 @@ async function loadComments() {
                 <p>${data.comment}</p>
             </div>
         `;
-
+      
+    
     });
 
 }
@@ -308,6 +314,7 @@ sendComment.addEventListener("click", async () => {
     await addDoc(commentsRef, {
         name,
         comment,
+      ownerId: ownerId,
         time: Date.now()
     });
 
