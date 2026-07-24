@@ -18,6 +18,7 @@ if (!ownerId) {
     ownerId = crypto.randomUUID();
     localStorage.setItem("ownerId", ownerId);
 }
+const isAdmin = localStorage.getItem("isAdmin") === "true";
 // جميع الصناديق
 const cards = document.querySelectorAll(".card");
 
@@ -292,7 +293,7 @@ commentsList.innerHTML = "";
         <p>${data.comment}</p>
 
         ${
-            data.ownerId === ownerId
+            isAdmin || data.ownerId === ownerId
                 ? `<button class="delete-btn" onclick="deleteComment('${docItem.id}')">
                     🗑️ حذف
                   </button>`
