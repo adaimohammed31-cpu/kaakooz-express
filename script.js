@@ -180,4 +180,115 @@ likeBtn.addEventListener("click", async () => {
     localStorage.setItem("liked", "true");
 });
 
+/* ===========================
+   Firebase - Rating
+=========================== */
 
+const stars = document.querySelectorAll(".star");
+const ratingAverage = document.getElementById("ratingAverage");
+
+const ratingRef = doc(db, "website", "rating");
+
+// عرض متوسط التقييم
+onSnapshot(ratingRef, (snapshot) => {
+
+    if (snapshot.exists()) {
+
+        const data = snapshot.data();
+
+        const avg = data.count > 0
+            ? (data.total / data.count).toFixed(1)
+            : 0;
+
+        ratingAverage.textContent = `متوسط التقييم: ⭐ ${avg}`;
+
+    } else {
+
+        setDoc(ratingRef, {
+            total: 0,
+            count: 0
+        });
+
+    }
+
+});
+
+// عند الضغط على نجمة
+stars.forEach(star => {
+
+    star.addEventListener("click", async () => {
+
+        if (localStorage.getItem("rated")) {
+            alert("لقد قمت بالتقييم مسبقًا ⭐");
+            return;
+        }
+
+        const value = Number(star.dataset.rate);
+
+        await updateDoc(ratingRef, {
+            total: increment(value),
+            count: increment(1)
+        });
+
+        localStorage.setItem("rated", "true");
+
+    });
+
+});
+
+/* ===========================
+   Firebase - Comments
+=========================== */
+
+const sendComment = document.getElementById("sendComment");
+const commentsList = document.getElementById("commentsList");
+
+const commentsRef = collection(db, "comments");
+
+// عرض التعليقات
+async function loadComments() {
+
+    commentsList.innerHTML = "";
+
+    const snapshot = await getDocs(commentsRef);
+
+    snapshot.forEach((docItem) => {
+
+        const data = docItem.data();
+
+        commentsList.innerHTML += `
+            <div class="comment-card">
+                <h4>${data.name}</h4>
+                <p>${data.comment}</p>
+            </div>
+        `;
+
+    });
+
+}
+
+loadComments();
+
+// إرسال تعليق
+sendComment.addEventListener("click", async () => {
+
+    const name = document.getElementById("name").value.trim();
+    const comment = document.getElementById("comment").value.trim();
+
+    if (name === "" || comment === "") {
+        alert("يرجى تعبئة جميع الحقول");
+        return;
+    }
+
+    await addDoc(commentsRef, {
+        name,
+        comment,
+        time: Date.now()
+    });
+
+    document.getElementById("name").value = "";
+    document.getElementById("comment").value = "";
+
+    loadComments();
+
+});
