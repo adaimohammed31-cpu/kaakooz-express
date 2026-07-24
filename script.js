@@ -1,3 +1,17 @@
+import {
+  db,
+  collection,
+  addDoc,
+  getDocs,
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+  increment,
+  onSnapshot
+} from "./firebase.js";
+
+
 // جميع الصناديق
 const cards = document.querySelectorAll(".card");
 
