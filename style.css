@@ -357,3 +357,17 @@ margin-left:8px;
     margin:15px 0;
     color:#5d3922;
 }
+.delete-btn{
+    margin-top:10px;
+    background:#c62828;
+    color:white;
+    border:none;
+    padding:8px 14px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:15px;
+}
+
+.delete-btn:hover{
+    background:#a00000;
+}
