@@ -179,8 +179,16 @@ likeBtn.addEventListener("click", async () => {
     let liked = localStorage.getItem("liked");
 
     if (liked === "true") {
-        alert("لقد قمت بالإعجاب مسبقًا ❤️");
-        return;
+
+    await updateDoc(likesRef, {
+        count: increment(-1)
+    });
+
+    localStorage.removeItem("liked");
+
+    likeBtn.textContent = "❤️ أعجبني";
+
+    return;
     }
 
     const snap = await getDoc(likesRef);
@@ -194,6 +202,7 @@ likeBtn.addEventListener("click", async () => {
     }
 
     localStorage.setItem("liked", "true");
+  likeBtn.textContent = "💔 إلغاء الإعجاب";
 });
 
 /* ===========================
