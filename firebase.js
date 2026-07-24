@@ -35,6 +35,7 @@ export {
   getDoc,
   setDoc,
   updateDoc,
+  deleteDoc,
   increment,
   onSnapshot
 };
