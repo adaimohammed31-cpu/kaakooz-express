@@ -8,6 +8,8 @@ const menuBtn = document.getElementById("menuBtn");
 const locationBtn = document.getElementById("locationBtn");
 const timeBtn = document.getElementById("timeBtn");
 const galleryBtn = document.getElementById("galleryBtn");
+const reviewsBtn = document.getElementById("reviewsBtn");
+const reviewsBox = document.getElementById("reviewsBox");
 // الصناديق
 const welcomeBox = document.getElementById("welcomeBox");
 const menuBox = document.getElementById("menuBox");
@@ -79,6 +81,15 @@ galleryBtn.addEventListener("click", function(e) {
     hideAll();
     galleryBox.style.display = "block";
     galleryBox.scrollIntoView({
+        behavior: "smooth"
+    });
+});
+// آراء الزبائن
+reviewsBtn.addEventListener("click", function(e) {
+    e.preventDefault();
+    hideAll();
+    reviewsBox.style.display = "block";
+    reviewsBox.scrollIntoView({
         behavior: "smooth"
     });
 });
