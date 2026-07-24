@@ -232,3 +232,13 @@ margin-left:8px;
 .next:hover{
     color:#c99c47;
 }
+.map-link{
+    text-decoration:none;
+    font-size:30px;
+    color:#1a73e8;
+    transition:.3s;
+}
+
+.map-link:hover{
+    color:#0b57d0;
+}
