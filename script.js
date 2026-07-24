@@ -146,3 +146,38 @@ nextBtn.addEventListener("click", function (e) {
     currentIndex = (currentIndex + 1) % images.length;
     lightboxImg.src = images[currentIndex].src;
 });
+
+/* ===========================
+   Firebase - Likes
+=========================== */
+
+const likeBtn = document.getElementById("likeBtn");
+const likesCount = document.getElementById("likesCount");
+
+const likesRef = doc(db, "website", "likes");
+
+// عرض عدد الإعجابات مباشرة
+onSnapshot(likesRef, (snapshot) => {
+    if (snapshot.exists()) {
+        likesCount.textContent = `❤️ ${snapshot.data().count} إعجاب`;
+    } else {
+        setDoc(likesRef, { count: 0 });
+    }
+});
+
+// عند الضغط على زر الإعجاب
+likeBtn.addEventListener("click", async () => {
+
+    if (localStorage.getItem("liked")) {
+        alert("لقد قمت بالإعجاب مسبقًا ❤️");
+        return;
+    }
+
+    await updateDoc(likesRef, {
+        count: increment(1)
+    });
+
+    localStorage.setItem("liked", "true");
+});
+
+
