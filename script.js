@@ -153,6 +153,9 @@ nextBtn.addEventListener("click", function (e) {
 
 
 const likeBtn = document.getElementById("likeBtn");
+if (localStorage.getItem("liked") === "true") {
+    likeBtn.textContent = "💔 إلغاء الإعجاب";
+}
 const likesCount = document.getElementById("likesCount");
 
 const likesRef = doc(db, "website", "likes");
