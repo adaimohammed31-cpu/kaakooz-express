@@ -242,3 +242,61 @@ margin-left:8px;
 .map-link:hover{
     color:#0b57d0;
 }
+/* ===== آراء الزبائن ===== */
+
+#reviewsBox input,
+#reviewsBox textarea{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border:2px solid #c99c47;
+    border-radius:12px;
+    font-family:"Cairo",sans-serif;
+    font-size:18px;
+}
+
+#reviewsBox textarea{
+    min-height:120px;
+    resize:vertical;
+}
+
+#reviewsBox button{
+    background:#5d3922;
+    color:#fff;
+    border:none;
+    padding:12px 25px;
+    border-radius:12px;
+    font-size:18px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+#reviewsBox button:hover{
+    background:#c99c47;
+    color:#3d2415;
+}
+
+#likesCount{
+    font-size:24px;
+    margin-bottom:15px;
+    color:#c0392b;
+}
+
+.review{
+    text-align:right;
+    background:#f9f4ec;
+    border-right:5px solid #c99c47;
+    padding:15px;
+    margin-top:15px;
+    border-radius:12px;
+}
+
+.review h4{
+    color:#5d3922;
+    margin-bottom:8px;
+}
+
+.review p{
+    margin:0;
+    line-height:1.8;
+}
