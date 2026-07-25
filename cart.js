@@ -3,7 +3,7 @@ let cart = JSON.parse(localStorage.getItem("cart")) || [];
 const cartItems = document.getElementById("cartItems");
 const cartTotal = document.getElementById("cartTotal");
 const sendWhatsApp = document.getElementById("sendWhatsApp");
-
+const clearCart = document.getElementById("clearCart");
 function renderCart() {
 
     cartItems.innerHTML = "";
@@ -93,3 +93,14 @@ sendWhatsApp.addEventListener("click", () => {
 });
 
 renderCart();
+clearCart.addEventListener("click", () => {
+
+    if (confirm("هل أنت متأكد من إفراغ السلة؟")) {
+
+        cart = [];
+        localStorage.removeItem("cart");
+        renderCart();
+
+    }
+
+});
