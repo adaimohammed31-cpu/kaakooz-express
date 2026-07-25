@@ -350,3 +350,23 @@ window.deleteComment = async function (id) {
 
     loadComments();
 };
+const heroImage = document.getElementById("heroImage");
+const adminLogin = document.getElementById("adminLogin");
+
+let clickCount = 0;
+let clickTimer;
+
+heroImage.addEventListener("click", () => {
+    clickCount++;
+
+    clearTimeout(clickTimer);
+
+    clickTimer = setTimeout(() => {
+        clickCount = 0;
+    }, 3000);
+
+    if (clickCount >= 5) {
+        adminLogin.style.display = "block";
+        clickCount = 0;
+    }
+});
