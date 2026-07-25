@@ -51,4 +51,45 @@ window.plus = function(index) {
 
 window.minus = function(index) {
 
-   
+    if (cart[index].qty > 1) {
+        cart[index].qty--;
+    } else {
+        cart.splice(index, 1);
+    }
+
+    renderCart();
+};
+
+window.removeItem = function(index) {
+
+    cart.splice(index, 1);
+
+    renderCart();
+};
+
+sendWhatsApp.addEventListener("click", () => {
+
+    if (cart.length === 0) {
+        alert("السلة فارغة");
+        return;
+    }
+
+    let message = "السلام عليكم، أريد طلب:%0A%0A";
+
+    let total = 0;
+
+    cart.forEach(item => {
+
+        message += `• ${item.name} × ${item.qty}%0A`;
+
+        total += item.price * item.qty;
+
+    });
+
+    message += `%0Aالمجموع: ${total.toFixed(2)} دينار`;
+
+    window.open(`https://wa.me/962779430623?text=${message}`);
+
+});
+
+renderCart();
