@@ -471,3 +471,53 @@ margin-left:8px;
     color:white;
     cursor:pointer;
 }
+/* شريط الأصناف */
+
+.orders-navbar{
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    display: flex;
+    gap: 10px;
+
+    overflow-x: auto;
+    white-space: nowrap;
+
+    padding: 12px;
+    background: #ffffff;
+
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+
+    box-shadow: 0 2px 10px rgba(0,0,0,.08);
+}
+
+.orders-navbar::-webkit-scrollbar{
+    display:none;
+}
+
+.orders-navbar a{
+    text-decoration:none;
+    color:#ffffff;
+    background:#0d5c2f;
+
+    padding:12px 18px;
+    border-radius:12px;
+
+    font-weight:bold;
+    font-size:16px;
+
+    flex:0 0 auto;
+
+    transition:.3s;
+}
+
+.orders-navbar a:hover{
+    background:#d4af37;
+    color:#0d5c2f;
+}
+
+#cartLink{
+    margin-right:auto;
+}
