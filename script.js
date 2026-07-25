@@ -293,7 +293,7 @@ commentsList.innerHTML = "";
         <p>${data.comment}</p>
 
         ${
-            isAdmin || data.ownerId === ownerId
+          data.ownerId === ownerId
                 ? `<button class="delete-btn" onclick="deleteComment('${docItem.id}')">
                     🗑️ حذف
                   </button>`
