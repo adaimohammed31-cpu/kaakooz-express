@@ -447,12 +447,9 @@ margin-left:8px;
 
 .sandwich-grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
     gap:20px;
     padding:20px;
-    width:100%;
-    max-width:1200px;
-    margin:0 auto;
 }
 
 .sandwich-card{
@@ -461,12 +458,13 @@ margin-left:8px;
     overflow:hidden;
     box-shadow:0 4px 15px rgba(0,0,0,.15);
 }
-
 .sandwich-card img{
     width:100%;
-    height:auto;
+    aspect-ratio: 4 / 5;
+    object-fit:cover;
     display:block;
 }
+
 
 .order-btn{
     width:90%;
