@@ -479,12 +479,18 @@ margin-left:8px;
     z-index: 1000;
 
     display: flex;
+    align-items: center;
     gap: 10px;
 
     overflow-x: auto;
+    overflow-y: hidden;
+
     white-space: nowrap;
 
-    padding: 12px;
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 10px;
     background: #ffffff;
 
     border-top: 1px solid #ddd;
@@ -498,26 +504,26 @@ margin-left:8px;
 }
 
 .orders-navbar a{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
     text-decoration:none;
-    color:#ffffff;
+
+    color:#fff;
     background:#0d5c2f;
 
-    padding:12px 18px;
+    padding:10px 16px;
+
     border-radius:12px;
 
+    font-size:15px;
     font-weight:bold;
-    font-size:16px;
 
     flex:0 0 auto;
-
-    transition:.3s;
 }
 
 .orders-navbar a:hover{
     background:#d4af37;
     color:#0d5c2f;
-}
-
-#cartLink{
-    margin-right:auto;
 }
