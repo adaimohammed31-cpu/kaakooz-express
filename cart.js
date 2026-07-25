@@ -11,9 +11,12 @@ function renderCart() {
     let total = 0;
 
     if (cart.length === 0) {
-        cartItems.innerHTML = "<h3>السلة فارغة 🛒</h3>";
-        cartTotal.textContent = "المجموع: 0 دينار";
-        return;
+
+    localStorage.removeItem("cart");
+
+    cartItems.innerHTML = "<h3>السلة فارغة 🛒</h3>";
+    cartTotal.textContent = "المجموع: 0 دينار";
+    return;
     }
 
     cart.forEach((item, index) => {
