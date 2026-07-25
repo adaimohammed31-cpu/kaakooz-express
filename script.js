@@ -1,5 +1,8 @@
 import {
   db,
+  auth,
+signInWithEmailAndPassword,
+onAuthStateChanged,
   collection,
   addDoc,
   getDocs,
@@ -18,7 +21,12 @@ if (!ownerId) {
     ownerId = crypto.randomUUID();
     localStorage.setItem("ownerId", ownerId);
 }
-const isAdmin = localStorage.getItem("isAdmin") === "true";
+let isAdmin = false;
+
+onAuthStateChanged(auth, (user) => {
+    isAdmin = !!user;
+    loadComments();
+});
 // جميع الصناديق
 const cards = document.querySelectorAll(".card");
 
