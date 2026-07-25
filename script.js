@@ -370,3 +370,4 @@ heroImage.addEventListener("click", () => {
         clickCount = 0;
     }
 });
+adminLogin.style.display
