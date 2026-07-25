@@ -18,12 +18,7 @@ if (!ownerId) {
     ownerId = crypto.randomUUID();
     localStorage.setItem("ownerId", ownerId);
 }
-let isAdmin = false;
 
-onAuthStateChanged(auth, (user) => {
-    isAdmin = !!user;
-    loadComments();
-});
 // جميع الصناديق
 const cards = document.querySelectorAll(".card");
 
