@@ -371,3 +371,39 @@ margin-left:8px;
 .delete-btn:hover{
     background:#a00000;
 }
+
+.page-header{
+    text-align:center;
+    padding:20px;
+}
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;
+    padding:20px;
+}
+
+.product-card{
+    background:#fff;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 4px 12px rgba(0,0,0,.15);
+    text-align:center;
+}
+
+.product-card img{
+    width:100%;
+    display:block;
+}
+
+.cart-btn{
+    width:90%;
+    margin:15px;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:18px;
+    font-weight:bold;
+}
