@@ -142,8 +142,7 @@ function updateDeliveryFields() {
 
                 initMap();
 
-                // تحديد الموقع تلقائياً
-                getCurrentLocation();
+            
 
             } else {
 
