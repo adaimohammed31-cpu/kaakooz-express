@@ -77,3 +77,44 @@ deliveryOptions.forEach(option => {
 if (document.querySelector('input[name="delivery"]:checked').value === "استلام من المحل") {
     addressFields.style.display = "none";
 }
+const getLocation = document.getElementById("getLocation");
+const locationStatus = document.getElementById("locationStatus");
+
+let latitude = "";
+let longitude = "";
+
+deliveryOptions.forEach(option => {
+    option.addEventListener("change", () => {
+
+        if (option.value === "استلام من المحل" && option.checked) {
+            addressFields.style.display = "none";
+            locationBox.style.display = "none";
+        } else {
+            addressFields.style.display = "block";
+            locationBox.style.display = "block";
+        }
+
+    });
+});
+
+getLocation.addEventListener("click", () => {
+
+    if (!navigator.geolocation) {
+        alert("جهازك لا يدعم تحديد الموقع.");
+        return;
+    }
+
+    navigator.geolocation.getCurrentPosition(position => {
+
+        latitude = position.coords.latitude;
+        longitude = position.coords.longitude;
+
+        locationStatus.innerHTML = "✅ تم تحديد موقعك بنجاح";
+
+    }, () => {
+
+        alert("تعذر الحصول على الموقع.");
+
+    });
+
+});
