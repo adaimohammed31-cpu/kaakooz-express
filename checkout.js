@@ -218,7 +218,7 @@ confirmOrder.addEventListener("click", () => {
     alert("يرجى إدخال الاسم.");
     return;
 }
-const name = document.getElementById("customerName").value.trim();
+
 
 const nameRegex = /^(?=.{3,50}$)[\p{L}\p{M}]+(?:[ '-][\p{L}\p{M}]+)+$/u;
 
