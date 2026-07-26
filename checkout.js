@@ -218,13 +218,16 @@ confirmOrder.addEventListener("click", () => {
     alert("يرجى إدخال الاسم.");
     return;
 }
-const nameRegex = /^(?=.{2,50}$)[\p{L}\p{M}]+(?:[ '-][\p{L}\p{M}]+)*$/u;
+const name = document.getElementById("customerName").value.trim();
+
+const nameRegex = /^(?=.{3,50}$)[\p{L}\p{M}]+(?:[ '-][\p{L}\p{M}]+)+$/u;
 
 if (!nameRegex.test(name)) {
-    alert("يرجى إدخال اسم صحيح (حروف فقط).");
+    alert("يرجى إدخال الاسم الأول واسم العائلة بحروف فقط.");
     return;
 }
-if (/(.)\1{3,}/u.test(name)) {
+
+if (/(.)\1{2,}/u.test(name)) {
     alert("يرجى إدخال اسم حقيقي.");
     return;
 }
