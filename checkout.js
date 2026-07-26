@@ -86,13 +86,15 @@ function getCurrentLocation() {
 
         },
 
-        () => {
+(error) => {
 
-            locationStatus.innerHTML =
-                "❌ تعذر تحديد الموقع، يمكنك اختياره من الخريطة.";
+    locationStatus.innerHTML =
+        "❌ رقم الخطأ: " + error.code +
+        "<br>" + error.message;
 
-        },
+    console.log(error);
 
+},
         {
             enableHighAccuracy: false,
             timeout: 30000,
