@@ -11,6 +11,8 @@ let longitude = "";
 
 confirmOrder.addEventListener("click", () => {
 
+    alert("الزر يعمل");
+
     let name = document.getElementById("customerName").value.trim();
     let phone = document.getElementById("customerPhone").value.trim();
     let area = document.getElementById("customerArea").value.trim();
@@ -67,7 +69,7 @@ confirmOrder.addEventListener("click", () => {
         message += `%0A📍 الموقع:%0Ahttps://maps.google.com/?q=${latitude},${longitude}`;
     }
 
-    window.open(`https://wa.me/962779430623?text=${message}`, "_blank");
+    window.location.href = `https://wa.me/962779430623?text=${message}`;
 
 });
 
@@ -77,9 +79,7 @@ if (document.querySelector('input[name="delivery"]:checked').value === "استل
 }
 
 deliveryOptions.forEach(option => {
-
     option.addEventListener("change", () => {
-
         if (option.value === "استلام من المحل" && option.checked) {
             addressFields.style.display = "none";
             locationBox.style.display = "none";
@@ -87,9 +87,7 @@ deliveryOptions.forEach(option => {
             addressFields.style.display = "block";
             locationBox.style.display = "block";
         }
-
     });
-
 });
 
 getLocation.addEventListener("click", () => {
