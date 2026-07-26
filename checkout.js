@@ -254,7 +254,7 @@ async function getAddress(lat, lng) {
         const data = await response.json();
 
         const address = data.address || {};
-
+const fullAddress = data.display_name || "";
         customerArea.value =
             address.suburb ||
             address.city_district ||
@@ -268,6 +268,7 @@ async function getAddress(lat, lng) {
             address.neighbourhood ||
             "";
 locationStatus.innerHTML += "<br>📍 تم تعبئة المنطقة والشارع تلقائياً";
+        locationStatus.innerHTML += "<br><small>" + fullAddress + "</small>";
     } catch (error) {
 
         console.error(error);
