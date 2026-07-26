@@ -8,6 +8,9 @@
 <title>تأكيد الطلب - كعكوز إكسبرس</title>
 
 <link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
 </head>
 
 <body>
@@ -25,20 +28,28 @@
 
 <div id="addressFields">
 
-    <input type="text" id="customerArea" placeholder="المنطقة">
+<input type="text" id="customerArea" placeholder="المنطقة">
 
-    <input type="text" id="customerStreet" placeholder="الشارع">
+<input type="text" id="customerStreet" placeholder="الشارع">
 
 </div>
-    <div id="locationBox" style="display:none;">
 
-    <button type="button" id="getLocation" class="order-btn">
-        📍 تحديد موقعي الحالي
-    </button>
+<div id="locationBox" style="display:none;">
 
-    <p id="locationStatus"></p>
+<button type="button" id="getLocation" class="order-btn">
+📍 تحديد موقعي الحالي
+</button>
 
-    </div>
+<p id="locationStatus"></p>
+
+<h3 style="margin-top:20px;">
+أو اختر موقعك من الخريطة
+</h3>
+
+<div id="map"></div>
+
+</div>
+
 <textarea id="customerNotes" placeholder="ملاحظات على الطلب (اختياري)"></textarea>
 
 <h3>طريقة الاستلام</h3>
@@ -62,6 +73,8 @@
 </button>
 
 </div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <script src="checkout.js"></script>
 
