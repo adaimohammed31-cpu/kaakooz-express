@@ -10,10 +10,15 @@ confirmOrder.addEventListener("click", () => {
 
     let delivery = document.querySelector('input[name="delivery"]:checked').value;
 
-    if (name === "" || phone === "" || area === "" || street === "") {
-        alert("يرجى تعبئة جميع الحقول المطلوبة.");
-        return;
-    }
+    if (name === "" || phone === "") {
+    alert("يرجى إدخال الاسم ورقم الهاتف.");
+    return;
+}
+
+if (delivery === "توصيل" && (area === "" || street === "")) {
+    alert("يرجى إدخال المنطقة والشارع للتوصيل.");
+    return;
+}
 
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
@@ -26,10 +31,12 @@ confirmOrder.addEventListener("click", () => {
 
     message += "👤 الاسم: " + name + "%0A";
     message += "📞 الهاتف: " + phone + "%0A";
-    message += "📍 المنطقة: " + area + "%0A";
-    message += "🛣️ الشارع: " + street + "%0A";
     message += "🚚 طريقة الاستلام: " + delivery + "%0A";
 
+if (delivery === "توصيل") {
+    message += "📍 المنطقة: " + area + "%0A";
+    message += "🛣️ الشارع: " + street + "%0A";
+}
     if (notes !== "") {
         message += "📝 ملاحظات: " + notes + "%0A";
     }
