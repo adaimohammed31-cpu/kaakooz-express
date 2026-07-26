@@ -52,9 +52,7 @@ if (delivery === "توصيل") {
     });
 
     message += "%0A💰 المجموع: " + total.toFixed(2) + " دينار";
-if (latitude && longitude) {
-    message += `%0A📍 الموقع:%0Ahttps://maps.google.com/?q=${latitude},${longitude}`;
-}
+
     if (latitude && longitude) {
     message += `%0A📍 الموقع:%0Ahttps://maps.google.com/?q=${latitude},${longitude}`;
     }
@@ -81,6 +79,7 @@ deliveryOptions.forEach(option => {
 
 if (document.querySelector('input[name="delivery"]:checked').value === "استلام من المحل") {
     addressFields.style.display = "none";
+    locationBox.style.display = "none";
 }
 const getLocation = document.getElementById("getLocation");
 const locationStatus = document.getElementById("locationStatus");
