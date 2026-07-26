@@ -218,8 +218,7 @@ confirmOrder.addEventListener("click", () => {
     alert("يرجى إدخال الاسم.");
     return;
 }
-
-const nameRegex = /^[\p{L}\s'-]{2,50}$/u;
+const nameRegex = /^(?=.{2,50}$)[\p{L}\p{M}]+(?:[ '-][\p{L}\p{M}]+)*$/u;
 
 if (!nameRegex.test(name)) {
     alert("يرجى إدخال اسم صحيح (حروف فقط).");
