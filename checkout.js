@@ -55,6 +55,9 @@ if (delivery === "توصيل") {
 if (latitude && longitude) {
     message += `%0A📍 الموقع:%0Ahttps://maps.google.com/?q=${latitude},${longitude}`;
 }
+    if (latitude && longitude) {
+    message += `%0A📍 الموقع:%0Ahttps://maps.google.com/?q=${latitude},${longitude}`;
+    }
     window.open(`https://wa.me/962779430623?text=${message}`, "_blank");
 
 });
@@ -81,7 +84,7 @@ if (document.querySelector('input[name="delivery"]:checked').value === "استل
 }
 const getLocation = document.getElementById("getLocation");
 const locationStatus = document.getElementById("locationStatus");
-
+const locationBox = document.getElementById("locationBox");
 let latitude = "";
 let longitude = "";
 
