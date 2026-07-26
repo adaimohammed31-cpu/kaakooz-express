@@ -96,9 +96,9 @@ function getCurrentLocation() {
 
 },
         {
-            enableHighAccuracy: false,
-            timeout: 30000,
-            maximumAge: 60000
+            enableHighAccuracy: true,
+timeout: 60000,
+maximumAge: 0
         }
 
     );
