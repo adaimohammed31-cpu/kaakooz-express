@@ -224,7 +224,10 @@ if (!nameRegex.test(name)) {
     alert("يرجى إدخال اسم صحيح (حروف فقط).");
     return;
 }
-
+if (/(.)\1{3,}/u.test(name)) {
+    alert("يرجى إدخال اسم حقيقي.");
+    return;
+}
     if (phone === "") {
     alert("يرجى إدخال رقم الهاتف.");
     return;
