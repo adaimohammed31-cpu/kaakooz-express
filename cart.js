@@ -77,23 +77,10 @@ sendWhatsApp.addEventListener("click", () => {
         return;
     }
 
-    let message = "السلام عليكم، أريد طلب:%0A%0A";
-
-    let total = 0;
-
-    cart.forEach(item => {
-
-        message += `• ${item.name} × ${item.qty}%0A`;
-
-        total += item.price * item.qty;
-
-    });
-
-    message += `%0Aالمجموع: ${total.toFixed(2)} دينار`;
-
-    window.open(`https://wa.me/962779430623?text=${message}`);
+    window.location.href = "checkout.html";
 
 });
+
 
 renderCart();
 clearCart.addEventListener("click", () => {
