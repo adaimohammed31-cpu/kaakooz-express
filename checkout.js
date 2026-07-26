@@ -2,24 +2,81 @@ const confirmOrder = document.getElementById("confirmOrder");
 
 const deliveryOptions = document.querySelectorAll('input[name="delivery"]');
 const addressFields = document.getElementById("addressFields");
+const locationBox = document.getElementById("locationBox");
 const getLocation = document.getElementById("getLocation");
 const locationStatus = document.getElementById("locationStatus");
-const locationBox = document.getElementById("locationBox");
 
 let latitude = "";
 let longitude = "";
 
+// إظهار أو إخفاء حقول التوصيل
+function updateDeliveryFields() {
+    const delivery = document.querySelector('input[name="delivery"]:checked').value;
+
+    if (delivery === "استلام من المحل") {
+        addressFields.style.display = "none";
+        locationBox.style.display = "none";
+    } else {
+        addressFields.style.display = "block";
+        locationBox.style.display = "block";
+    }
+}
+
+updateDeliveryFields();
+
+deliveryOptions.forEach(option => {
+    option.addEventListener("change", updateDeliveryFields);
+});
+
+// تحديد الموقع
+getLocation.addEventListener("click", () => {
+
+    if (!navigator.geolocation) {
+        locationStatus.innerHTML =
+            "❌ المتصفح لا يدعم تحديد الموقع.<br><br><a href='https://maps.google.com' target='_blank'>📍 فتح خرائط Google</a>";
+        return;
+    }
+
+    locationStatus.innerHTML = "⏳ جارٍ تحديد موقعك...";
+
+    navigator.geolocation.getCurrentPosition(
+
+        (position) => {
+
+            latitude = position.coords.latitude;
+            longitude = position.coords.longitude;
+
+            locationStatus.innerHTML = "✅ تم تحديد موقعك بنجاح";
+
+        },
+
+        () => {
+
+            locationStatus.innerHTML =
+                "❌ تعذر الحصول على موقعك.<br><br><a href='https://maps.google.com' target='_blank'>📍 فتح خرائط Google</a>";
+
+        },
+
+        {
+            enableHighAccuracy: true,
+            timeout: 10000,
+            maximumAge: 0
+        }
+
+    );
+
+});
+
+// إرسال الطلب
 confirmOrder.addEventListener("click", () => {
 
-    alert("تم الضغط على زر إرسال الطلب");
+    const name = document.getElementById("customerName").value.trim();
+    const phone = document.getElementById("customerPhone").value.trim();
+    const area = document.getElementById("customerArea").value.trim();
+    const street = document.getElementById("customerStreet").value.trim();
+    const notes = document.getElementById("customerNotes").value.trim();
 
-    let name = document.getElementById("customerName").value.trim();
-    let phone = document.getElementById("customerPhone").value.trim();
-    let area = document.getElementById("customerArea").value.trim();
-    let street = document.getElementById("customerStreet").value.trim();
-    let notes = document.getElementById("customerNotes").value.trim();
-
-    let delivery = document.querySelector('input[name="delivery"]:checked').value;
+    const delivery = document.querySelector('input[name="delivery"]:checked').value;
 
     if (name === "" || phone === "") {
         alert("يرجى إدخال الاسم ورقم الهاتف.");
@@ -31,7 +88,7 @@ confirmOrder.addEventListener("click", () => {
         return;
     }
 
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
     if (cart.length === 0) {
         alert("السلة فارغة.");
@@ -39,17 +96,18 @@ confirmOrder.addEventListener("click", () => {
     }
 
     let message = "🍞 *طلب جديد - كعكوز إكسبرس*%0A%0A";
-    message += "👤 الاسم: " + name + "%0A";
-    message += "📞 الهاتف: " + phone + "%0A";
-    message += "🚚 طريقة الاستلام: " + delivery + "%0A";
+
+    message += `👤 الاسم: ${name}%0A`;
+    message += `📞 الهاتف: ${phone}%0A`;
+    message += `🚚 طريقة الاستلام: ${delivery}%0A`;
 
     if (delivery === "توصيل") {
-        message += "📍 المنطقة: " + area + "%0A";
-        message += "🛣️ الشارع: " + street + "%0A";
+        message += `📍 المنطقة: ${area}%0A`;
+        message += `🛣️ الشارع: ${street}%0A`;
     }
 
     if (notes !== "") {
-        message += "📝 ملاحظات: " + notes + "%0A";
+        message += `📝 ملاحظات: ${notes}%0A`;
     }
 
     message += "%0A====================%0A";
@@ -62,63 +120,12 @@ confirmOrder.addEventListener("click", () => {
         total += item.price * item.qty;
     });
 
-    message += "%0A💰 المجموع: " + total.toFixed(2) + " دينار";
+    message += `%0A💰 المجموع: ${total.toFixed(2)} دينار`;
 
     if (latitude && longitude) {
         message += `%0A📍 الموقع:%0Ahttps://maps.google.com/?q=${latitude},${longitude}`;
     }
 
     window.location.href = `https://wa.me/962779430623?text=${message}`;
-
-});
-
-if (document.querySelector('input[name="delivery"]:checked').value === "استلام من المحل") {
-    addressFields.style.display = "none";
-    locationBox.style.display = "none";
-}
-
-deliveryOptions.forEach(option => {
-    option.addEventListener("change", () => {
-
-        if (option.value === "استلام من المحل" && option.checked) {
-            addressFields.style.display = "none";
-            locationBox.style.display = "none";
-        } else {
-            addressFields.style.display = "block";
-            locationBox.style.display = "block";
-        }
-
-    });
-});
-
-getLocation.addEventListener("click", () => {
-
-    alert("تم الضغط على زر تحديد الموقع");
-
-    if (!navigator.geolocation) {
-        alert("المتصفح لا يدعم تحديد الموقع");
-        return;
-    }
-
-    navigator.geolocation.getCurrentPosition(
-
-        (position) => {
-
-            latitude = position.coords.latitude;
-            longitude = position.coords.longitude;
-
-            locationStatus.innerHTML = "✅ تم تحديد موقعك بنجاح";
-
-            alert("تم تحديد الموقع بنجاح");
-
-        },
-
-        (error) => {
-
-            alert("خطأ في تحديد الموقع: " + error.message);
-
-        }
-
-    );
 
 });
