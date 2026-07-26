@@ -1,5 +1,14 @@
 const confirmOrder = document.getElementById("confirmOrder");
 
+const deliveryOptions = document.querySelectorAll('input[name="delivery"]');
+const addressFields = document.getElementById("addressFields");
+const getLocation = document.getElementById("getLocation");
+const locationStatus = document.getElementById("locationStatus");
+const locationBox = document.getElementById("locationBox");
+
+let latitude = "";
+let longitude = "";
+
 confirmOrder.addEventListener("click", () => {
 
     let name = document.getElementById("customerName").value.trim();
@@ -11,14 +20,14 @@ confirmOrder.addEventListener("click", () => {
     let delivery = document.querySelector('input[name="delivery"]:checked').value;
 
     if (name === "" || phone === "") {
-    alert("يرجى إدخال الاسم ورقم الهاتف.");
-    return;
-}
+        alert("يرجى إدخال الاسم ورقم الهاتف.");
+        return;
+    }
 
-if (delivery === "توصيل" && (area === "" || street === "")) {
-    alert("يرجى إدخال المنطقة والشارع للتوصيل.");
-    return;
-}
+    if (delivery === "توصيل" && (area === "" || street === "")) {
+        alert("يرجى إدخال المنطقة والشارع للتوصيل.");
+        return;
+    }
 
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
@@ -33,10 +42,11 @@ if (delivery === "توصيل" && (area === "" || street === "")) {
     message += "📞 الهاتف: " + phone + "%0A";
     message += "🚚 طريقة الاستلام: " + delivery + "%0A";
 
-if (delivery === "توصيل") {
-    message += "📍 المنطقة: " + area + "%0A";
-    message += "🛣️ الشارع: " + street + "%0A";
-}
+    if (delivery === "توصيل") {
+        message += "📍 المنطقة: " + area + "%0A";
+        message += "🛣️ الشارع: " + street + "%0A";
+    }
+
     if (notes !== "") {
         message += "📝 ملاحظات: " + notes + "%0A";
     }
@@ -54,28 +64,20 @@ if (delivery === "توصيل") {
     message += "%0A💰 المجموع: " + total.toFixed(2) + " دينار";
 
     if (latitude && longitude) {
-    message += `%0A📍 الموقع:%0Ahttps://maps.google.com/?q=${latitude},${longitude}`;
+        message += `%0A📍 الموقع:%0Ahttps://maps.google.com/?q=${latitude},${longitude}`;
     }
+
     window.open(`https://wa.me/962779430623?text=${message}`, "_blank");
 
 });
-
-const deliveryOptions = document.querySelectorAll('input[name="delivery"]');
-const addressFields = document.getElementById("addressFields");
-
-
 
 if (document.querySelector('input[name="delivery"]:checked').value === "استلام من المحل") {
     addressFields.style.display = "none";
     locationBox.style.display = "none";
 }
-const getLocation = document.getElementById("getLocation");
-const locationStatus = document.getElementById("locationStatus");
-const locationBox = document.getElementById("locationBox");
-let latitude = "";
-let longitude = "";
 
 deliveryOptions.forEach(option => {
+
     option.addEventListener("change", () => {
 
         if (option.value === "استلام من المحل" && option.checked) {
@@ -87,6 +89,7 @@ deliveryOptions.forEach(option => {
         }
 
     });
+
 });
 
 getLocation.addEventListener("click", () => {
