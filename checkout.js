@@ -9,7 +9,14 @@ const customerArea = document.getElementById("customerArea");
 const customerStreet = document.getElementById("customerStreet");
 const customerName = document.getElementById("customerName");
 
+const customerName = document.getElementById("customerName");
+
 customerName.addEventListener("focus", () => {
+
+    const delivery =
+        document.querySelector('input[name="delivery"]:checked').value;
+
+    if (delivery !== "توصيل") return;
 
     if (!map) {
         initMap();
