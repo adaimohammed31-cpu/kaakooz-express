@@ -11,7 +11,7 @@ let longitude = "";
 
 confirmOrder.addEventListener("click", () => {
 
-    alert("الزر يعمل");
+    alert("تم الضغط على زر إرسال الطلب");
 
     let name = document.getElementById("customerName").value.trim();
     let phone = document.getElementById("customerPhone").value.trim();
@@ -27,7 +27,7 @@ confirmOrder.addEventListener("click", () => {
     }
 
     if (delivery === "توصيل" && (area === "" || street === "")) {
-        alert("يرجى إدخال المنطقة والشارع للتوصيل.");
+        alert("يرجى إدخال المنطقة والشارع.");
         return;
     }
 
@@ -39,7 +39,6 @@ confirmOrder.addEventListener("click", () => {
     }
 
     let message = "🍞 *طلب جديد - كعكوز إكسبرس*%0A%0A";
-
     message += "👤 الاسم: " + name + "%0A";
     message += "📞 الهاتف: " + phone + "%0A";
     message += "🚚 طريقة الاستلام: " + delivery + "%0A";
@@ -80,6 +79,7 @@ if (document.querySelector('input[name="delivery"]:checked').value === "استل
 
 deliveryOptions.forEach(option => {
     option.addEventListener("change", () => {
+
         if (option.value === "استلام من المحل" && option.checked) {
             addressFields.style.display = "none";
             locationBox.style.display = "none";
@@ -87,27 +87,38 @@ deliveryOptions.forEach(option => {
             addressFields.style.display = "block";
             locationBox.style.display = "block";
         }
+
     });
 });
 
 getLocation.addEventListener("click", () => {
 
+    alert("تم الضغط على زر تحديد الموقع");
+
     if (!navigator.geolocation) {
-        alert("جهازك لا يدعم تحديد الموقع.");
+        alert("المتصفح لا يدعم تحديد الموقع");
         return;
     }
 
-    navigator.geolocation.getCurrentPosition(position => {
+    navigator.geolocation.getCurrentPosition(
 
-        latitude = position.coords.latitude;
-        longitude = position.coords.longitude;
+        (position) => {
 
-        locationStatus.innerHTML = "✅ تم تحديد موقعك بنجاح";
+            latitude = position.coords.latitude;
+            longitude = position.coords.longitude;
 
-    }, () => {
+            locationStatus.innerHTML = "✅ تم تحديد موقعك بنجاح";
 
-        alert("تعذر الحصول على الموقع.");
+            alert("تم تحديد الموقع بنجاح");
 
-    });
+        },
+
+        (error) => {
+
+            alert("خطأ في تحديد الموقع: " + error.message);
+
+        }
+
+    );
 
 });
