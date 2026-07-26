@@ -9,32 +9,95 @@ const locationStatus = document.getElementById("locationStatus");
 let latitude = "";
 let longitude = "";
 
-// إظهار أو إخفاء حقول التوصيل
+let map;
+let marker;
+const customerArea = document.getElementById("customerArea");
+const customerStreet = document.getElementById("customerStreet");
+// =========================
+// إنشاء الخريطة
+// =========================
+
+function initMap() {
+
+    map = L.map("map").setView([31.9552, 35.9450], 13);
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: "&copy; OpenStreetMap"
+    }).addTo(map);
+
+    map.on("click", function (e) {
+
+        latitude = e.latlng.lat;
+        longitude = e.latlng.lng;
+
+        if (marker) {
+            marker.setLatLng(e.latlng);
+        } else {
+            marker = L.marker(e.latlng).addTo(map);
+        }
+
+        locationStatus.innerHTML = "✅ تم اختيار الموقع من الخريطة";
+        getAddress(latitude, longitude);
+
+    });
+
+}
+
+// =========================
+// إظهار أو إخفاء التوصيل
+// =========================
+
 function updateDeliveryFields() {
+
     const delivery = document.querySelector('input[name="delivery"]:checked').value;
 
     if (delivery === "استلام من المحل") {
+
         addressFields.style.display = "none";
         locationBox.style.display = "none";
+
     } else {
+
         addressFields.style.display = "block";
         locationBox.style.display = "block";
+
+        setTimeout(() => {
+
+            if (!map) {
+
+                initMap();
+
+            } else {
+
+                map.invalidateSize();
+
+            }
+
+        }, 300);
+
     }
+
 }
 
 updateDeliveryFields();
 
 deliveryOptions.forEach(option => {
-    option.addEventListener("change", updateDeliveryFields);
-});
 
-// تحديد الموقع
+    option.addEventListener("change", updateDeliveryFields);
+
+});
+// =========================
+// تحديد الموقع الحالي
+// =========================
+
 getLocation.addEventListener("click", () => {
 
     if (!navigator.geolocation) {
+
         locationStatus.innerHTML =
-            "❌ المتصفح لا يدعم تحديد الموقع.<br><br><a href='https://maps.google.com' target='_blank'>📍 فتح خرائط Google</a>";
+            "❌ المتصفح لا يدعم تحديد الموقع.";
         return;
+
     }
 
     locationStatus.innerHTML = "⏳ جارٍ تحديد موقعك...";
@@ -46,28 +109,65 @@ getLocation.addEventListener("click", () => {
             latitude = position.coords.latitude;
             longitude = position.coords.longitude;
 
+            const userLocation = [latitude, longitude];
+
+            map.setView(userLocation, 17);
+
+            if (marker) {
+
+                marker.setLatLng(userLocation);
+
+            } else {
+
+                marker = L.marker(userLocation).addTo(map);
+
+            }
+
             locationStatus.innerHTML = "✅ تم تحديد موقعك بنجاح";
 
         },
 
-        () => {
+        (error) => {
 
-            locationStatus.innerHTML =
-                "❌ تعذر الحصول على موقعك.<br><br><a href='https://maps.google.com' target='_blank'>📍 فتح خرائط Google</a>";
+            switch (error.code) {
+
+                case error.PERMISSION_DENIED:
+                    locationStatus.innerHTML =
+                        "❌ تم رفض إذن الموقع. يمكنك اختيار موقعك بالضغط على الخريطة.";
+                    break;
+
+                case error.POSITION_UNAVAILABLE:
+                    locationStatus.innerHTML =
+                        "❌ تعذر تحديد الموقع. اختر موقعك من الخريطة.";
+                    break;
+
+                case error.TIMEOUT:
+                    locationStatus.innerHTML =
+                        "⌛ انتهت مهلة تحديد الموقع. اختر موقعك من الخريطة.";
+                    break;
+
+                default:
+                    locationStatus.innerHTML =
+                        "❌ حدث خطأ. اختر موقعك من الخريطة.";
+
+            }
 
         },
 
         {
+
             enableHighAccuracy: true,
             timeout: 10000,
             maximumAge: 0
+
         }
 
     );
 
-});
-
+});// =========================
 // إرسال الطلب
+// =========================
+
 confirmOrder.addEventListener("click", () => {
 
     const name = document.getElementById("customerName").value.trim();
@@ -78,8 +178,13 @@ confirmOrder.addEventListener("click", () => {
 
     const delivery = document.querySelector('input[name="delivery"]:checked').value;
 
-    if (name === "" || phone === "") {
-        alert("يرجى إدخال الاسم ورقم الهاتف.");
+    if (name === "") {
+        alert("يرجى إدخال الاسم.");
+        return;
+    }
+
+    if (phone === "") {
+        alert("يرجى إدخال رقم الهاتف.");
         return;
     }
 
@@ -110,22 +215,62 @@ confirmOrder.addEventListener("click", () => {
         message += `📝 ملاحظات: ${notes}%0A`;
     }
 
-    message += "%0A====================%0A";
+    message += "%0A========================%0A";
     message += "🛒 الطلب:%0A";
 
     let total = 0;
 
     cart.forEach(item => {
-        message += `• ${item.name} × ${item.qty}%0A`;
+        message += `• ${item.name} × ${item.qty} = ${(item.price * item.qty).toFixed(2)} دينار%0A`;
         total += item.price * item.qty;
     });
 
-    message += `%0A💰 المجموع: ${total.toFixed(2)} دينار`;
+    message += "%0A========================%0A";
+    message += `💰 المجموع: ${total.toFixed(2)} دينار%0A`;
 
+    // إرسال الموقع المختار
     if (latitude && longitude) {
-        message += `%0A📍 الموقع:%0Ahttps://maps.google.com/?q=${latitude},${longitude}`;
+        message += `%0A📍 موقع العميل:%0A`;
+        message += `https://www.google.com/maps?q=${latitude},${longitude}%0A`;
+    } else if (delivery === "توصيل") {
+        message += "%0A⚠️ لم يتم تحديد الموقع من الخريطة.%0A";
     }
 
-    window.location.href = `https://wa.me/962779430623?text=${message}`;
+    const whatsappUrl =
+        `https://wa.me/962779430623?text=${message}`;
+
+    window.location.href = whatsappUrl;
 
 });
+async function getAddress(lat, lng) {
+
+    try {
+
+        const response = await fetch(
+            `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}`
+        );
+
+        const data = await response.json();
+
+        const address = data.address || {};
+
+        customerArea.value =
+            address.suburb ||
+            address.city_district ||
+            address.town ||
+            address.village ||
+            "";
+
+        customerStreet.value =
+            address.road ||
+            address.pedestrian ||
+            address.neighbourhood ||
+            "";
+
+    } catch (error) {
+
+        console.error(error);
+
+    }
+
+}
