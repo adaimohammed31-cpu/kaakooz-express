@@ -256,17 +256,20 @@ async function getAddress(lat, lng) {
         const address = data.address || {};
 const fullAddress = data.display_name || "";
         customerArea.value =
-            address.suburb ||
-            address.city_district ||
-            address.town ||
-            address.village ||
-            "";
-
-        customerStreet.value =
-            address.road ||
-            address.pedestrian ||
-            address.neighbourhood ||
-            "";
+    address.suburb ||
+    address.city_district ||
+    address.city ||
+    address.town ||
+    address.village ||
+    address.county ||
+    "";
+customerStreet.value =
+    address.road ||
+    address.residential ||
+    address.pedestrian ||
+    address.neighbourhood ||
+    "";
+        
 locationStatus.innerHTML += "<br>📍 تم تعبئة المنطقة والشارع تلقائياً";
         locationStatus.innerHTML += "<br><small>" + fullAddress + "</small>";
     } catch (error) {
