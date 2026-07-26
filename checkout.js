@@ -49,3 +49,24 @@ confirmOrder.addEventListener("click", () => {
     window.open(`https://wa.me/962779430623?text=${message}`, "_blank");
 
 });
+
+const deliveryOptions = document.querySelectorAll('input[name="delivery"]');
+const addressFields = document.getElementById("addressFields");
+
+deliveryOptions.forEach(option => {
+
+    option.addEventListener("change", () => {
+
+        if (option.value === "استلام من المحل" && option.checked) {
+            addressFields.style.display = "none";
+        } else {
+            addressFields.style.display = "block";
+        }
+
+    });
+
+});
+
+if (document.querySelector('input[name="delivery"]:checked').value === "استلام من المحل") {
+    addressFields.style.display = "none";
+}
