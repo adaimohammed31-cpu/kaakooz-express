@@ -1,1 +1,58 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>تأكيد الطلب - كعكوز إكسبرس</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="sandwich-header">
+<h1>📋 تأكيد الطلب</h1>
+<p>يرجى تعبئة البيانات قبل إرسال الطلب.</p>
+</header>
+
+<div class="checkout-box">
+
+<input type="text" id="customerName" placeholder="الاسم الكامل">
+
+<input type="tel" id="customerPhone" placeholder="رقم الهاتف">
+
+<input type="text" id="customerArea" placeholder="المنطقة">
+
+<input type="text" id="customerStreet" placeholder="الشارع">
+
+<textarea id="customerNotes" placeholder="ملاحظات على الطلب (اختياري)"></textarea>
+
+<h3>طريقة الاستلام</h3>
+
+<label>
+<input type="radio" name="delivery" value="استلام من المحل" checked>
+استلام من المحل
+</label>
+
+<br><br>
+
+<label>
+<input type="radio" name="delivery" value="توصيل">
+توصيل
+</label>
+
+<br><br>
+
+<button id="confirmOrder" class="order-btn">
+✅ متابعة إرسال الطلب
+</button>
+
+</div>
+
+<script src="checkout.js"></script>
+
+</body>
+
+</html>
