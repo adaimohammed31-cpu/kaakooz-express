@@ -215,14 +215,28 @@ confirmOrder.addEventListener("click", () => {
         document.querySelector('input[name="delivery"]:checked').value;
 
     if (name === "") {
-        alert("يرجى إدخال الاسم.");
-        return;
-    }
+    alert("يرجى إدخال الاسم.");
+    return;
+}
+
+const nameRegex = /^[\p{L}\s'-]{2,50}$/u;
+
+if (!nameRegex.test(name)) {
+    alert("يرجى إدخال اسم صحيح (حروف فقط).");
+    return;
+}
 
     if (phone === "") {
-        alert("يرجى إدخال رقم الهاتف.");
-        return;
-    }
+    alert("يرجى إدخال رقم الهاتف.");
+    return;
+}
+
+const phoneRegex = /^(07\d{8}|9627\d{8}|\+9627\d{8}|\+?[1-9]\d{7,14})$/;
+
+if (!phoneRegex.test(phone)) {
+    alert("يرجى إدخال رقم هاتف صحيح.");
+    return;
+}
 
     if (delivery === "توصيل" && (area === "" || street === "")) {
         alert("يرجى تحديد موقعك أو إدخال المنطقة والشارع.");
