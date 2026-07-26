@@ -124,6 +124,7 @@ getLocation.addEventListener("click", () => {
             }
 
             locationStatus.innerHTML = "✅ تم تحديد موقعك بنجاح";
+            getAddress(latitude, longitude);
 
         },
 
@@ -266,7 +267,7 @@ async function getAddress(lat, lng) {
             address.pedestrian ||
             address.neighbourhood ||
             "";
-
+locationStatus.innerHTML += "<br>📍 تم تعبئة المنطقة والشارع تلقائياً";
     } catch (error) {
 
         console.error(error);
