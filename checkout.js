@@ -52,7 +52,9 @@ if (delivery === "توصيل") {
     });
 
     message += "%0A💰 المجموع: " + total.toFixed(2) + " دينار";
-
+if (latitude && longitude) {
+    message += `%0A📍 الموقع:%0Ahttps://maps.google.com/?q=${latitude},${longitude}`;
+}
     window.open(`https://wa.me/962779430623?text=${message}`, "_blank");
 
 });
