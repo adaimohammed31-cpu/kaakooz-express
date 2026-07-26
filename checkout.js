@@ -11,10 +11,12 @@ const customerName = document.getElementById("customerName");
 
 customerName.addEventListener("focus", () => {
 
+    if (!map) {
+        initMap();
+    }
+
     if (!latitude && !longitude) {
-
         getCurrentLocation();
-
     }
 
 });
