@@ -7,6 +7,17 @@ const locationStatus = document.getElementById("locationStatus");
 
 const customerArea = document.getElementById("customerArea");
 const customerStreet = document.getElementById("customerStreet");
+const customerName = document.getElementById("customerName");
+
+customerName.addEventListener("focus", () => {
+
+    if (!latitude && !longitude) {
+
+        getCurrentLocation();
+
+    }
+
+});
 
 let latitude = "";
 let longitude = "";
@@ -56,7 +67,7 @@ function getCurrentLocation() {
         return;
 
     }
-
+locationBox.style.display = "block";
     locationStatus.innerHTML = "⏳ جارٍ تحديد موقعك...";
 
     navigator.geolocation.getCurrentPosition(
