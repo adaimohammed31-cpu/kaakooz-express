@@ -25,23 +25,25 @@ function renderCart() {
         const itemTotal = item.price * item.qty;
         total += itemTotal;
 
-        // تصميم البطاقة المدمجة والأفقية لتتحمل الأصناف الكثيرة بكل سلاسة
+        // تصميم البطاقة بثلاثي الأبعاد (3D) وألوان مريحة وأنيقة
         cartItems.innerHTML += `
-        <div class="cart-item" style="display: flex; align-items: center; justify-content: space-between; background: #fff; padding: 14px 18px; border-radius: 14px; border: 2px solid #ead6bd; gap: 12px; margin-bottom: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+        <div class="cart-item" style="display: flex; align-items: center; justify-content: space-between; background: linear-gradient(145deg, #ffffff, #fdfbf7); padding: 16px 20px; border-radius: 18px; border: 2px solid #e6d2bc; gap: 15px; margin-bottom: 16px; box-shadow: 0 8px 20px rgba(74, 46, 27, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8);">
             
             <div class="cart-info" style="flex: 1; text-align: right;">
-                <h3 style="font-size: 17px; color: #4a2e1b; margin-bottom: 4px;">${item.name}</h3>
-                <p style="font-size: 13px; color: #86684c; margin: 0;">السعر: ${item.price.toFixed(2)} د | الكمية: <strong style="color: #0f6c38; font-size: 15px;">${item.qty}</strong></p>
+                <h3 style="font-size: 18px; color: #4a2e1b; margin-bottom: 6px; font-weight: 800;">${item.name}</h3>
+                <p style="font-size: 13px; color: #8c6d53; margin: 0; font-weight: 600;">السعر: ${item.price.toFixed(2)} د | الكمية: <strong style="color: #107c41; font-size: 15px;">${item.qty}</strong></p>
             </div>
 
-            <div class="cart-price" style="font-size: 18px; font-weight: 900; color: #0f6c38; min-width: 70px; text-align: left;">
+            <div class="cart-price" style="background: linear-gradient(145deg, #107c41, #0c5e32); color: #fff; padding: 8px 14px; border-radius: 12px; font-weight: 800; font-size: 16px; box-shadow: 0 4px 10px rgba(16, 124, 65, 0.25); text-align: center; min-width: 75px;">
                 ${itemTotal.toFixed(2)} د
             </div>
 
-            <div class="cart-actions" style="display: flex; align-items: center; gap: 6px;">
-                <button class="qty-btn" onclick="minus(${index})" style="width: 32px; height: 32px; border: none; border-radius: 8px; background: #0f6c38; color: #fff; font-size: 16px; font-weight: bold; cursor: pointer;">➖</button>
-                <button class="qty-btn" onclick="plus(${index})" style="width: 32px; height: 32px; border: none; border-radius: 8px; background: #0f6c38; color: #fff; font-size: 16px; font-weight: bold; cursor: pointer;">➕</button>
-                <button class="remove-btn" onclick="removeItem(${index})" style="border: none; padding: 6px 10px; border-radius: 8px; background: #c62828; color: #fff; font-size: 13px; font-weight: bold; cursor: pointer;">🗑</button>
+            <div class="cart-actions" style="display: flex; align-items: center; gap: 8px;">
+                <button class="qty-btn" onclick="minus(${index})" style="width: 36px; height: 36px; border: none; border-radius: 12px; background: linear-gradient(145deg, #d97706, #b45309); color: #fff; font-size: 18px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 10px rgba(217, 119, 6, 0.3); display: flex; align-items: center; justify-content: center; transition: transform 0.1s;">➖</button>
+                
+                <button class="qty-btn" onclick="plus(${index})" style="width: 36px; height: 36px; border: none; border-radius: 12px; background: linear-gradient(145deg, #107c41, #0c5e32); color: #fff; font-size: 18px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 10px rgba(16, 124, 65, 0.3); display: flex; align-items: center; justify-content: center; transition: transform 0.1s;">➕</button>
+                
+                <button class="remove-btn" onclick="removeItem(${index})" style="border: none; padding: 8px 12px; border-radius: 12px; background: linear-gradient(145deg, #dc2626, #b91c1c); color: #fff; font-size: 13px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 10px rgba(220, 38, 38, 0.3);">🗑 حذف</button>
             </div>
 
         </div>
