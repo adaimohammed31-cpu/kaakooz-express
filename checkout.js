@@ -43,6 +43,26 @@ function initMap() {
         attribution: "&copy; OpenStreetMap"
     }).addTo(map);
 
+    // تفعيل خاصية تحديد الموقع المدمجة في Leaflet (أسرع وأدق بكثير للموبايل)
+    map.on('locationfound', function(e) {
+        latitude = e.latlng.lat;
+        longitude = e.latlng.lng;
+
+        if (marker) {
+            marker.setLatLng(e.latlng);
+        } else {
+            marker = L.marker(e.latlng).addTo(map);
+        }
+
+        map.setView(e.latlng, 17);
+        locationStatus.innerHTML = "✅ تم تحديد موقعك تلقائياً";
+        getAddress(latitude, longitude);
+    });
+
+    map.on('locationerror', function(e) {
+        locationStatus.innerHTML = "⚠️ يرجى النقر على الخريطة لاختيار موقعك يدويّاً.";
+    });
+
     map.on("click", function (e) {
 
         latitude = e.latlng.lat;
@@ -68,61 +88,16 @@ function initMap() {
 
 function getCurrentLocation() {
 
-    if (!navigator.geolocation) {
-
-        locationStatus.innerHTML = "❌ المتصفح لا يدعم تحديد الموقع.";
-        return;
-
-    }
-
     locationBox.style.display = "block";
     locationStatus.innerHTML = "⏳ جارٍ تحديد موقعك...";
 
-    navigator.geolocation.getCurrentPosition(
-        posSuccess,
-        (error) => {
-            console.log("فشلت الدقة العالية، جاري المحاولة بدقة عادية...", error);
-            
-            navigator.geolocation.getCurrentPosition(
-                posSuccess,
-                (err2) => {
-                    locationStatus.innerHTML = "⚠️ تعذر التحديد التلقائي، يمكنك اختيار الموقع يدويًا من الخريطة أو إكمال الكتابة.";
-                    console.log(err2);
-                },
-                {
-                    enableHighAccuracy: false,
-                    timeout: 10000,
-                    maximumAge: Infinity
-                }
-            );
-        },
-        {
-            enableHighAccuracy: true,
-            timeout: 10000,
-            maximumAge: 0
-        }
-    );
-
-}
-
-function posSuccess(position) {
-    latitude = position.coords.latitude;
-    longitude = position.coords.longitude;
-
-    const userLocation = [latitude, longitude];
-
-    map.setView(userLocation, 17);
-
-    if (marker) {
-        marker.setLatLng(userLocation);
-    } else {
-        marker = L.marker(userLocation).addTo(map);
+    // استخدام أداة تحديد الموقع المدمجة في خريطة ليفليت لتجاوز مشاكل متصفح الفيسبوك
+    if (map) {
+        map.locate({setView: true, maxZoom: 17, timeout: 10000, enableHighAccuracy: true});
     }
 
-    locationStatus.innerHTML = "✅ تم تحديد موقعك";
-
-    getAddress(latitude, longitude);
 }
+
 // =========================
 // إظهار أو إخفاء خيارات التوصيل
 // =========================
@@ -151,6 +126,7 @@ function updateDeliveryFields() {
             } else {
 
                 map.invalidateSize();
+                getCurrentLocation();
 
             }
 
