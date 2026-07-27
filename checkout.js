@@ -74,53 +74,54 @@ function getCurrentLocation() {
         return;
 
     }
-locationBox.style.display = "block";
+
+    locationBox.style.display = "block";
     locationStatus.innerHTML = "⏳ جارٍ تحديد موقعك...";
 
     navigator.geolocation.getCurrentPosition(
-
-        (position) => {
-
-            latitude = position.coords.latitude;
-            longitude = position.coords.longitude;
-
-            const userLocation = [latitude, longitude];
-
-            map.setView(userLocation, 17);
-
-            if (marker) {
-
-                marker.setLatLng(userLocation);
-
-            } else {
-
-                marker = L.marker(userLocation).addTo(map);
-
-            }
-
-            locationStatus.innerHTML = "✅ تم تحديد موقعك";
-
-            getAddress(latitude, longitude);
-
+        posSuccess,
+        (error) => {
+            console.log("فشلت الدقة العالية، جاري المحاولة بدقة عادية...", error);
+            
+            navigator.geolocation.getCurrentPosition(
+                posSuccess,
+                (err2) => {
+                    locationStatus.innerHTML = "⚠️ تعذر التحديد التلقائي، يمكنك اختيار الموقع يدويًا من الخريطة أو إكمال الكتابة.";
+                    console.log(err2);
+                },
+                {
+                    enableHighAccuracy: false,
+                    timeout: 10000,
+                    maximumAge: Infinity
+                }
+            );
         },
-
-(error) => {
-
-    locationStatus.innerHTML =
-        "❌ رقم الخطأ: " + error.code +
-        "<br>" + error.message;
-
-    console.log(error);
-
-},
         {
             enableHighAccuracy: true,
-timeout: 60000,
-maximumAge: 0
+            timeout: 10000,
+            maximumAge: 0
         }
-
     );
 
+}
+
+function posSuccess(position) {
+    latitude = position.coords.latitude;
+    longitude = position.coords.longitude;
+
+    const userLocation = [latitude, longitude];
+
+    map.setView(userLocation, 17);
+
+    if (marker) {
+        marker.setLatLng(userLocation);
+    } else {
+        marker = L.marker(userLocation).addTo(map);
+    }
+
+    locationStatus.innerHTML = "✅ تم تحديد موقعك";
+
+    getAddress(latitude, longitude);
 }
 // =========================
 // إظهار أو إخفاء خيارات التوصيل
@@ -146,8 +147,6 @@ function updateDeliveryFields() {
             if (!map) {
 
                 initMap();
-
-            
 
             } else {
 
@@ -232,33 +231,33 @@ confirmOrder.addEventListener("click", () => {
         document.querySelector('input[name="delivery"]:checked').value;
 
     if (name === "") {
-    alert("يرجى إدخال الاسم.");
-    return;
-}
+        alert("يرجى إدخال الاسم.");
+        return;
+    }
 
+    const nameRegex = /^(?=.{3,50}$)[\p{L}\p{M}]+(?:[ '-][\p{L}\p{M}]+)+$/u;
 
-const nameRegex = /^(?=.{3,50}$)[\p{L}\p{M}]+(?:[ '-][\p{L}\p{M}]+)+$/u;
+    if (!nameRegex.test(name)) {
+        alert("يرجى إدخال الاسم الأول واسم العائلة بحروف فقط.");
+        return;
+    }
 
-if (!nameRegex.test(name)) {
-    alert("يرجى إدخال الاسم الأول واسم العائلة بحروف فقط.");
-    return;
-}
+    if (/(.)\1{2,}/u.test(name)) {
+        alert("يرجى إدخال اسم حقيقي.");
+        return;
+    }
 
-if (/(.)\1{2,}/u.test(name)) {
-    alert("يرجى إدخال اسم حقيقي.");
-    return;
-}
     if (phone === "") {
-    alert("يرجى إدخال رقم الهاتف.");
-    return;
-}
+        alert("يرجى إدخال رقم الهاتف.");
+        return;
+    }
 
-const phoneRegex = /^(07\d{8}|9627\d{8}|\+9627\d{8}|\+?[1-9]\d{7,14})$/;
+    const phoneRegex = /^(07\d{8}|9627\d{8}|\+9627\d{8}|\+?[1-9]\d{7,14})$/;
 
-if (!phoneRegex.test(phone)) {
-    alert("يرجى إدخال رقم هاتف صحيح.");
-    return;
-}
+    if (!phoneRegex.test(phone)) {
+        alert("يرجى إدخال رقم هاتف صحيح.");
+        return;
+    }
 
     if (delivery === "توصيل" && (area === "" || street === "")) {
         alert("يرجى تحديد موقعك أو إدخال المنطقة والشارع.");
