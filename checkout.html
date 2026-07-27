@@ -6,7 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>تأكيد الطلب - كعكوز إكسبرس</title>
 <link rel="stylesheet" href="style.css">
-<!-- استيراد خط أنيق وعصري من Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
 </head>
 
@@ -15,21 +14,22 @@
 <div class="checkout-container">
 
 <header class="checkout-header">
-    <div class="brand-icon">🍞</div>
+    <!-- شعار مطعم كعكوز إكسبرس التراثي الفخم -->
+    <div class="logo-wrapper">
+        <img src="file_000000002fb88246aa372015b20cd607.png" alt="شعار كعكوز إكسبرس" class="brand-logo-img">
+    </div>
     <h1>تأكيد الطلب</h1>
-    <p>خطوة واحدة تفصلك عن الاستمتاع بوجبتك الساخنة!</p>
+    <p>أدخل بياناتك لتصلك وجبتك الساخنة وطازجة!</p>
 </header>
 
 <!-- القسم الأول: معلومات العميل -->
 <div class="section-card">
     <h3>👤 معلومات التواصل</h3>
     <div class="input-group">
-        <span class="input-icon">الاسم</span>
         <input type="text" id="customerName" placeholder="الاسم الكامل">
     </div>
     <div class="input-group">
-        <span class="input-icon">الهاتف</span>
-        <input type="tel" id="customerPhone" placeholder="07xxxxxxxx">
+        <input type="tel" id="customerPhone" placeholder="رقم الهاتف (07xxxxxxxx)">
     </div>
 </div>
 
@@ -57,32 +57,27 @@
         </label>
     </div>
 
-    <!-- حقول التوصيل (تظهر عند اختيار توصيل) -->
+    <!-- حقول التوصيل (المناطق الأصلية التي اخترتها) -->
     <div id="addressFields" class="address-box" style="display: none;">
         <label for="deliveryZone">اختر منطقة التوصيل:</label>
         <select id="deliveryZone">
             <option value="" selected disabled>-- اختر المنطقة --</option>
-            <option value="وسط المدينة / الميدان / القلعة / المنشية" data-price="1.00">وسط المدينة، الميدان، القلعة، المنشية (1.00 دج)</option>
-            <option value="العيزرية / الجدعة / وادي الأكراد" data-price="1.00">العيزرية، الجدعة، وادي الأكراد (1.00 دج)</option>
-            <option value="حي السلالم / الصافح والبقيع / سواده" data-price="1.50">حي السلالم، الصافح والبقيع، سواده (1.50 دج)</option>
-            <option value="كفر هودا / المصلى / أم خروبة" data-price="1.50">كفر هودا، المصلى، أم خروبة (1.50 دج)</option>
-            <option value="حي السرو / المهندسين / الدبابنة" data-price="1.50">حي السرو، المهندسين، الدبابنة (1.50 دج)</option>
-            <option value="منطقة زي / بطنا" data-price="2.00">منطقة زي، بطنا (2.00 دج)</option>
-            <option value="النبي يوشع / سلجوف" data-price="2.00">النبي يوشع، سلجوف (2.00 دج)</option>
-            <option value="علان وأم جوزة / الرميمين" data-price="2.50">علان وأم جوزة، الرميمين (2.50 دج)</option>
-            <option value="منطقة أخرى" data-price="">منطقة أخرى (يتم تحديد السعر لاحقاً)</option>
+            <option value="وسط المدينة / حنينا / درب السرايا" data-price="1.00">وسط المدينة / حنينا / درب السرايا - 1 دينار</option>
+            <option value="شارع الستين / ضاحية الحسين / القلعة" data-price="1.50">شارع الستين / ضاحية الحسين / القلعة - 1.50 دينار</option>
+            <option value="زي / أم جوزة / البيوضة" data-price="2.00">زي / أم جوزة / البيوضة - 2 دينار</option>
+            <option value="منطقة أخرى" data-price="">منطقة أخرى (يرجى التواصل أولاً)</option>
         </select>
 
-        <input type="text" id="customerStreet" placeholder="اسم الشارع، رقم البناية، أو أقرب معلم بارز">
+        <input type="text" id="customerStreet" placeholder="اسم الشارع، رقم البناية، وأقرب معلم">
 
         <div class="location-tip">
             <span>📍</span>
-            <p>عند تحويلك للواتساب، أرسل موقعك (لوكيشن) 📎 لضمان وصول الطلب بدقة.</p>
+            <p>عند تحويلك للواتساب، أرسل موقعك (لوكيشن) 📎 من علامة المرفقات لتسهيل التوصيل بدقة.</p>
         </div>
     </div>
 </div>
 
-<!-- القسم الثالث: ملخص الفاتورة -->
+<!-- القسم الثالث: تفاصيل الفاتورة -->
 <div class="section-card invoice-card">
     <h3>💰 تفاصيل الفاتورة</h3>
     <div class="invoice-row">
@@ -103,13 +98,13 @@
 <!-- القسم الرابع: ملاحظات -->
 <div class="section-card">
     <h3>📝 ملاحظات إضافية</h3>
-    <textarea id="customerNotes" placeholder="مثال: بدون صوص حار، زيادة إكسترا... (اختياري)"></textarea>
+    <textarea id="customerNotes" placeholder="ملاحظات على الطلب (اختياري)"></textarea>
 </div>
 
-<!-- زر إرسال الطلب الاحترافي -->
+<!-- زر إرسال الطلب -->
 <button id="confirmOrder" class="premium-order-btn">
-    <span>إرسال الطلب عبر واتساب</span>
-    <span class="btn-icon">💬</span>
+    <span>متابعة إرسال الطلب</span>
+    <span class="btn-icon">✅</span>
 </button>
 
 </div>
