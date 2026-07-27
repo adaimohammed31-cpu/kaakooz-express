@@ -1,15 +1,10 @@
 const confirmOrder = document.getElementById("confirmOrder");
 const deliveryOptions = document.querySelectorAll('input[name="delivery"]');
 const addressFields = document.getElementById("addressFields");
-const getLocationBtn = document.getElementById("getLocationBtn");
-const locationStatus = document.getElementById("locationStatus");
 
 const customerArea = document.getElementById("customerArea");
 const customerStreet = document.getElementById("customerStreet");
 const customerName = document.getElementById("customerName");
-
-let userLatitude = "";
-let userLongitude = "";
 
 // =========================
 // إظهار أو إخفاء حقول التوصيل
@@ -29,39 +24,6 @@ updateDeliveryFields();
 deliveryOptions.forEach(option => {
     option.addEventListener("change", updateDeliveryFields);
 });
-
-// =========================
-// زر جلب الموقع (GPS) عند الضغط عليه
-// =========================
-if (getLocationBtn) {
-    getLocationBtn.addEventListener("click", () => {
-        if (!navigator.geolocation) {
-            locationStatus.innerHTML = "❌ المتصفح لا يدعم تحديد الموقع.";
-            return;
-        }
-
-        locationStatus.innerHTML = "⏳ جاري تحديد موقعك الحالي...";
-
-        navigator.geolocation.getCurrentPosition(
-            (position) => {
-                userLatitude = position.coords.latitude;
-                userLongitude = position.coords.longitude;
-                locationStatus.innerHTML = "✅ تم تثبيت موقعك بنجاح وجاهز للإرسال مع الطلب!";
-                locationStatus.style.color = "green";
-            },
-            (error) => {
-                locationStatus.innerHTML = "⚠️ تعذر تحديد الموقع تلقائياً، يمكنك كتابة العنوان في الأعلى فقط.";
-                locationStatus.style.color = "red";
-                console.log(error);
-            },
-            {
-                enableHighAccuracy: true,
-                timeout: 10000,
-                maximumAge: 0
-            }
-        );
-    });
-}
 
 // =========================
 // إرسال الطلب عبر واتساب
@@ -98,7 +60,7 @@ confirmOrder.addEventListener("click", () => {
     }
 
     if (delivery === "توصيل" && (area === "" || street === "")) {
-        alert("يرجى إدخال المنطقة والشارع لتتمكن من إتمام الطلب.");
+        alert("يرجى إدخال المنطقة والشارع لإتمام الطلب.");
         return;
     }
 
@@ -108,7 +70,7 @@ confirmOrder.addEventListener("click", () => {
         return;
     }
 
-    // بناء رسالة الواتساب
+    // بناء رسالة الواتساب الاحترافية
     let message = "🍞 *طلب جديد - كعكوز إكسبرس*%0A%0A";
 
     message += `👤 الاسم: ${name}%0A`;
@@ -125,7 +87,7 @@ confirmOrder.addEventListener("click", () => {
     }
 
     message += "%0A========================%0A";
-    message += "🛒 الطلب:%0A";
+    message += "🛒 تفاصيل الطلب:%0A";
 
     let total = 0;
     cart.forEach(item => {
@@ -136,10 +98,8 @@ confirmOrder.addEventListener("click", () => {
     message += "%0A========================%0A";
     message += `💰 المجموع: ${total.toFixed(2)} دينار%0A`;
 
-    // إضافة رابط الموقع إذا قام الزبون بالضغط على زر تحديد الموقع
-    if (userLatitude && userLongitude) {
-        message += `%0A📍 رابط موقع الزبون (Google Maps):%0A`;
-        message += `https://www.google.com/maps?q=${userLatitude},${userLongitude}%0A`;
+    if (delivery === "توصيل") {
+        message += `%0A📍 *(سأقوم بإرسال موقعي (لوكيشن) في الرسالة التالية لسهولة التوصيل)*`;
     }
 
     window.location.href = `https://wa.me/962779430623?text=${message}`;
