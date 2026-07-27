@@ -609,3 +609,238 @@ border:3px solid #0f6b38;
 margin-top:15px;
 overflow:hidden;
 }
+
+/* تنسيقات عامة بروح المطاعم العالمية */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Tajawal', sans-serif;
+}
+
+body {
+    background-color: #f7f5f0; /* خلفية دافئة ونظيفة */
+    color: #2c2c2c;
+    padding: 20px 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.checkout-container {
+    width: 100%;
+    max-width: 500px;
+}
+
+/* الهيدر */
+.checkout-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.brand-icon {
+    font-size: 40px;
+    margin-bottom: 5px;
+}
+
+.checkout-header h1 {
+    font-size: 24px;
+    font-weight: 900;
+    color: #1b4332;
+}
+
+.checkout-header p {
+    font-size: 13px;
+    color: #666;
+    margin-top: 4px;
+}
+
+/* بطاقات الأقسام (Cards) */
+.section-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    border: 1px solid #eae6df;
+}
+
+.section-card h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1b4332;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* حقول الإدخال النصية */
+input[type="text"],
+input[type="tel"],
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 1.5px solid #e0dad0;
+    border-radius: 10px;
+    background: #faf9f6;
+    font-size: 14px;
+    color: #333;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #2d6a4f;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.1);
+}
+
+textarea {
+    resize: none;
+    height: 80px;
+}
+
+/* تصميم خيارات الاستلام (بطاقات اختيار تفاعلية) */
+.delivery-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.delivery-card {
+    cursor: pointer;
+    border: 2px solid #e0dad0;
+    border-radius: 12px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    background: #faf9f6;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.delivery-card input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+.card-emoji {
+    font-size: 24px;
+    margin-bottom: 4px;
+}
+
+.card-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #333;
+}
+
+.card-sub {
+    font-size: 10px;
+    color: #777;
+    margin-top: 2px;
+}
+
+/* عند اختيار البطاقة يتم تلوينها بأسلوب المطاعم الاحترافية */
+.delivery-card input[type="radio"]:checked + .card-content {
+    color: #1b4332;
+}
+
+.delivery-card:has(input[type="radio"]:checked) {
+    border-color: #2d6a4f;
+    background: #f0f7f4;
+    box-shadow: 0 2px 8px rgba(45, 106, 79, 0.15);
+}
+
+/* صندوق تفاصيل التوصيل والمنطقة */
+.address-box {
+    margin-top: 15px;
+    padding-top: 12px;
+    border-top: 1px dashed #e0dad0;
+}
+
+.address-box label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #555;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.location-tip {
+    background: #e8f5e9;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #c8e6c9;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 5px;
+}
+
+.location-tip p {
+    font-size: 11px;
+    color: #2e7d32;
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* فاتورة الحساب */
+.invoice-card {
+    background: #fffdf9;
+    border: 1px solid #dfd8cc;
+}
+
+.invoice-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    margin-bottom: 6px;
+    color: #555;
+}
+
+.invoice-divider {
+    border: 0;
+    border-top: 1px dashed #dcd6cc;
+    margin: 8px 0;
+}
+
+.total-row {
+    font-weight: 700;
+    font-size: 15px;
+    color: #b71c1c;
+}
+
+/* زر إرسال الطلب الفاخر */
+.premium-order-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #2d6a4f 0%, #1b4332 100%);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 14px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 6px 20px rgba(27, 67, 50, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.premium-order-btn:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 10px rgba(27, 67, 50, 0.3);
+    }
