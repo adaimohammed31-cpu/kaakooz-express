@@ -9,62 +9,28 @@ const customerArea = document.getElementById("customerArea");
 const customerStreet = document.getElementById("customerStreet");
 const customerName = document.getElementById("customerName");
 
-customerName.addEventListener("focus", () => {
-
-    const delivery =
-        document.querySelector('input[name="delivery"]:checked').value;
-
-    if (delivery !== "توصيل") return;
-
-    if (!map) {
-        initMap();
-    }
-
-    if (!latitude && !longitude) {
-        getCurrentLocation();
-    }
-
-});
-
 let latitude = "";
 let longitude = "";
 
 let map;
 let marker;
+
 // =========================
 // إنشاء الخريطة
 // =========================
 
 function initMap() {
+    if (map) return;
 
+    // مركز افتراضي (عمان)
     map = L.map("map").setView([31.9552, 35.9450], 13);
 
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution: "&copy; OpenStreetMap"
     }).addTo(map);
 
-    // تفعيل خاصية تحديد الموقع المدمجة في Leaflet (أسرع وأدق بكثير للموبايل)
-    map.on('locationfound', function(e) {
-        latitude = e.latlng.lat;
-        longitude = e.latlng.lng;
-
-        if (marker) {
-            marker.setLatLng(e.latlng);
-        } else {
-            marker = L.marker(e.latlng).addTo(map);
-        }
-
-        map.setView(e.latlng, 17);
-        locationStatus.innerHTML = "✅ تم تحديد موقعك تلقائياً";
-        getAddress(latitude, longitude);
-    });
-
-    map.on('locationerror', function(e) {
-        locationStatus.innerHTML = "⚠️ يرجى النقر على الخريطة لاختيار موقعك يدويّاً.";
-    });
-
+    // عند النقر اليدوي على الخريطة
     map.on("click", function (e) {
-
         latitude = e.latlng.lat;
         longitude = e.latlng.lng;
 
@@ -74,28 +40,51 @@ function initMap() {
             marker = L.marker(e.latlng).addTo(map);
         }
 
-        locationStatus.innerHTML = "✅ تم اختيار الموقع من الخريطة";
-
+        locationStatus.innerHTML = "⏳ جاري جلب اسم المنطقة والشارع...";
         getAddress(latitude, longitude);
-
     });
-
 }
 
 // =========================
-// تحديد الموقع تلقائياً
+// تحديد موقع الزبون تلقائياً عبر الـ GPS
 // =========================
 
-function getCurrentLocation() {
-
-    locationBox.style.display = "block";
-    locationStatus.innerHTML = "⏳ جارٍ تحديد موقعك...";
-
-    // استخدام أداة تحديد الموقع المدمجة في خريطة ليفليت لتجاوز مشاكل متصفح الفيسبوك
-    if (map) {
-        map.locate({setView: true, maxZoom: 17, timeout: 10000, enableHighAccuracy: true});
+function getMyCurrentLocation() {
+    if (!navigator.geolocation) {
+        locationStatus.innerHTML = "❌ المتصفح لا يدعم تحديد الموقع.";
+        return;
     }
 
+    locationStatus.innerHTML = "⏳ جارٍ تحديد موقعك تلقائياً...";
+
+    navigator.geolocation.getCurrentPosition(
+        (position) => {
+            latitude = position.coords.latitude;
+            longitude = position.coords.longitude;
+
+            const userLocation = [latitude, longitude];
+
+            map.setView(userLocation, 17);
+
+            if (marker) {
+                marker.setLatLng(userLocation);
+            } else {
+                marker = L.marker(userLocation).addTo(map);
+            }
+
+            locationStatus.innerHTML = "✅ تم تحديث موقعك تلقائياً بنجاح!";
+            getAddress(latitude, longitude);
+        },
+        (error) => {
+            locationStatus.innerHTML = "⚠️ تعذر التحديد التلقائي، يرجى النقر على مكانك في الخريطة أو الكتابة يدوياً.";
+            console.log(error);
+        },
+        {
+            enableHighAccuracy: true,
+            timeout: 10000,
+            maximumAge: 0
+        }
+    );
 }
 
 // =========================
@@ -103,45 +92,28 @@ function getCurrentLocation() {
 // =========================
 
 function updateDeliveryFields() {
-
-    const delivery =
-        document.querySelector('input[name="delivery"]:checked').value;
+    const delivery = document.querySelector('input[name="delivery"]:checked').value;
 
     if (delivery === "استلام من المحل") {
-
         addressFields.style.display = "none";
         locationBox.style.display = "none";
-
     } else {
-
         addressFields.style.display = "block";
         locationBox.style.display = "block";
 
         setTimeout(() => {
-
-            if (!map) {
-
-                initMap();
-
-            } else {
-
-                map.invalidateSize();
-                getCurrentLocation();
-
-            }
-
+            initMap();
+            map.invalidateSize();
+            // محاولة التحديد التلقائي فوراً عند فتح خيار التوصيل
+            getMyCurrentLocation();
         }, 300);
-
     }
-
 }
 
 updateDeliveryFields();
 
 deliveryOptions.forEach(option => {
-
     option.addEventListener("change", updateDeliveryFields);
-
 });
 
 // =========================
@@ -149,15 +121,12 @@ deliveryOptions.forEach(option => {
 // =========================
 
 async function getAddress(lat, lng) {
-
     try {
-
         const response = await fetch(
             `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}`
         );
 
         const data = await response.json();
-
         const address = data.address || {};
         const fullAddress = data.display_name || "";
 
@@ -177,34 +146,30 @@ async function getAddress(lat, lng) {
             address.neighbourhood ||
             "";
 
-        locationStatus.innerHTML += "<br>📍 تم تعبئة المنطقة والشارع تلقائياً";
+        locationStatus.innerHTML = "✅ تم تعبئة المنطقة والشارع تلقائياً من موقعك!";
 
         if (fullAddress) {
-            locationStatus.innerHTML +=
-                "<br><small>" + fullAddress + "</small>";
+            locationStatus.innerHTML += `<br><small>${fullAddress}</small>`;
         }
 
     } catch (error) {
-
         console.error(error);
-
+        locationStatus.innerHTML = "⚠️ تم تحديد الموقع، يرجى كتابة المنطقة والشارع يدوياً إن لم يظهروا.";
     }
-
 }
+
 // =========================
 // إرسال الطلب
 // =========================
 
 confirmOrder.addEventListener("click", () => {
-
     const name = document.getElementById("customerName").value.trim();
     const phone = document.getElementById("customerPhone").value.trim();
     const area = customerArea.value.trim();
     const street = customerStreet.value.trim();
     const notes = document.getElementById("customerNotes").value.trim();
 
-    const delivery =
-        document.querySelector('input[name="delivery"]:checked').value;
+    const delivery = document.querySelector('input[name="delivery"]:checked').value;
 
     if (name === "") {
         alert("يرجى إدخال الاسم.");
@@ -280,7 +245,5 @@ confirmOrder.addEventListener("click", () => {
         message += `https://www.google.com/maps?q=${latitude},${longitude}%0A`;
     }
 
-    window.location.href =
-        `https://wa.me/962779430623?text=${message}`;
-
+    window.location.href = `https://wa.me/962779430623?text=${message}`;
 });
