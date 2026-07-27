@@ -8,9 +8,6 @@
 <title>تأكيد الطلب - كعكوز إكسبرس</title>
 
 <link rel="stylesheet" href="style.css">
-
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-
 </head>
 
 <body>
@@ -22,38 +19,16 @@
 
 <div class="checkout-box">
 
+<!-- 1. الاسم -->
 <input type="text" id="customerName" placeholder="الاسم الكامل">
 
+<!-- 2. الهاتف -->
 <input type="tel" id="customerPhone" placeholder="رقم الهاتف">
 
-<div id="addressFields">
-
-<input type="text" id="customerArea" placeholder="المنطقة">
-
-<input type="text" id="customerStreet" placeholder="الشارع">
-
-</div>
-
-<div id="locationBox" style="display:none;">
-
-
-
-<p id="locationStatus"></p>
-
-<h3 style="margin-top:20px;">
-أو اختر موقعك من الخريطة
-</h3>
-
-<div id="map"></div>
-
-</div>
-
-<textarea id="customerNotes" placeholder="ملاحظات على الطلب (اختياري)"></textarea>
-
+<!-- 3. طريقة الاستلام -->
 <h3>طريقة الاستلام</h3>
 
 <div class="delivery-options">
-
 <label class="delivery-card">
 <input type="radio" name="delivery" value="استلام من المحل" checked>
 🏪 استلام من المحل
@@ -63,16 +38,31 @@
 <input type="radio" name="delivery" value="توصيل">
 🛵 توصيل
 </label>
-
 </div>
 
+<!-- 4. حقول التوصيل (تظهر فقط عند اختيار توصيل) -->
+<div id="addressFields" style="display: none; margin-top: 15px;">
+<input type="text" id="customerArea" placeholder="المنطقة" style="margin-bottom: 10px; width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+<input type="text" id="customerStreet" placeholder="الشارع" style="margin-bottom: 10px; width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+
+<!-- زر تثبيت الموقع GPS -->
+<div style="background: #f9f9f9; padding: 12px; border-radius: 8px; border: 1px dashed #2e7d32; text-align: center; margin-bottom: 15px;">
+<button type="button" id="getLocationBtn" style="background: #25d366; color: white; border: none; padding: 8px 12px; border-radius: 5px; font-weight: bold; cursor: pointer; width: 100%;">
+📌 اضغط هنا لتثبيت موقعي الحالي (GPS)
+</button>
+<p id="locationStatus" style="margin: 6px 0 0 0; font-size: 12px; color: #666;"></p>
+</div>
+</div>
+
+<!-- 5. الملاحظات -->
+<textarea id="customerNotes" placeholder="ملاحظات على الطلب (اختياري)"></textarea>
+
+<!-- 6. زر إرسال الطلب -->
 <button id="confirmOrder" class="order-btn">
 ✅ متابعة إرسال الطلب
 </button>
 
 </div>
-
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <script src="checkout.js"></script>
 
