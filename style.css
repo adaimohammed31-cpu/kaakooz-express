@@ -844,3 +844,257 @@ textarea {
     transform: scale(0.98);
     box-shadow: 0 2px 10px rgba(27, 67, 50, 0.3);
     }
+/* إعدادات عامة */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Tajawal', sans-serif;
+}
+
+body {
+    /* خلفية دافئة ومضيئة متناسقة مع التراث الحجري والصخري */
+    background: radial-gradient(circle at center, #fffdfa 0%, #f4eee1 100%);
+    color: #3d2415;
+    padding: 25px 15px;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.checkout-container {
+    width: 100%;
+    max-width: 520px;
+}
+
+/* الهيدر وشعار المطعم مع إضاءة محيطية */
+.checkout-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.logo-wrapper {
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto 15px auto;
+    border-radius: 16px;
+    overflow: hidden;
+    /* إضاءة صفراء دافئة متوهجة حول الشعار تشبه الفوانيس */
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.4), 0 5px 15px rgba(0, 0, 0, 0.1);
+    border: 3px solid #d4af37;
+    background: #fff;
+}
+
+.brand-logo-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.checkout-header h1 {
+    font-size: 26px;
+    font-weight: 900;
+    color: #5d3922;
+}
+
+.checkout-header p {
+    font-size: 14px;
+    color: #7a5c44;
+    margin-top: 5px;
+}
+
+/* بطاقات الأقسام مع إضاءة خلفية ناعمة وحدود ذهبية دافئة */
+.section-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 18px;
+    margin-bottom: 18px;
+    /* إضاءة بيضاء محيطية مع ظل ناعم تبرز العناصر عن الصفحة */
+    box-shadow: 0 8px 30px rgba(93, 57, 34, 0.08);
+    border: 1.5px solid #e6d7c3;
+    transition: all 0.3s ease;
+}
+
+.section-card:hover {
+    box-shadow: 0 10px 35px rgba(212, 175, 55, 0.15);
+    border-color: #d4af37;
+}
+
+.section-card h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #5d3922;
+    margin-bottom: 12px;
+}
+
+/* حقول الإدخال */
+input[type="text"],
+input[type="tel"],
+select,
+textarea {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 10px;
+    border: 2px solid #e6d7c3;
+    border-radius: 12px;
+    background: #faf7f2;
+    font-size: 16px;
+    color: #3d2415;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #0d5c2f;
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(13, 92, 47, 0.15);
+}
+
+textarea {
+    resize: none;
+    height: 90px;
+}
+
+/* بطاقات خيارات الاستلام والتوصيل */
+.delivery-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.delivery-card {
+    cursor: pointer;
+    border: 2px solid #e6d7c3;
+    border-radius: 14px;
+    padding: 14px;
+    display: flex;
+    align-items: center;
+    background: #faf7f2;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.delivery-card input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+.card-emoji {
+    font-size: 28px;
+    margin-bottom: 6px;
+}
+
+.card-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #3d2415;
+}
+
+.card-sub {
+    font-size: 11px;
+    color: #7a5c44;
+    margin-top: 3px;
+}
+
+/* حالة اختيار بطاقة التوصيل أو الاستلام */
+.delivery-card:has(input[type="radio"]:checked) {
+    border-color: #0d5c2f;
+    background: #f0f8f3;
+    box-shadow: 0 4px 15px rgba(13, 92, 47, 0.2);
+}
+
+/* صندوق تفاصيل التوصيل والمنطقة */
+.address-box {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 2px dashed #e6d7c3;
+}
+
+.address-box label {
+    font-size: 13px;
+    font-weight: 700;
+    color: #5d3922;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.location-tip {
+    background: #edf7ed;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #c8e6c9;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.location-tip p {
+    font-size: 12px;
+    color: #1e4620;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* فاتورة الحساب */
+.invoice-card {
+    background: #fffcf7;
+    border: 2px solid #d4af37;
+}
+
+.invoice-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+.invoice-divider {
+    border: 0;
+    border-top: 1.5px dashed #e6d7c3;
+    margin: 10px 0;
+}
+
+.total-row {
+    font-weight: 900;
+    font-size: 18px;
+    color: #c0392b;
+}
+
+/* زر إرسال الطلب الفاخر */
+.premium-order-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #0d5c2f 0%, #114c27 100%);
+    color: white;
+    border: none;
+    padding: 16px;
+    border-radius: 16px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 6px 25px rgba(13, 92, 47, 0.35);
+    transition: all 0.3s ease;
+}
+
+.premium-order-btn:hover {
+    background: linear-gradient(135deg, #116e37 0%, #0d5c2f 100%);
+    box-shadow: 0 8px 30px rgba(13, 92, 47, 0.5);
+    transform: translateY(-2px);
+}
+
+.premium-order-btn:active {
+    transform: scale(0.98);
+}
