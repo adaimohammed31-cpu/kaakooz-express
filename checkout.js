@@ -1,22 +1,65 @@
 const confirmOrder = document.getElementById("confirmOrder");
 const deliveryOptions = document.querySelectorAll('input[name="delivery"]');
 const addressFields = document.getElementById("addressFields");
-
-const customerArea = document.getElementById("customerArea");
+const deliveryZone = document.getElementById("deliveryZone");
 const customerStreet = document.getElementById("customerStreet");
-const customerName = document.getElementById("customerName");
 
-// =========================
+// عناصر الفاتورة الظاهرة على الشاشة
+const summaryItemsTotal = document.getElementById("summaryItemsTotal");
+const summaryDeliveryRow = document.getElementById("summaryDeliveryRow");
+const summaryDeliveryFee = document.getElementById("summaryDeliveryFee");
+const summaryGrandTotal = document.getElementById("summaryGrandTotal");
+
+// حساب وعرض المجالات الحية للفاتورة
+function calculateTotals() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let itemsTotal = 0;
+    cart.forEach(item => {
+        itemsTotal += (item.price * item.qty);
+    });
+
+    const delivery = document.querySelector('input[name="delivery"]:checked').value;
+    let deliveryFee = 0;
+    let isOtherArea = false;
+
+    if (delivery === "توصيل" && deliveryZone.value !== "") {
+        const selectedOption = deliveryZone.options[deliveryZone.selectedIndex];
+        const priceAttr = selectedOption.dataset.price;
+
+        summaryDeliveryRow.style.display = "flex";
+
+        if (priceAttr === "") {
+            isOtherArea = true;
+            summaryDeliveryFee.textContent = "سيتم تحديده لاحقاً";
+        } else {
+            deliveryFee = parseFloat(priceAttr);
+            summaryDeliveryFee.textContent = deliveryFee.toFixed(2) + " دينار";
+        }
+    } else {
+        summaryDeliveryRow.style.display = "none";
+    }
+
+    let grandTotal = itemsTotal + deliveryFee;
+
+    summaryItemsTotal.textContent = itemsTotal.toFixed(2) + " دينار";
+    
+    if (isOtherArea) {
+        summaryGrandTotal.textContent = itemsTotal.toFixed(2) + " دينار + التوصيل";
+    } else {
+        summaryGrandTotal.textContent = grandTotal.toFixed(2) + " دينار";
+    }
+}
+
 // إظهار أو إخفاء حقول التوصيل
-// =========================
 function updateDeliveryFields() {
     const delivery = document.querySelector('input[name="delivery"]:checked').value;
-
     if (delivery === "استلام من المحل") {
         addressFields.style.display = "none";
+        deliveryZone.value = ""; 
     } else {
         addressFields.style.display = "block";
     }
+    calculateTotals();
 }
 
 updateDeliveryFields();
@@ -25,14 +68,19 @@ deliveryOptions.forEach(option => {
     option.addEventListener("change", updateDeliveryFields);
 });
 
+if (deliveryZone) {
+    deliveryZone.addEventListener("change", calculateTotals);
+}
+
+calculateTotals();
+
 // =========================
 // إرسال الطلب عبر واتساب
 // =========================
 confirmOrder.addEventListener("click", () => {
     const name = document.getElementById("customerName").value.trim();
     const phone = document.getElementById("customerPhone").value.trim();
-    const area = customerArea.value.trim();
-    const street = customerStreet.value.trim();
+    const street = customerStreet ? customerStreet.value.trim() : "";
     const notes = document.getElementById("customerNotes").value.trim();
 
     const delivery = document.querySelector('input[name="delivery"]:checked').value;
@@ -59,9 +107,30 @@ confirmOrder.addEventListener("click", () => {
         return;
     }
 
-    if (delivery === "توصيل" && (area === "" || street === "")) {
-        alert("يرجى إدخال المنطقة والشارع لإتمام الطلب.");
-        return;
+    let deliveryFee = 0;
+    let selectedAreaName = "";
+    let isOtherArea = false;
+
+    if (delivery === "توصيل") {
+        if (deliveryZone.value === "") {
+            alert("يرجى اختيار منطقة التوصيل.");
+            deliveryZone.focus();
+            return;
+        }
+        if (street === "") {
+            alert("يرجى إدخال تفاصيل الشارع والعنوان.");
+            customerStreet.focus();
+            return;
+        }
+        selectedAreaName = deliveryZone.value;
+        const selectedOption = deliveryZone.options[deliveryZone.selectedIndex];
+        const priceAttr = selectedOption.dataset.price;
+
+        if (priceAttr === "") {
+            isOtherArea = true;
+        } else {
+            deliveryFee = parseFloat(priceAttr);
+        }
     }
 
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -70,37 +139,53 @@ confirmOrder.addEventListener("click", () => {
         return;
     }
 
-    // بناء رسالة الواتساب الاحترافية
-    let message = "🍞 *طلب جديد - كعكوز إكسبرس*%0A%0A";
+    // بناء رسالة الواتساب الاحترافية والمفصلة
+    let message = "🍞 *طلب جديد - كعكوز إكسبرس*\n\n";
 
-    message += `👤 الاسم: ${name}%0A`;
-    message += `📞 الهاتف: ${phone}%0A`;
-    message += `🚚 طريقة الاستلام: ${delivery}%0A`;
+    message += `👤 الاسم: ${name}\n`;
+    message += `📞 الهاتف: ${phone}\n`;
+    message += `🚚 طريقة الاستلام: ${delivery}\n`;
 
     if (delivery === "توصيل") {
-        message += `📍 المنطقة: ${area}%0A`;
-        message += `🛣️ الشارع: ${street}%0A`;
+        message += `📍 المنطقة: ${selectedAreaName}\n`;
+        message += `🛣️ العنوان: ${street}\n`;
     }
 
     if (notes !== "") {
-        message += `📝 ملاحظات: ${notes}%0A`;
+        message += `📝 ملاحظات: ${notes}\n`;
     }
 
-    message += "%0A========================%0A";
-    message += "🛒 تفاصيل الطلب:%0A";
+    message += "\n========================\n";
+    message += "🛒 تفاصيل الطلب:\n";
 
-    let total = 0;
+    let itemsTotal = 0;
     cart.forEach(item => {
-        message += `• ${item.name} × ${item.qty} = ${(item.price * item.qty).toFixed(2)} دينار%0A`;
-        total += item.price * item.qty;
+        message += `• ${item.name} × ${item.qty} = ${(item.price * item.qty).toFixed(2)} دينار\n`;
+        itemsTotal += item.price * item.qty;
     });
 
-    message += "%0A========================%0A";
-    message += `💰 المجموع: ${total.toFixed(2)} دينار%0A`;
+    let grandTotal = itemsTotal + deliveryFee;
 
+    message += "\n========================\n";
     if (delivery === "توصيل") {
-        message += `%0A📍 *(سأقوم بإرسال موقعي (لوكيشن) في الرسالة التالية لسهولة التوصيل)*`;
+        message += `📦 قيمة الطلب: ${itemsTotal.toFixed(2)} دينار\n`;
+        if (isOtherArea) {
+            message += `🚚 رسوم التوصيل: سيتم تحديدها بعد التواصل معكم\n`;
+            message += `💰 *قيمة الطلب المبدئية: ${itemsTotal.toFixed(2)} دينار*\n`;
+        } else {
+            message += `🚚 رسوم التوصيل: ${deliveryFee.toFixed(2)} دينار\n`;
+            message += `💰 *المجموع الكلي: ${grandTotal.toFixed(2)} دينار*\n`;
+        }
+    } else {
+        message += `💰 *المجموع الكلي: ${grandTotal.toFixed(2)} دينار*\n`;
     }
 
-    window.location.href = `https://wa.me/962779430623?text=${message}`;
+    if (delivery === "توصيل") {
+        message += `\n📍 *(سأقوم بإرسال موقعي (لوكيشن) في الرسالة التالية لسهولة التوصيل)*`;
+    }
+
+    // تم إزالة localStorage.removeItem("cart") للحفاظ على أمان بيانات السلة لحين تأكيد الإرسال تماماً
+
+    // فتح رابط واتساب مع تشفير آمن للنص
+    window.location.href = `https://wa.me/962779430623?text=${encodeURIComponent(message)}`;
 });
