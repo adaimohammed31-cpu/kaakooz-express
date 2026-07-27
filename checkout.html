@@ -42,15 +42,43 @@
 
 <!-- 4. حقول التوصيل (تظهر فقط عند اختيار توصيل) -->
 <div id="addressFields" style="display: none; margin-top: 15px;">
-<input type="text" id="customerArea" placeholder="المنطقة" style="margin-bottom: 10px; width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
-<input type="text" id="customerStreet" placeholder="الشارع" style="margin-bottom: 10px; width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+    
+<!-- قائمة مناطق السلط مع ضبط خيار منطقة أخرى بـ data-price فارغة -->
+<label for="deliveryZone" style="display: block; margin-bottom: 5px; font-weight: bold; font-size: 14px; color: #333;">اختر منطقة التوصيل:</label>
+<select id="deliveryZone" style="width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px; background: #fff;">
+    <option value="" selected disabled>-- اختر منطقة التوصيل --</option>
+    <option value="وسط المدينة / حنينا / درب السرايا" data-price="1.00">وسط المدينة / حنينا / درب السرايا - 1 دينار</option>
+    <option value="شارع الستين / ضاحية الحسين / القلعة" data-price="1.50">شارع الستين / ضاحية الحسين / القلعة - 1.50 دينار</option>
+    <option value="زي / أم جوزة / البيوضة" data-price="2.00">زي / أم جوزة / البيوضة - 2 دينار</option>
+    <option value="منطقة أخرى" data-price="">منطقة أخرى (يرجى التواصل أولاً)</option>
+</select>
 
-<!-- تنبيه توجيهي لإرسال الموقع عبر واتساب بدل مشاكل الخرائط -->
+<!-- حقل الشارع التفصيلي -->
+<input type="text" id="customerStreet" placeholder="اسم الشارع، رقم البناية، وأقرب معلم" style="margin-bottom: 10px; width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+
+<!-- تنبيه توجيهي لإرسال الموقع عبر واتساب -->
 <div style="background: #e8f5e9; padding: 12px; border-radius: 8px; border: 1px solid #2e7d32; text-align: center; margin-bottom: 15px;">
 <p style="margin: 0; font-size: 13px; color: #2e7d32; font-weight: bold;">
 📍 ملاحظة: عند تحويلك للواتساب، يمكنك إرسال "موقعك (لوكيشن)" من علامة المرفقات 📎 لتسهيل التوصيل بدقة.
 </p>
 </div>
+</div>
+
+<!-- صندوق عرض تفاصيل الفاتورة بشفافية قبل الإرسال -->
+<div id="orderSummaryBox" style="background: #fdfdfd; padding: 12px; border-radius: 8px; border: 1px solid #ddd; margin-bottom: 15px; font-size: 14px;">
+    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+        <span>قيمة الطلب:</span>
+        <span id="summaryItemsTotal">0.00 دينار</span>
+    </div>
+    <div id="summaryDeliveryRow" style="display: none; justify-content: space-between; margin-bottom: 5px;">
+        <span>رسوم التوصيل:</span>
+        <span id="summaryDeliveryFee">0.00 دينار</span>
+    </div>
+    <hr style="border: 0; border-top: 1px dashed #ccc; margin: 8px 0;">
+    <div style="display: flex; justify-content: space-between; font-weight: bold; color: #b71c1c;">
+        <span>المجموع النهائي:</span>
+        <span id="summaryGrandTotal">0.00 دينار</span>
+    </div>
 </div>
 
 <!-- 5. الملاحظات -->
