@@ -546,6 +546,12 @@ header,
 div{
     max-width:100%;
 }
+
+
+
+
+
+
 /* ==========================================
    إعدادات عامة وتنسيق الصفحة
    ========================================== */
@@ -567,32 +573,36 @@ body {
 body {
     background: radial-gradient(circle at center, #fffdfa 0%, #f4eee1 100%);
     color: #3d2415;
-    padding: 25px 15px;
+    padding: 20px 10px;
     direction: rtl;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     position: relative;
+    box-shadow: inset 0 0 35px rgba(212, 175, 55, 0.25);
 }
 
 main {
     flex: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
-/* إضاءة الزوايا الأربعة للصفحة */
+/* إضاءة الزوايا الأربعة للصفحة بلون ذهبي مدهش */
 .corner-glow {
     position: fixed;
-    width: 250px;
-    height: 250px;
-    background: radial-gradient(circle, rgba(212, 175, 55, 0.35) 0%, rgba(255, 255, 255, 0) 70%);
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.45) 0%, rgba(255, 255, 255, 0) 75%);
     pointer-events: none;
     z-index: 1;
 }
-.top-right { top: -50px; right: -50px; }
-.top-left { top: -50px; left: -50px; }
-.bottom-right { bottom: -50px; right: -50px; }
-.bottom-left { bottom: -50px; left: -50px; }
+.top-right { top: -80px; right: -80px; }
+.top-left { top: -80px; left: -80px; }
+.bottom-right { bottom: -80px; right: -80px; }
+.bottom-left { bottom: -80px; left: -80px; }
 
 .checkout-container {
     width: 100%;
@@ -601,27 +611,27 @@ main {
     z-index: 2;
 }
 
-/* الهيدر والشعار */
+/* الهيدر والشعار (الصورة بكامل العرض والتناسق المذهل) */
 .checkout-header {
     text-align: center;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 .logo-wrapper {
     width: 100%;
-    margin: 0 auto 15px auto;
-    border-radius: 16px;
+    margin: 0 0 15px 0;
+    border-radius: 18px;
     overflow: hidden;
-    box-shadow: 0 0 25px rgba(212, 175, 55, 0.5), 0 5px 15px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.6), 0 6px 20px rgba(0, 0, 0, 0.15);
     border: 3px solid #d4af37;
     background: #fff;
 }
 
 .brand-logo-img {
     width: 100%;
-    height: auto;
+    max-height: 220px;
     display: block;
-    object-fit: contain;
+    object-fit: cover;
 }
 
 .checkout-header h1 {
@@ -636,15 +646,20 @@ main {
     margin-top: 5px;
 }
 
-/* بطاقات الأقسام */
+/* بطاقات الأقسام مع إضاءة حواف ساحرة */
 .section-card {
     background: #ffffff;
     border-radius: 18px;
     padding: 18px;
     margin-bottom: 18px;
-    box-shadow: 0 8px 30px rgba(93, 57, 34, 0.08);
-    border: 1.5px solid #e6d7c3;
+    box-shadow: 0 8px 30px rgba(93, 57, 34, 0.08), 0 0 12px rgba(212, 175, 55, 0.15);
+    border: 2px solid #e6d7c3;
     transition: all 0.3s ease;
+}
+
+.section-card:hover {
+    box-shadow: 0 10px 35px rgba(212, 175, 55, 0.3), 0 0 15px rgba(212, 175, 55, 0.3);
+    border-color: #d4af37;
 }
 
 .section-card h3 {
@@ -655,7 +670,7 @@ main {
 }
 
 /* ==========================================
-   حقول الإدخال النظيفة والمضيئة
+   حقول الإدخال المضيئة والواضحة
    ========================================== */
 input[type="text"],
 input[type="tel"],
@@ -664,21 +679,21 @@ textarea {
     width: 100%;
     padding: 14px;
     margin-bottom: 12px;
-    border: 2px solid #d4af37;
+    border: 2.5px solid #d4af37;
     border-radius: 12px;
     background: #fffdf9;
     font-size: 16px;
     font-weight: 500;
     color: #3d2415;
     outline: none;
-    box-shadow: 0 0 6px rgba(212, 175, 55, 0.25);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
     transition: all 0.3s ease;
 }
 
 input:focus, select:focus, textarea:focus {
     border-color: #0d5c2f;
     background: #fff;
-    box-shadow: 0 0 10px rgba(13, 92, 47, 0.4);
+    box-shadow: 0 0 15px rgba(13, 92, 47, 0.5), 0 0 8px rgba(212, 175, 55, 0.4);
 }
 
 input::placeholder, textarea::placeholder {
@@ -692,7 +707,7 @@ textarea {
 }
 
 /* ==========================================
-   تعديل بطاقات الاستلام والتوصيل (شكل نظيف ومشرق)
+   تعديل بطاقات الاستلام والتوصيل (واضحة ومرتبة تماماً)
    ========================================== */
 .delivery-grid {
     display: grid;
@@ -704,17 +719,17 @@ textarea {
     cursor: pointer;
     border: 2px solid #e6d7c3;
     border-radius: 14px;
-    padding: 20px 12px;
+    padding: 18px 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #ffffff; /* خلفية بيضاء صافية وواضحة */
+    background: #ffffff;
     transition: all 0.25s ease;
     position: relative;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
 }
 
-/* إخفاء زر الراديو تماماً */
+/* إخفاء زر الراديو تماماً لمنع أي تداخل */
 .delivery-card input[type="radio"] {
     position: absolute;
     opacity: 0;
@@ -730,7 +745,7 @@ textarea {
 }
 
 .card-emoji {
-    font-size: 36px; /* حجم إيموجي واضح وبارز */
+    font-size: 38px;
     margin-bottom: 8px;
 }
 
@@ -744,14 +759,14 @@ textarea {
 .card-sub {
     font-size: 12px;
     color: #7a5c44;
-    font-weight: 500;
+    font-weight: 600;
 }
 
-/* عند اختيار البطاقة يتم تلوينها بجمالية بدون أي مربعات داكنة */
+/* عند اختيار البطاقة يتم تلوينها وتوهجها بشكل فخم */
 .delivery-card:has(input[type="radio"]:checked) {
     border-color: #0d5c2f;
-    background: #f3faf5; /* خلفية خضراء فاتحة وهادئة جداً */
-    box-shadow: 0 6px 18px rgba(13, 92, 47, 0.15);
+    background: #f3faf5;
+    box-shadow: 0 6px 20px rgba(13, 92, 47, 0.25), 0 0 10px rgba(13, 92, 47, 0.2);
     transform: translateY(-2px);
 }
 
@@ -795,7 +810,8 @@ textarea {
 /* فاتورة الحساب */
 .invoice-card {
     background: #fffcf7;
-    border: 2px solid #d4af37;
+    border: 2.5px solid #d4af37;
+    box-shadow: 0 5px 20px rgba(212, 175, 55, 0.2);
 }
 
 .invoice-row {
@@ -834,13 +850,13 @@ textarea {
     justify-content: center;
     align-items: center;
     gap: 12px;
-    box-shadow: 0 6px 25px rgba(13, 92, 47, 0.35);
+    box-shadow: 0 6px 25px rgba(13, 92, 47, 0.4), 0 0 15px rgba(212, 175, 55, 0.3);
     transition: all 0.3s ease;
 }
 
 .premium-order-btn:hover {
     background: linear-gradient(135deg, #116e37 0%, #0d5c2f 100%);
-    box-shadow: 0 8px 30px rgba(13, 92, 47, 0.5);
+    box-shadow: 0 8px 30px rgba(13, 92, 47, 0.5), 0 0 20px rgba(212, 175, 55, 0.4);
     transform: translateY(-2px);
 }
 
@@ -856,4 +872,6 @@ footer {
     width: 100%;
     margin-top: 30px;
     border-radius: 12px;
-        }
+    box-shadow: 0 5px 20px rgba(61, 36, 21, 0.3);
+}
+
