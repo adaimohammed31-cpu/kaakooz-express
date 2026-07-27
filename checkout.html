@@ -1,120 +1,341 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+/* ==========================================
+   إعدادات عامة وتنسيق الصفحة
+   ========================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Tajawal', sans-serif;
+}
 
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>تأكيد الطلب - كعكوز إكسبرس</title>
-<link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
-</head>
+html,
+body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
 
-<body>
+body {
+    background: radial-gradient(circle at center, #fffdfa 0%, #f4eee1 100%);
+    color: #3d2415;
+    padding: 25px 15px;
+    direction: rtl;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
 
-<!-- إضاءة الزوايا الأربعة للصفحة -->
-<div class="corner-glow top-right"></div>
-<div class="corner-glow top-left"></div>
-<div class="corner-glow bottom-right"></div>
-<div class="corner-glow bottom-left"></div>
+main {
+    flex: 1;
+}
 
-<div class="checkout-container">
+/* إضاءة الزوايا الأربعة للصفحة (Glow) */
+.corner-glow {
+    position: fixed;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.35) 0%, rgba(255, 255, 255, 0) 70%);
+    pointer-events: none;
+    z-index: 1;
+}
+.top-right { top: -50px; right: -50px; }
+.top-left { top: -50px; left: -50px; }
+.bottom-right { bottom: -50px; right: -50px; }
+.bottom-left { bottom: -50px; left: -50px; }
 
-<header class="checkout-header">
-    <!-- شعار مطعم كعكوز إكسبرس متناسق مع عرض الصفحة -->
-    <div class="logo-wrapper">
-        <img src="file_000000002fb88246aa372015b20cd607.png" alt="شعار كعكوز إكسبرس" class="brand-logo-img">
-    </div>
-    <h1>تأكيد الطلب</h1>
-    <p>أدخل بياناتك لتصلك وجبتك الساخنة وطازجة!</p>
-</header>
+.checkout-container {
+    width: 100%;
+    max-width: 520px;
+    position: relative;
+    z-index: 2;
+}
 
-<!-- القسم الأول: معلومات العميل -->
-<div class="section-card">
-    <h3>👤 معلومات التواصل</h3>
-    <div class="input-group">
-        <input type="text" id="customerName" placeholder="الاسم الكامل">
-    </div>
-    <div class="input-group">
-        <input type="tel" id="customerPhone" placeholder="رقم الهاتف (07xxxxxxxx)">
-    </div>
-</div>
+/* الهيدر والشعار */
+.checkout-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
 
-<!-- القسم الثاني: طريقة الاستلام -->
-<div class="section-card">
-    <h3>🛵 طريقة الاستلام</h3>
-    
-    <div class="delivery-grid">
-        <label class="delivery-card">
-            <input type="radio" name="delivery" value="استلام من المحل" checked>
-            <div class="card-content">
-                <span class="card-emoji">🏪</span>
-                <span class="card-title">استلام من المحل</span>
-                <span class="card-sub">جاهز خلال 10 دقائق</span>
-            </div>
-        </label>
+.logo-wrapper {
+    width: 100%;
+    margin: 0 auto 15px auto;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.5), 0 5px 15px rgba(0, 0, 0, 0.15);
+    border: 3px solid #d4af37;
+    background: #fff;
+}
 
-        <label class="delivery-card">
-            <input type="radio" name="delivery" value="توصيل">
-            <div class="card-content">
-                <span class="card-emoji">🛵</span>
-                <span class="card-title">توصيل منزلي</span>
-                <span class="card-sub">يصلك حتى باب البيت</span>
-            </div>
-        </label>
-    </div>
+.brand-logo-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
 
-    <!-- حقول التوصيل -->
-    <div id="addressFields" class="address-box" style="display: none;">
-        <label for="deliveryZone">اختر منطقة التوصيل:</label>
-        <select id="deliveryZone">
-            <option value="" selected disabled>-- اختر المنطقة --</option>
-            <option value="وسط المدينة / حنينا / درب السرايا" data-price="1.00">وسط المدينة / حنينا / درب السرايا - 1 دينار</option>
-            <option value="شارع الستين / ضاحية الحسين / القلعة" data-price="1.50">شارع الستين / ضاحية الحسين / القلعة - 1.50 دينار</option>
-            <option value="زي / أم جوزة / البيوضة" data-price="2.00">زي / أم جوزة / البيوضة - 2 دينار</option>
-            <option value="منطقة أخرى" data-price="">منطقة أخرى (يرجى التواصل أولاً)</option>
-        </select>
+.checkout-header h1 {
+    font-size: 26px;
+    font-weight: 900;
+    color: #5d3922;
+}
 
-        <input type="text" id="customerStreet" placeholder="اسم الشارع، رقم البناية، وأقرب معلم">
+.checkout-header p {
+    font-size: 14px;
+    color: #7a5c44;
+    margin-top: 5px;
+}
 
-        <div class="location-tip">
-            <span>📍</span>
-            <p>عند تحويلك للواتساب، أرسل موقعك (لوكيشن) 📎 من علامة المرفقات لتسهيل التوصيل بدقة.</p>
-        </div>
-    </div>
-</div>
+/* بطاقات الأقسام (Cards) */
+.section-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 18px;
+    margin-bottom: 18px;
+    box-shadow: 0 8px 30px rgba(93, 57, 34, 0.08);
+    border: 1.5px solid #e6d7c3;
+    transition: all 0.3s ease;
+}
 
-<!-- القسم الثالث: تفاصيل الفاتورة -->
-<div class="section-card invoice-card">
-    <h3>💰 تفاصيل الفاتورة</h3>
-    <div class="invoice-row">
-        <span>قيمة الوجبات:</span>
-        <span id="summaryItemsTotal">0.00 دينار</span>
-    </div>
-    <div id="summaryDeliveryRow" class="invoice-row" style="display: none;">
-        <span>رسوم التوصيل:</span>
-        <span id="summaryDeliveryFee">0.00 دينار</span>
-    </div>
-    <hr class="invoice-divider">
-    <div class="invoice-row total-row">
-        <span>المجموع النهائي:</span>
-        <span id="summaryGrandTotal">0.00 دينار</span>
-    </div>
-</div>
+.section-card:hover {
+    box-shadow: 0 10px 35px rgba(212, 175, 55, 0.2);
+    border-color: #d4af37;
+}
 
-<!-- القسم الرابع: ملاحظات -->
-<div class="section-card">
-    <h3>📝 ملاحظات إضافية</h3>
-    <textarea id="customerNotes" placeholder="ملاحظات على الطلب (اختياري)"></textarea>
-</div>
+.section-card h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #5d3922;
+    margin-bottom: 12px;
+}
 
-<!-- زر إرسال الطلب -->
-<button id="confirmOrder" class="premium-order-btn">
-    <span>متابعة إرسال الطلب</span>
-    <span class="btn-icon">✅</span>
-</button>
+/* ==========================================
+   حقول الإدخال مع تأثير اللد المضيء
+   ========================================== */
+input[type="text"],
+input[type="tel"],
+select,
+textarea {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 12px;
+    border: 2.5px solid #d4af37;
+    border-radius: 12px;
+    background: #fffdf9;
+    font-size: 16px;
+    font-weight: 500;
+    color: #3d2415;
+    outline: none;
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.4), inset 0 0 4px rgba(212, 175, 55, 0.2);
+    transition: all 0.3s ease;
+}
 
-</div>
+input:focus, select:focus, textarea:focus {
+    border-color: #0d5c2f;
+    background: #fff;
+    box-shadow: 0 0 12px rgba(13, 92, 47, 0.6), inset 0 0 5px rgba(13, 92, 47, 0.3);
+}
 
-<script src="checkout.js"></script>
-</body>
-</html>
+input::placeholder, textarea::placeholder {
+    color: #8c7355;
+    opacity: 0.8;
+}
+
+textarea {
+    resize: none;
+    height: 90px;
+}
+
+/* ==========================================
+   بطاقات خيارات الاستلام والتوصيل (المحدثة)
+   ========================================== */
+.delivery-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.delivery-card {
+    cursor: pointer;
+    border: 2px solid #e6d7c3;
+    border-radius: 14px;
+    padding: 20px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    transition: all 0.25s ease;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+}
+
+.delivery-card input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+.card-emoji {
+    font-size: 36px;
+    margin-bottom: 8px;
+}
+
+.card-title {
+    font-size: 15px;
+    font-weight: 800;
+    color: #3d2415;
+    margin-bottom: 4px;
+}
+
+.card-sub {
+    font-size: 12px;
+    color: #7a5c44;
+    font-weight: 500;
+}
+
+.delivery-card:has(input[type="radio"]:checked) {
+    border-color: #0d5c2f;
+    background: #f3faf5;
+    box-shadow: 0 6px 18px rgba(13, 92, 47, 0.15);
+    transform: translateY(-2px);
+}
+
+.delivery-card:has(input[type="radio"]:checked) .card-title {
+    color: #0d5c2f;
+}
+
+/* صندوق تفاصيل التوصيل والمنطقة */
+.address-box {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 2px dashed #e6d7c3;
+}
+
+.address-box label {
+    font-size: 13px;
+    font-weight: 700;
+    color: #5d3922;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.location-tip {
+    background: #edf7ed;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #c8e6c9;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.location-tip p {
+    font-size: 12px;
+    color: #1e4620;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* فاتورة الحساب */
+.invoice-card {
+    background: #fffcf7;
+    border: 2.5px solid #d4af37;
+}
+
+.invoice-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+.invoice-divider {
+    border: 0;
+    border-top: 1.5px dashed #e6d7c3;
+    margin: 10px 0;
+}
+
+.total-row {
+    font-weight: 900;
+    font-size: 18px;
+    color: #c0392b;
+}
+
+/* زر إرسال الطلب الفاخر */
+.premium-order-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #0d5c2f 0%, #114c27 100%);
+    color: white;
+    border: none;
+    padding: 16px;
+    border-radius: 16px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 6px 25px rgba(13, 92, 47, 0.35), 0 0 15px rgba(212, 175, 55, 0.3);
+    transition: all 0.3s ease;
+}
+
+.premium-order-btn:hover {
+    background: linear-gradient(135deg, #116e37 0%, #0d5c2f 100%);
+    box-shadow: 0 8px 30px rgba(13, 92, 47, 0.5);
+    transform: translateY(-2px);
+}
+
+.premium-order-btn:active {
+    transform: scale(0.98);
+}
+
+/* عناصر إضافية عامة */
+.hero img,
+.hero-food img {
+    width: 100%;
+    display: block;
+    border-radius: 20px;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+    padding: 20px;
+}
+
+.gallery img {
+    width: 100%;
+    border-radius: 15px;
+    border: 4px solid #c99c47;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.gallery img:hover {
+    transform: scale(1.03);
+}
+
+footer {
+    background: #3d2415;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+    margin-top: 30px;
+    border-radius: 12px;
+}
