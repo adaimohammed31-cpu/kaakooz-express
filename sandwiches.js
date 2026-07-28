@@ -47,3 +47,28 @@ orderButtons.forEach(button => {
 });
 
 updateCartCount();
+const searchInput = document.getElementById("searchInput");
+
+if (searchInput) {
+
+    searchInput.addEventListener("input", function () {
+
+        const search = this.value.toLowerCase();
+
+        const cards = document.querySelectorAll(".sandwich-card");
+
+        cards.forEach(card => {
+
+            const productName = card.querySelector(".order-btn").dataset.name.toLowerCase();
+
+            if (productName.includes(search)) {
+                card.style.display = "";
+            } else {
+                card.style.display = "none";
+            }
+
+        });
+
+    });
+
+}
