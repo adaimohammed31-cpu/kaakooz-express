@@ -189,7 +189,11 @@ if (deliveryZone.value === "منطقة أخرى") {
 
     if (delivery === "توصيل") {
         message += `📍 المنطقة: ${selectedAreaName}\n`;
-        message += `🛣️ العنوان: ${street}\n`;
+        message += `🏠 العنوان:
+اسم المنطقة: ${customerArea.value}
+رقم البناية: ${buildingNumber.value}
+اسم الشارع: ${customerStreet.value || "غير مذكور"}
+أقرب معلم: ${landmark.value}\n`;
     }
 
     if (notes !== "") {
