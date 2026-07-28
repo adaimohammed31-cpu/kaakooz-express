@@ -120,6 +120,27 @@ confirmOrder.addEventListener("click", () => {
         const customerArea = document.getElementById("customerArea");
 const buildingNumber = document.getElementById("buildingNumber");
 const landmark = document.getElementById("landmark");
+        const lettersRegex = /^[\u0600-\u06FFa-zA-Z\s]+$/;
+const numbersRegex = /^[0-9]+$/;
+
+if (customerArea.value.trim() !== "" && !lettersRegex.test(customerArea.value.trim())) {
+    alert("اسم المنطقة يجب أن يحتوي على حروف فقط.");
+    customerArea.focus();
+    return;
+}
+
+if (buildingNumber.value.trim() !== "" && !numbersRegex.test(buildingNumber.value.trim())) {
+    alert("رقم البناية يجب أن يحتوي على أرقام فقط.");
+    buildingNumber.focus();
+    return;
+}
+
+if (landmark.value.trim() !== "" && !lettersRegex.test(landmark.value.trim())) {
+    alert("أقرب معلم يجب أن يحتوي على حروف فقط.");
+    landmark.focus();
+    return;
+}
+        
 
 if (deliveryZone.value === "منطقة أخرى") {
 
