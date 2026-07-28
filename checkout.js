@@ -117,11 +117,31 @@ confirmOrder.addEventListener("click", () => {
             deliveryZone.focus();
             return;
         }
-        if (street === "") {
-            alert("يرجى إدخال تفاصيل الشارع والعنوان.");
-            customerStreet.focus();
-            return;
-        }
+        const customerArea = document.getElementById("customerArea");
+const buildingNumber = document.getElementById("buildingNumber");
+const landmark = document.getElementById("landmark");
+
+if (deliveryZone.value === "منطقة أخرى") {
+
+    if (customerArea.value.trim() === "") {
+        alert("يرجى إدخال اسم المنطقة.");
+        customerArea.focus();
+        return;
+    }
+
+    if (buildingNumber.value.trim() === "") {
+        alert("يرجى إدخال رقم البناية.");
+        buildingNumber.focus();
+        return;
+    }
+
+    if (landmark.value.trim() === "") {
+        alert("يرجى إدخال أقرب معلم.");
+        landmark.focus();
+        return;
+    }
+
+}
         selectedAreaName = deliveryZone.value;
         const selectedOption = deliveryZone.options[deliveryZone.selectedIndex];
         const priceAttr = selectedOption.dataset.price;
