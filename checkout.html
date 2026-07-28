@@ -67,10 +67,30 @@
             <option value="زي / أم جوزة / البيوضة" data-price="2.00">زي / أم جوزة / البيوضة - 2 دينار</option>
             <option value="منطقة أخرى" data-price="">منطقة أخرى (يرجى التواصل أولاً)</option>
         </select>
-<input type="text" id="customerArea" placeholder="اسم المنطقة">
-<input type="text" id="buildingNumber" placeholder="رقم البناية">
-<input type="text" id="customerStreet" placeholder="اسم الشارع (اختياري)">
-<input type="text" id="landmark" placeholder="أقرب معلم">
+<input type="text"
+       id="customerArea"
+       placeholder="اسم المنطقة"
+       pattern="[ء-يA-Za-z\s]{2,50}"
+       title="يرجى إدخال اسم المنطقة بالحروف فقط">
+
+        <input type="text"
+       id="buildingNumber"
+       placeholder="رقم البناية"
+       inputmode="numeric"
+       pattern="[0-9]+"
+       title="يرجى إدخال أرقام فقط">
+
+        <input type="text"
+       id="customerStreet"
+       placeholder="اسم الشارع (اختياري)">
+
+        <input type="text"
+       id="landmark"
+       placeholder="أقرب معلم"
+       pattern="[ء-يA-Za-z\s]{2,100}"
+       title="يرجى إدخال اسم المعلم بالحروف فقط">
+
+        
         <div class="location-tip">
             <span>📍</span>
             <p>عند تحويلك للواتساب، أرسل موقعك (لوكيشن) 📎 من علامة المرفقات لتسهيل التوصيل بدقة.</p>
